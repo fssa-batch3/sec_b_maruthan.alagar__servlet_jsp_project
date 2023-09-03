@@ -83,7 +83,7 @@
               
                 <div class="content">
                     <label class="forms">E-Mail Address (optional)</label>
-                    <input class="lists" type="email" name="email"
+                    <input class="lists" type="text" name="email"
                       
                         placeholder="Enter Customer E-Mail">
                 </div>

@@ -11,20 +11,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
-import in.fssa.mambilling.model.Price;
-import in.fssa.mambilling.model.Product;
-import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.model.User;
-import in.fssa.mambilling.service.ProductService;
 import in.fssa.mambilling.service.UserService;
 
 /**
- * Servlet implementation class CreateUserServlet
+ * Servlet implementation class UpdateUserServlet
  */
-@WebServlet("/users/create")
-public class CreateUserServlet extends HttpServlet {
+@WebServlet("/user/update")
+public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
@@ -33,6 +33,9 @@ public class CreateUserServlet extends HttpServlet {
 		String phone_number = request.getParameter("phone_number");
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
+
+		long old_phone_number = Long.parseLong(request.getParameter("userPhone"));
+		long phone = Long.parseLong(phone_number);
 		
 		if(email.trim().equals("-")||email.trim().equals("")) {
 			email=null;
@@ -42,16 +45,13 @@ public class CreateUserServlet extends HttpServlet {
 			address=null;
 		}
 
-
-		long phone = Long.parseLong(phone_number);
-
-		User newUser = new User(customer_name,email,phone,address);
-
+		User newUser = new User(customer_name, email, phone, address);
 
 		UserService us = new UserService();
+
 		try {
-			us.createUser(newUser);
-			response.sendRedirect(request.getContextPath()+"/users");
+			us.updateUser(old_phone_number, newUser);
+			response.sendRedirect(request.getContextPath() + "/users");
 		} catch (ValidationException e) {
 
 			e.printStackTrace();
@@ -62,5 +62,4 @@ public class CreateUserServlet extends HttpServlet {
 		}
 
 	}
-
 }

@@ -1,5 +1,6 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.List"%>
-<%@page import="in.fssa.mambilling.model.User"%>
+<%@page import="in.fssa.mambilling.model.Bill"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -58,37 +59,52 @@ th, td {
 </head>
 <body>
 	<%
-	List<User> user_list = new ArrayList<User>();
+	List<Bill> bill_list = new ArrayList<Bill>();
 	%>
 	<%
-	user_list = (List<User>) request.getAttribute("userList");
+	bill_list = (List<Bill>) request.getAttribute("billList");
 	%>
 
 	<div class="top_nav">
-		<h1>Customer List</h1>
+		<h1>Bill List</h1>
 		<button class="top" id="add">
-			<a class="top" href="users/new"> &#x002B;Add New Customer </a>
+			<a class="top" href="bills/new"> &#x002B;Add New Bill </a>
 		</button>
 	</div>
 
 	<table border="1">
 		<tr>
-			<th>Customer Name</th>
-			<th>Phone Number</th>
+			<th>Bill No</th>
+			<th>Date</th>
+			<th>Time</th>
+
 		</tr>
 		<%
-		for (User user : user_list) {
+		for (Bill bill : bill_list) {
 		%>
 		<tr>
-			<td><%=user.getName()%></td>
-			<td><%=user.getPhoneNumber()%></td>
+			<td><%=bill.getBillId()%></td>
 
-			<td><a href="users/detail?UserId=<%=user.getId()%>">
+			<%
+			String pattern = "yyyy-MM-dd HH:mm:ss";
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+			String formattedDateTime = bill.getTimeStamp().format(formatter);
+			String[] dateTimeParts = formattedDateTime.split(" ");
+			String formattedDate = dateTimeParts[0];
+			String formattedTime = dateTimeParts[1];
+			%>
+
+			<!-- Display date and time separately in HTML -->
+			<td><%=formattedDate%></td>
+			<td><%=formattedTime%></td>
+
+			<td><a
+				href="bill/detail?BillId=<%=bill.getBillId()%>&UserId=<%=bill.getUserId()%>&time=<%=bill.getTimeStamp()%>">
 					<button class="view" type="submit">View</button>
 			</a></td>
-			<td><a href="user/edit?UserId=<%=user.getId()%>">
+			<%-- 	<td><a href="u/edit?UserId=<%=bill.getBillId()%>">
 					<button class="update" type="submit">Update</button>
-			</a></td>
+			</a></td> --%>
 
 		</tr>
 		<%

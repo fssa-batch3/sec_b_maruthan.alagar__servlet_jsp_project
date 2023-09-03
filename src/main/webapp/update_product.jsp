@@ -149,10 +149,23 @@ h2 {
 						name="product_id" type="text" value =<%=productId%> placeholder="Enter ID"  readonly>
 				</div>
 				<div class="content">
-					<label class="forms">Special name(optional)</label> <input
+					<label class="forms">Special name(optional)</label>
+					
+					<% if(product.getSpecialName()==null){ %>
+					<input
+						class="lists" name="special_name"
+						value="-" type="text"
+						placeholder="Enter special name">
+					
+					<%}else{ %>
+					<input
 						class="lists" name="special_name"
 						value="<%=product.getSpecialName() %>" type="text"
 						placeholder="Enter special name">
+					
+					
+					<%} %>
+		
 				</div>
 			</div>
 		</div>

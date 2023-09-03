@@ -85,7 +85,21 @@ th, td {
 			<td><%=product.getProductName()%></td>
 			<td><%=product.getQuantity()%></td>
 			<td><%=product.getQuantityType()%></td>
+			<%
+			if (product.getSpecialName() == null) {
+			%>
+			<td>-</td>
+			<%
+			} else {
+			%>
 			<td><%=product.getSpecialName()%></td>
+			<%
+			}
+			%>
+
+
+
+
 			<td><a href="products/details?productId=<%=product.getId()%>">
 					<button class="view" type="submit">View</button>
 			</a></td>

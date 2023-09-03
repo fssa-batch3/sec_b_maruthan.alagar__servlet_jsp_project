@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Product Management</title>
+    <title>M A M Billing</title>
     <style>
         /* Style for buttons */
         .button {
@@ -29,8 +29,8 @@
     <div>
        <a class="top" href="products">  <button class="button">Products </button></a>
         <a class="top" href="users">  <button class="button">Customers </button></a>
- <!--        <button class="button"><a class="top" href="product/new"> &#x002B;Add New Item </a></button>
-        <button class="button"><a class="top" href="product/new"> &#x002B;Add New Item </a></button> -->
+         <a class="top" href="bills">  <button class="button">Bills </button></a>
+     <!--   <button class="button"><a class="top" href="product/new"> &#x002B;Add New Item </a></button> -->
     </div>
 </body>
 </html>

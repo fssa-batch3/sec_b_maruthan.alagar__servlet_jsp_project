@@ -34,6 +34,10 @@ public class CreateProductServlet extends HttpServlet {
 		String tax = request.getParameter("tax");
 		String discount = request.getParameter("discount");
 		String special_name = request.getParameter("special_name");
+		
+		if(special_name.trim().equals("-")||special_name.trim().equals("")) {
+			special_name=null;
+		}
 
 		int pro_quan = Integer.parseInt(quantity);
 		double pro_mrp = Double.parseDouble(mrp);

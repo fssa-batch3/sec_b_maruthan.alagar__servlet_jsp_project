@@ -70,7 +70,15 @@
 		</div>
 
 		<div class="product-detail">
-			<span class="label">Special Name:</span> <span class="value"><%=product.getSpecialName()%></span>
+			<span class="label">Special Name:</span> 
+			
+			<% if(product.getSpecialName()==null){%>
+			<span class="value">-</span>
+			<% }else{%>
+			<span class="value"><%=product.getSpecialName()%></span>
+			<%} %>
+			
+			
 		</div>
 
 		<div class="product-detail">

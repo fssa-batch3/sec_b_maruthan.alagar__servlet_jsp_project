@@ -10,23 +10,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import in.fssa.mambilling.dto.ProductDTO;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.User;
-import in.fssa.mambilling.service.ProductService;
 import in.fssa.mambilling.service.UserService;
 
 /**
- * Servlet implementation class ListUserDetails
+ * Servlet implementation class EditUserServlet
  */
-@WebServlet("/users/detail")
-public class ListUserDetails extends HttpServlet {
+@WebServlet("/user/edit")
+public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserService userService = new UserService();
 		PrintWriter out = response.getWriter();
 
@@ -41,11 +41,15 @@ public class ListUserDetails extends HttpServlet {
 		} else {
 			int userId = Integer.parseInt(id);
 
+
 			try {
 				User user = userService.getByUserId(userId);
-				request.setAttribute("user", user);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/view_user.jsp");
+				request.setAttribute("userDetail", user);
+				request.setAttribute("userPhone", user.getPhoneNumber());
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/update_user.jsp");
 				dispatcher.forward(request, response);
+
 			} catch (ValidationException e) {
 				e.printStackTrace();
 				out.print(e.getMessage());
@@ -54,6 +58,10 @@ public class ListUserDetails extends HttpServlet {
 				e.printStackTrace();
 				out.print(e.getMessage());
 			}
+			
+			
+			
+			
 		}
 	}
 

@@ -40,6 +40,9 @@ public class UpdateProductServlet extends HttpServlet {
 		String special_name = request.getParameter("special_name");
 		String id = request.getParameter("product_id");
 
+		if(special_name.trim().equals("-")||special_name.trim().equals("")) {
+			special_name=null;
+		}
 		int productId = Integer.parseInt(id);
 		int pro_quan = Integer.parseInt(quantity);
 		double pro_mrp = Double.parseDouble(mrp);
