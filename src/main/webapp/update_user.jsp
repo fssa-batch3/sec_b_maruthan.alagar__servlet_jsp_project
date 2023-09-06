@@ -1,25 +1,25 @@
 <%@page import="in.fssa.mambilling.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Update User</title>
 <style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f5f5f5;
-	margin: 0;
-	padding: 0;
-}
+
+
 
 h2 {
 	color: #333;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 form {
-	max-width: 500px;
+	max-width: 700px;
 	margin: 0 auto;
 	background-color: #fff;
 	padding: 20px;
@@ -57,8 +57,19 @@ form {
 	border-radius: 3px;
 }
 
-.button span {
-	margin-left: 5px;
+.content1 {
+	display: flex;
+	justify-content: space-between;
+}
+
+#span_save {
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+#span_back {
+	font-size: 18px;
+	margin-right: 10px;
 }
 
 .button:hover {
@@ -125,9 +136,9 @@ form {
 				placeholder="Enter Customer Adress">
 			<%
 			} else {
-			%>				
-				<input class="lists" type="text" name="address" value="<%=user.getAddress()%>"
-				placeholder="Enter Customer Adress">
+			%>
+			<input class="lists" type="text" name="address"
+				value="<%=user.getAddress()%>" placeholder="Enter Customer Adress">
 			<%
 			}
 			%>
@@ -135,9 +146,16 @@ form {
 
 		</div>
 		<input type="hidden" name="userPhone" value="<%=phone_number%>">
-		<button class="button" type="submit">
-			Update<span>&#8594;</span>
-		</button>
+		<div class="content1">
+			<a href="../users"><button class="button" id="submit"
+					type="button">
+					<span id="span_back">&#x2190</span>Back
+				</button></a>
+			<button class="button" id="submit" type="submit">
+				Update<span id="span_save">&#8594;</span>
+			</button>
+
+		</div>
 	</form>
 </body>
 </html>

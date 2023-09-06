@@ -57,7 +57,7 @@ public class ListBillDetails extends HttpServlet {
 
 			Bill newBill = new Bill(localDateTime, billId, billuserId);
 
-			List<ProductDTO> products = null;
+			List<ProductDTO> products =  new ArrayList<ProductDTO>();
 
 			try {
 				List<BillItems> billItems = billItemsService.findByBillId(billId);
@@ -66,7 +66,6 @@ public class ListBillDetails extends HttpServlet {
 					ProductDTO product = ps.getProductDetail(item.getProductId());
 					product.setTotalQuantity(item.getQuantity());
 
-					products = new ArrayList<ProductDTO>();
 					products.add(product);
 
 				}

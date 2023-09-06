@@ -27,6 +27,7 @@ h2 {
 	margin-bottom: 15px;
 }
 
+
 .label {
 	display: flex;
 	justify-content: space-between;
@@ -60,10 +61,17 @@ h2 {
 	border-radius: 5px;
 	cursor: pointer;
 }
-
-.button span {
+.content1{
+display:flex;
+justify-content:space-between;
+}
+#span_save {
 	font-size: 18px;
 	margin-left: 10px;
+}
+#span_back {
+	font-size: 18px;
+	margin-right: 10px;
 }
 </style>
 </head>
@@ -90,11 +98,8 @@ h2 {
 
 							<select class="lists" name="type" id="type" required>
 								<option value="">--Select--</option>
-								<option value="kgs">kg</option>
-								<option value="mg">mg</option>
 								<option value="g">g</option>
 								<option value="ml">ml</option>
-								<option value="ltr">Ltr</option>
 								<option value="nos">Nos</option>
 							</select>
 						</div>
@@ -137,10 +142,6 @@ h2 {
 				</div>
 
 				<div class="content">
-					<label class="forms">ID Number</label> <input class="lists"
-						name="product_id" type="text" placeholder="Enter ID" required>
-				</div>
-				<div class="content">
 					<label class="forms">Special name(optional)</label> <input
 						class="lists" name="special_name" type="text"
 						placeholder="Enter special name">
@@ -148,9 +149,13 @@ h2 {
 			</div>
 		</div>
 		<div class="content1">
+		<a href="../products"><button class="button" id="submit" type="button">
+				<span id="span_back">&#x2190</span>Back
+			</button></a>
 			<button class="button" id="submit" type="submit">
-				Save<span>&#8594;</span>
+				Save<span id="span_save">&#8594;</span>
 			</button>
+			
 		</div>
 
 	</form>

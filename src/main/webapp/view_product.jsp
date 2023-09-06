@@ -1,17 +1,24 @@
 <%@page import="in.fssa.mambilling.dto.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
+<title>View Product</title>
 <style>
 /* Style for the container */
 .container {
-	width: 300px;
+	width: 370px;
+	height: 390px;
 	border: 1px solid #ccc;
 	padding: 20px;
 	margin: 20px auto;
 	background-color: #f5f5f5;
+}
+h1{
+display: flex;
+    justify-content: center;
 }
 
 /* Style for the product details */
@@ -40,11 +47,22 @@
 	text-decoration: none;
 	display: inline-block;
 	border-radius: 3px;
-	margin-left:48%;
+	margin-left: 48%;
 }
 
 .button:hover {
 	background-color: #0056b3;
+}
+
+.product-detail {
+	font-size: 22px;
+	margin-top: 8px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.value {
+	font-size: 22px;
 }
 </style>
 </head>
@@ -58,39 +76,45 @@
 		product = (ProductDTO) request.getAttribute("product");
 		%>
 		<div class="product-detail">
-			<span class="label">Product Name:</span> <span class="value"><%=product.getProductName()%></span>
+			<span class="label">Product Name :</span> <span class="value"><%=product.getProductName()%></span>
 		</div>
 
 		<div class="product-detail">
-			<span class="label">Quantity:</span> <span class="value"><%=product.getQuantity()%></span>
+			<span class="label">Quantity :</span> <span class="value"><%=product.getQuantity()%></span>
 		</div>
 
 		<div class="product-detail">
-			<span class="label">Quantity Type:</span> <span class="value"><%=product.getQuantityType()%></span>
+			<span class="label">Quantity Type :</span> <span class="value"><%=product.getQuantityType()%></span>
 		</div>
 
 		<div class="product-detail">
-			<span class="label">Special Name:</span> 
-			
-			<% if(product.getSpecialName()==null){%>
+			<span class="label">Special Name :</span>
+
+			<%
+			if (product.getSpecialName() == null) {
+			%>
 			<span class="value">-</span>
-			<% }else{%>
+			<%
+			} else {
+			%>
 			<span class="value"><%=product.getSpecialName()%></span>
-			<%} %>
-			
-			
+			<%
+			}
+			%>
+
+
 		</div>
 
 		<div class="product-detail">
-			<span class="label">MRP:</span> <span class="value"><%=product.getMrp()%></span>
+			<span class="label">MRP :</span> <span class="value"><%=product.getMrp()%></span>
 		</div>
 
 		<div class="product-detail">
-			<span class="label">Tax:</span> <span class="value"><%=product.getTax()%></span>
+			<span class="label">Tax :</span> <span class="value"><%=product.getTax()%></span>
 		</div>
 
 		<div class="product-detail">
-			<span class="label">Discount:</span> <span class="value"><%=product.getDiscount()%></span>
+			<span class="label">Discount :</span> <span class="value"><%=product.getDiscount()%></span>
 		</div>
 	</div>
 	<div class="content1">

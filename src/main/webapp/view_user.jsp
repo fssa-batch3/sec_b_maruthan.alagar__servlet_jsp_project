@@ -1,22 +1,38 @@
 <%@page import="in.fssa.mambilling.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
+
 <head>
+<title>View User</title>
 <style>
 /* Style for the container */
 .container {
-	width: 300px;
+	width: 556px;
+    height: 280px;
 	border: 1px solid #ccc;
 	padding: 20px;
 	margin: 20px auto;
 	background-color: #f5f5f5;
 }
 
-/* Style for the product details */
-.product-detail {
-	margin-bottom: 10px;
+h1{
+display: flex;
+    justify-content: center;
+}
+
+/* Style for the user details */
+.user-detail {
+	font-size: 22px;
+	margin-top: 8px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.value {
+	font-size: 22px;
 }
 
 /* Style for labels */
@@ -57,15 +73,32 @@
 		<%
 		user = (User) request.getAttribute("user");
 		%>
-		<div class="product-detail">
-			<span class="label">Customer Name:</span> <span class="value"><%=user.getName()%></span>
+		<div class="user-detail">
+			<span class="label">Customer Name:</span><div> <span class="value"><%=user.getName()%></span></div>
 		</div>
 
-		<div class="product-detail">
+		<div class="user-detail">
 			<span class="label">Phone Number:</span> <span class="value"><%=user.getPhoneNumber()%></span>
 		</div>
 
-		<div class="product-detail">
+		
+		<div class="user-detail">
+			<span class="label">Address:</span>
+
+			<%
+			if (user.getAddress() == null) {
+			%>
+			<span class="value">-</span>
+			<%
+			} else {
+			%>
+			<span class="value"><%=user.getAddress()%></span>
+			<%
+			}
+			%>
+
+		</div>
+		<div class="user-detail">
 			<span class="label">Email:</span>
 
 			<%
@@ -80,22 +113,6 @@
 			}
 			%>
 
-
-		</div>
-		<div class="product-detail">
-			<span class="label">Address:</span>
-
-			<%
-			if (user.getAddress() == null) {
-			%>
-			<span class="value">-</span>
-			<%
-			} else {
-			%>
-			<span class="value"><%=user.getAddress()%></span>
-			<%
-			}
-			%>
 
 		</div>
 

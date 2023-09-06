@@ -8,13 +8,13 @@
 	<version>1.0.0</version>
 	<name>mambillingweb Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-	
-	
-		<properties>
+
+
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>17</maven.compiler.source>
 		<maven.compiler.target>17</maven.compiler.target>
-		</properties>
+	</properties>
 	<dependencies>
 
 		<dependency>
@@ -53,6 +53,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 		</dependency>
+		
 
 
 	</dependencies>

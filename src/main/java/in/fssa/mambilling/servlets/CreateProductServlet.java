@@ -3,6 +3,7 @@ package in.fssa.mambilling.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -54,9 +55,14 @@ public class CreateProductServlet extends HttpServlet {
 		} catch (ValidationException e) {
 
 			e.printStackTrace();
+			request.setAttribute("errorMessage", e.getMessage());
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_product.jsp");
+		    dispatcher.forward(request, response);
 			out.println(e.getMessage());
+			
 		} catch (ServiceException e) {
-			out.println(e.getMessage());
+			request.setAttribute("errorMessage", e.getMessage());
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_product.jsp");
 			e.printStackTrace();
 		}
 

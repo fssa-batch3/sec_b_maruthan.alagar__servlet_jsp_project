@@ -6,22 +6,21 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>View Bill</title>
 <style type="text/css">
-body {
-	font-family: Arial, sans-serif;
-}
+
 
 h2, h3, h4 {
 	margin: 10px;
 }
 
 .bill-container {
-	max-width: 298px;
+	max-width: 342px;
 	margin: 0 auto;
 	padding: 20px;
 	border: 1px solid #ccc;
@@ -91,32 +90,25 @@ h2, h3, h4 {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	height: 35vh;
+	height: 32vh;
 }
 
 .btn {
 	width: 270px;
 	height: 60px;
 	font-size: 18px;
-	background: #fff;
 	border: none;
 	display: block;
 	border-radius: 50px;
-	color: #000;
 	outline: none;
 	font-weight: bolder;
 	cursor: pointer;
-	transition: all 0.4s;
+	background: #007bff;
+	color: #ffffff;
 }
 
 #a_tag {
 	text-decoration: none;
-}
-
-.btn:hover {
-	box-shadow: #ffffff;
-	background: #46b8de;
-	color: #ffffff;
 }
 
 #thank {

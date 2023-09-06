@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import in.fssa.mambilling.dto.ProductDTO;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.BillItems;
@@ -38,6 +39,7 @@ public class CreateBillServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		PriceService ps = new PriceService();
+		ProductService productService = new ProductService();
 		BillService bs = new BillService();
 		String product_ids_and_quantities = request.getParameter("product_ids_and_quantities");
 		String id = request.getParameter("customer_id");
@@ -55,12 +57,24 @@ public class CreateBillServlet extends HttpServlet {
 			BillItems newItem = new BillItems();
 			int priceid = -1;
 			try {
+				
+				
+				
+				ProductDTO newProduct = productService.getProductDetail(product.getProductID());
+				
+				if(newProduct==null) {
+					throw new ValidationException("Product not Exists with ID "+product.getProductID());
+				}else {
+					priceid = ps.getByProductId(product.getProductID()).getId();
+				}
 
-				priceid = ps.getByProductId(product.getProductID()).getId();
+				
 
 			} catch (ValidationException e) {
+				out.print(e.getMessage());
 				e.printStackTrace();
 			} catch (ServiceException e) {
+				out.print(e.getMessage());
 				e.printStackTrace();
 			}
 			newItem.setProductId(product.getProductID());

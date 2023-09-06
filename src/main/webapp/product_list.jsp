@@ -3,18 +3,21 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Product List</title>
 <style>
 /* Style for the table */
 table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 20px;
+	width: 97%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 1.5%;
 }
+
 
 table, th, td {
 	border: 1px solid #ccc;
@@ -26,7 +29,7 @@ th, td {
 }
 
 /* Style for buttons */
-.view, .update, .delete, .top {
+.view, .update, .delete,.top {
 	background-color: #007bff;
 	color: #fff;
 	border: none;
@@ -65,12 +68,15 @@ th, td {
 	%>
 
 	<div class="top_nav">
-		<h1>Product List</h1>
+		<div>
+
+			<h1>Product List</h1>
+		</div>
 		<button class="top" id="add">
 			<a class="top" href="product/new"> &#x002B;Add New Item </a>
 		</button>
 	</div>
-
+	
 	<table border="1">
 		<tr>
 			<th>Product Name</th>
@@ -114,7 +120,6 @@ th, td {
 		}
 		%>
 	</table>
-
 </body>
 
 </html>

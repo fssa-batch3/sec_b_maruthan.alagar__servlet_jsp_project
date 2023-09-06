@@ -29,6 +29,6 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/software/eclipse_IDE_workspace/mambillingweb/target/mambillingweb/WEB-INF/lib/gson-2.8.9.jar"/>
+	<classpathentry kind="lib" path="C:/software/eclipse_IDE_workspace/mambillingweb/src/main/webapp/WEB-INF/lib/gson-2.8.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

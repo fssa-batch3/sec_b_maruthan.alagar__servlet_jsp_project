@@ -3,6 +3,7 @@ package in.fssa.mambilling.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -58,7 +59,6 @@ public class UpdateProductServlet extends HttpServlet {
 			ps.updateProduct(newProduct,productId);
 			response.sendRedirect(request.getContextPath()+"/products");
 		} catch (ValidationException e) {
-
 			e.printStackTrace();
 			out.println(e.getMessage());
 		} catch (ServiceException e) {

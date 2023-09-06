@@ -1,3 +1,5 @@
+<%@page import="in.fssa.mambilling.dto.ProductDTO"%>
+<%@page import="in.fssa.mambilling.model.Product"%>
 <%@page import="in.fssa.mambilling.model.BillItems"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.google.gson.Gson"%>
@@ -5,11 +7,12 @@
 <%@page import="in.fssa.mambilling.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+		<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Add New Bill</title>
 <style>
 body {
 	font-family: Arial, sans-serif;
@@ -31,7 +34,7 @@ body {
 	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	width: 88%;
+	width: 102%;
 }
 
 label {
@@ -50,15 +53,16 @@ h2, h1 {
 }
 
 #btn {
-	background-color: #28a745;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-top: 30%;
-	width: 49%;
-	font-size: 20px;
+	    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30%;
+    width: 57%;
+    font-size: 26px;
+    height: 28%;;
 }
 
 #btn:hover {
@@ -108,9 +112,10 @@ h2, h1 {
 }
 
 #mainTable {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 20px;
+	    width: 97%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: 1.5%;
 }
 
 #mainTable th, #mainTable td {
@@ -139,14 +144,59 @@ h2, h1 {
 	outline: none;
 	font-size: 14px;
 }
+
+#h1 {
+	display:flex;
+	justify-content:center;
+
+}
+
+#add_button {
+	width: 45px;
+	height: 36px;
+	margin-top: 29px;
+	font-size: 30px;
+	font-weight: bold;
+	background-color: #28a745;
+	color: #fff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+#mark_back, h3 {
+	margin-left: 45%;
+	text-decoration: none;
+	color: black;
+}
+
+#product_name {
+	width: 116%;
+	margin-right: 38px;
+}
+.btn_back {
+	width: 230px;
+	height: 50px;
+	font-size: 18px;
+	border: none;
+	border-radius: 50px;
+	outline: none;
+	font-weight: bolder;
+	cursor: pointer;
+	background:  #007bff;
+	color: #ffffff;
+}
+.main{
+display: flex;
+	justify-content: center;
+}
 </style>
 
 </head>
 <body>
 
 
-
-
+	<h1 id="h1">Add New Bill</h1>
 
 	<form id="cus_form">
 		<div class="namebar">
@@ -163,14 +213,25 @@ h2, h1 {
 					<label>Phone Number:</label> <input class="lists" type="tel"
 						id="customer_phone" placeholder="Enter Mobile Number">
 				</div>
-
-
 			</div>
 
 			<div id="top">
 				<div>
-					<label>Product Name:</label> <input class="lists" id="product_name"
-						type="text" placeholder="Product Name">
+					<label>Product Name:</label> <select class="lists"
+						id="product_name">
+						<option value="">Select Product</option>
+						<%
+						// Sample list of product names
+						List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("products");
+
+						// Loop through the productList and create an option for each product
+						for (ProductDTO product : productList) {
+						%>
+						<option value="<%=product.getId()%>"><%=product.getProductName()%></option>
+						<%
+						}
+						%>
+					</select>
 				</div>
 
 				<div>
@@ -189,20 +250,16 @@ h2, h1 {
 				</div>
 
 				<div>
-					<label>Price:</label> <input class="lists" id="price" type="number"
-						placeholder="Enter price">
-				</div>
-				<div>
-					<label>Tax(Rs):</label> <input class="lists" id="tax" type="number"
+					<label>Tax(%):</label> <input class="lists" id="tax" type="number"
 						placeholder="Enter Tax">
 				</div>
 				<div>
-					<label>Discount(Rs):</label> <input class="lists" id="discount"
+					<label>Discount(%):</label> <input class="lists" id="discount"
 						type="number" placeholder="Enter Discount">
 				</div>
 
 				<div>
-					<a><button>ADD</button></a>
+					<button id="add_button">+</button>
 				</div>
 
 			</div>
@@ -216,9 +273,9 @@ h2, h1 {
 					<th>Product ID</th>
 					<th>Quantity</th>
 					<th>MRP</th>
-					<th>Price</th>
-					<th>Tax (Rs)</th>
-					<th>Discount (Rs)</th>
+					<th>Tax (%)</th>
+					<th>Discount (%)</th>
+					<th>Total Price</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -283,13 +340,86 @@ h2, h1 {
 
 
 	<script>
-		const addButton = document.querySelector("#cus_form button");
+
+	
+	async function getUserDetail(){
+		  const phoneNumber = document.getElementById("customer_phone").value;
+		  const requestData = {
+		    phoneNumber: phoneNumber
+		  };
+
+		  const url = "<%=request.getContextPath() %>/getuser";
+		  const options = {
+		    method: "POST",
+		    headers: {
+		      "Content-Type": "application/json" 
+		    },
+		    body: JSON.stringify(requestData) 
+		  };
+
+		  // Send the POST request using the fetch API and return the promise
+		  const response = await fetch(url, options).catch( (err)=> console.log(err));		    
+		  // console.log(userDetails);
+		  const userDetail = ( await response.json() ).data;
+		  
+	      document.getElementById("customer_name").value = userDetail.name;
+	      document.getElementById("customer_id").value = userDetail.id;
+	}
+	
+	
+	document.getElementById("customer_phone").addEventListener("change", getUserDetail);
+	
+	
+	
+	async function getProductDetail(){
+		
+		var product_id = document.getElementById("product_name").value;
+		
+		if (product_id === null || product_id === "") {
+			  product_id = document.getElementById("product_id").value;
+			}
+		  const requestData = {
+				  product_id: product_id
+		  };
+
+		  const url = "<%= request.getContextPath()%>/getproduct";
+		  const options = {
+		    method: "POST",
+		    headers: {
+		      "Content-Type": "application/json" 
+		    },
+		    body: JSON.stringify(requestData) 
+		  };
+
+		  // Send the POST request using the fetch API and return the promise
+		  const response = await fetch(url, options).catch( (err)=> console.log(err));		    
+		  // console.log(userDetails);
+		  const productDetail = ( await response.json() ).data;
+		  
+		  console.log(productDetail);
+		  document.getElementById("product_name").value =
+			  productDetail.id;
+		      document.getElementById("product_id").value =
+		    	  productDetail.id;
+		      document.getElementById("tax").value =
+		    	  productDetail.tax;
+		      document.getElementById("mrp").value =
+		    	  productDetail.mrp;
+		      document.getElementById("discount").value =
+		    	  productDetail.discount;
+	}
+	
+	
+	document.getElementById("product_name").addEventListener("change", getProductDetail);
+	document.getElementById("product_id").addEventListener("change", getProductDetail);
+	
+	
+		const addButton = document.querySelector("#add_button");
 		const mainTable = document.querySelector("#mainTable tbody");
 		const productNameInput = document.querySelector("#product_name");
 		const productIDInput = document.querySelector("#product_id");
 		const quantityInput = document.querySelector("#quantity");
 		const mrpInput = document.querySelector("#mrp");
-		const priceInput = document.querySelector("#price");
 		const taxInput = document.querySelector("#tax");
 		const discountInput = document.querySelector("#discount");
 		const idInput = document.querySelector("#customer_id");
@@ -298,18 +428,58 @@ h2, h1 {
 				.addEventListener(
 						"click",
 						function() {
+							
+							
+							
+							//const selectElement = document.getElementById("mySelect");
+				            const selectedIndex = productNameInput.selectedIndex;
+				            const selectedOption = productNameInput.options[selectedIndex];
+				            const selectedValue = selectedOption.value;
+				            const selectedText = selectedOption.innerText;
 
-							const productName = productNameInput.value
+							const productName = selectedText
 									|| "Name goes Here";
-							const productID = productIDInput.value;
-							const quantity = quantityInput.value;
-							const mrp = mrpInput.value || 0;
-							const price = priceInput.value || 0;
-							const tax = taxInput.value || 0;
-							const discount = discountInput.value || 0;
+							const productID = productIDInput.value|| 0;
+							const quantity = quantityInput.value|| 0;
+							const mrp = parseFloat(mrpInput.value) || 0; 
+							const tax = parseFloat(taxInput.value) || 0;
+							const discount = parseFloat(discountInput.value) || 0;
+							const cus_id = idInput.value||0;
 
-							if (productID != 0) {
-								// Create a new table row and add it to the table
+				
+							const totalPrice = (mrp + (mrp * (tax / 100))) * quantity; 
+							const price = parseInt(totalPrice - (totalPrice * (discount / 100)));
+							
+							const tableRows = mainTable.rows;
+							let exist = -1;
+							
+							if(tableRows!=0){
+							
+							for (let i = 0; i < tableRows.length; i++) {
+								const row = tableRows[i];
+								
+								const id = parseInt(row.cells[1].innerHTML);
+								if(productID==id){
+									exist=0;
+									
+									
+								}
+							}
+							}
+							
+							
+							if(cus_id<=0){
+								alert("Customer ID Cannot be Empty");
+								
+							}else if (productID <= 0 ) {
+								alert("Product ID Cannot be Empty");
+							}else if(quantity<=0){
+								
+								alert("Product Quantity Cannot be Empty");
+							}else if(exist==0){
+								alert("Product Already exists in the Bill");
+							} else {
+								
 								const newRow = mainTable.insertRow(-1);
 								const cell1 = newRow.insertCell(0);
 								const cell2 = newRow.insertCell(1);
@@ -323,22 +493,19 @@ h2, h1 {
 								cell2.innerHTML = productID;
 								cell3.innerHTML = quantity;
 								cell4.innerHTML = mrp;
-								cell5.innerHTML = price;
+								cell5.innerHTML = discount;
 								cell6.innerHTML = tax;
-								cell7.innerHTML = discount;
+								cell7.innerHTML = price;
 
 								// Clear input fields after adding to the table
 								productNameInput.value = "";
 								productIDInput.value = "";
 								quantityInput.value = "";
 								mrpInput.value = "";
-								priceInput.value = "";
 								taxInput.value = "";
 								discountInput.value = "";
 
 								calculateTotals();
-							} else {
-								alert("Product ID Cannot be Empty");
 
 							}
 							const productDataList = [];
@@ -381,13 +548,13 @@ h2, h1 {
 				const row = rows[i];
 				const quantity = parseInt(row.cells[2].innerHTML);
 				const mrp = parseFloat(row.cells[3].innerHTML);
-				const price = parseFloat(row.cells[4].innerHTML);
+				const discount = parseFloat(row.cells[4].innerHTML);
 				const tax = parseFloat(row.cells[5].innerHTML);
-				const discount = parseFloat(row.cells[6].innerHTML);
+				const price = parseFloat(row.cells[6].innerHTML);
 
 				totalQuantity += quantity;
 				totalMRP += quantity * mrp;
-				totalPrice += quantity * price;
+				totalPrice += price;
 				totalTax += tax;
 				totalDiscount += discount;
 			}
@@ -401,11 +568,14 @@ h2, h1 {
 			document.getElementById("total_discount").value = totalDiscount
 					.toFixed(2);
 
-			const subTotal = totalPrice + totalTax - totalDiscount;
+			const subTotal = totalPrice;
 			document.getElementById("sub_total").value = subTotal.toFixed(2);
 			document.getElementById("total").value = subTotal.toFixed(2);
 			document.getElementById("total_amount").value = subTotal.toFixed(2);
 		}
 	</script>
+			<div class="main">
+		<a href="../bills" id="a_tag"><button id="btn_back" class="btn_back">&#x2190; Back to Bills</button></a>
+	</div>
 </body>
 </html>
