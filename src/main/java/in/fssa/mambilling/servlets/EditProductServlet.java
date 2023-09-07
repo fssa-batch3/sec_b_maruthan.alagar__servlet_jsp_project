@@ -49,13 +49,10 @@ public class EditProductServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/update_product.jsp");
 				dispatcher.forward(request, response);
 
-			} catch (ValidationException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				out.print(e.getMessage());
 
-			} catch (ServiceException e) {
-				e.printStackTrace();
-				out.print(e.getMessage());
 			}
 			
 			

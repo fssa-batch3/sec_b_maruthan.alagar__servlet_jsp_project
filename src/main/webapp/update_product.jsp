@@ -1,15 +1,13 @@
 <%@page import="in.fssa.mambilling.dto.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Update Product</title>
 <style>
-
-
 h2 {
 	color: #333;
 	display: flex;
@@ -33,6 +31,7 @@ h2 {
 	display: flex;
 	justify-content: space-between;
 }
+
 .label label {
 	width: 50%;
 }
@@ -42,7 +41,7 @@ h2 {
 }
 
 .lists {
-width: 100%;
+	width: 100%;
 	padding: 10px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
@@ -59,6 +58,9 @@ width: 100%;
 #quantity {
 	width: 42%;
 }
+#tax {
+	width: 42%;
+}
 
 .typeport {
 	width: 51%;
@@ -67,6 +69,7 @@ width: 100%;
 #type {
 	width: 100%;
 }
+
 #discount {
 	width: 100%;
 }
@@ -101,10 +104,14 @@ width: 100%;
 String message = (String) request.getAttribute("errorMessage");
 %>
 
-<%if (message != null) {%>
+<%
+if (message != null) {
+%>
 
-<script> alert("<%=message%>"); </script>
-<%}%>
+<script> alert("<%=message%>");</script>
+<%
+}
+%>
 <body>
 
 	<%
@@ -122,19 +129,20 @@ String message = (String) request.getAttribute("errorMessage");
 			<div class="part1">
 				<div class="content">
 					<label class="forms">Product Name</label> <input class="lists"
-						name="product_name" type="text" placeholder="Product Name"
+						name="product_name" type="text" placeholder="Product Name" maxlength="100"
 						value="<%=product.getProductName()%>" required>
 
 				</div>
 
 				<div class="content">
 					<div class="label">
-						<label class="forms">Quantity:</label> <label class="forms" for="type" id="tp">Type:</label>
+						<label class="forms">Quantity:</label> <label class="forms"
+							for="type" id="tp">Type:</label>
 					</div>
 					<div class="quan">
 						<input class="lists" name="quantity" id="quantity"
-							value="<%=product.getQuantity()%>" type="number"
-							placeholder="Choose Number" required>
+							value="<%=product.getQuantity()%>" max="25000" min="1"
+							type="number" placeholder="Choose Number" required>
 						<div class="typeport">
 
 
@@ -160,8 +168,9 @@ String message = (String) request.getAttribute("errorMessage");
 
 					</div>
 					<div class="quan">
-						<input class="lists" value="<%=product.getMrp()%>" name="mrp"
-							type="number" placeholder="Enter MRP" required>
+						<input class="lists" value="<%=product.getMrp()%>" min="0"
+							max="5000" name="mrp" type="number" placeholder="Enter MRP"
+							required>
 
 					</div>
 				</div>
@@ -178,19 +187,19 @@ String message = (String) request.getAttribute("errorMessage");
 							id="discount_label">Discount:</label>
 					</div>
 					<div class="quan">
-						<input class="lists"  id="quantity" value="<%=product.getTax()%>" name="tax"
-							type="number" placeholder="Enter Tax" required>
+						<input class="lists" id="tax" value="<%=product.getTax()%>"
+							name="tax" type="number" placeholder="Enter Tax" min="0" max="99"
+							required>
 						<div class="typeport">
-							<input class="lists" id="discount" value="<%=product.getDiscount()%>"
-								name="discount" type="number" placeholder="Enter Discount"
-								required>
+							<input class="lists" id="discount"
+								value="<%=product.getDiscount()%>" name="discount" type="number"
+								min="0" max="99" placeholder="Enter Discount" required>
 						</div>
 					</div>
 				</div>
 				<div class="content">
-					<input class="lists"
-						name="product_id" type="hidden" value=<%=productId%>
-						placeholder="Enter ID" readonly>
+					<input class="lists" name="product_id" type="hidden"
+						value=<%=productId%> placeholder="Enter ID" readonly>
 				</div>
 				<div class="content">
 					<label class="forms">Special name(optional)</label>
@@ -198,14 +207,14 @@ String message = (String) request.getAttribute("errorMessage");
 					<%
 					if (product.getSpecialName() == null) {
 					%>
-					<input class="lists" name="special_name" value="-" type="text"
-						placeholder="Enter special name">
+					<input class="lists" name="special_name" value="-" maxlength="100"
+						type="text" placeholder="Enter special name">
 
 					<%
 					} else {
 					%>
 					<input class="lists" name="special_name"
-						value="<%=product.getSpecialName()%>" type="text"
+						value="<%=product.getSpecialName()%>" maxlength="100" type="text"
 						placeholder="Enter special name">
 
 

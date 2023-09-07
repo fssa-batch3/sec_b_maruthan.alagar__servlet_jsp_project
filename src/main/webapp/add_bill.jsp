@@ -478,6 +478,13 @@ display: flex;
 								alert("Product Quantity Cannot be Empty");
 							}else if(exist==0){
 								alert("Product Already exists in the Bill");
+								
+								productNameInput.value = "";
+								productIDInput.value = "";
+								quantityInput.value = "";
+								mrpInput.value = "";
+								taxInput.value = "";
+								discountInput.value = "";
 							} else {
 								
 								const newRow = mainTable.insertRow(-1);
@@ -493,8 +500,8 @@ display: flex;
 								cell2.innerHTML = productID;
 								cell3.innerHTML = quantity;
 								cell4.innerHTML = mrp;
-								cell5.innerHTML = discount;
-								cell6.innerHTML = tax;
+								cell5.innerHTML = tax;
+								cell6.innerHTML = discount;
 								cell7.innerHTML = price;
 
 								// Clear input fields after adding to the table

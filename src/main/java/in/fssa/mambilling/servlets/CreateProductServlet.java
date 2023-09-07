@@ -52,18 +52,13 @@ public class CreateProductServlet extends HttpServlet {
 		try {
 			ps.createProduct(newProduct);
 			response.sendRedirect(request.getContextPath()+"/products");
-		} catch (ValidationException e) {
-
+		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", e.getMessage());
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_product.jsp");
 		    dispatcher.forward(request, response);
-			out.println(e.getMessage());
+		//	out.println(e.getMessage());
 			
-		} catch (ServiceException e) {
-			request.setAttribute("errorMessage", e.getMessage());
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_product.jsp");
-			e.printStackTrace();
 		}
 
 	}

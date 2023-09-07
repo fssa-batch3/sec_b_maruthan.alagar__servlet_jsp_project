@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.fssa.mambilling.dto.ProductDTO;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Price;
@@ -24,9 +25,9 @@ import in.fssa.mambilling.service.ProductService;
 public class UpdateProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -41,29 +42,32 @@ public class UpdateProductServlet extends HttpServlet {
 		String special_name = request.getParameter("special_name");
 		String id = request.getParameter("product_id");
 
-		if(special_name.trim().equals("-")||special_name.trim().equals("")) {
-			special_name=null;
+		if (special_name.trim().equals("-") || special_name.trim().equals("")) {
+			special_name = null;
 		}
 		int productId = Integer.parseInt(id);
 		int pro_quan = Integer.parseInt(quantity);
 		double pro_mrp = Double.parseDouble(mrp);
 		double pro_tax = Double.parseDouble(tax);
 		double pro_discount = Double.parseDouble(discount);
-		
 
 		Price price = new Price(pro_mrp, pro_tax, pro_discount);
 		Product newProduct = new Product(product_name, pro_quan, QuantityType.valueOf(type), special_name, price);
 
 		ProductService ps = new ProductService();
+		ProductDTO product =null;
 		try {
-			ps.updateProduct(newProduct,productId);
-			response.sendRedirect(request.getContextPath()+"/products");
-		} catch (ValidationException e) {
+			 product = ps.getProductDetail(productId);
+			ps.updateProduct(newProduct, productId);
+			response.sendRedirect(request.getContextPath() + "/products");
+		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("productDetail", product);
+			request.setAttribute("id",id);
+			request.setAttribute("errorMessage", e.getMessage());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/update_product.jsp");
+			dispatcher.forward(request, response);
 			out.println(e.getMessage());
-		} catch (ServiceException e) {
-			out.println(e.getMessage());
-			e.printStackTrace();
 		}
 
 	}

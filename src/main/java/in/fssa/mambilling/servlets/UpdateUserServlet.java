@@ -3,6 +3,7 @@ package in.fssa.mambilling.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,18 +49,19 @@ public class UpdateUserServlet extends HttpServlet {
 		User newUser = new User(customer_name, email, phone, address);
 
 		UserService us = new UserService();
-
+		User user = null;
 		try {
+			user = us.getByPhoneNumber(old_phone_number);
 			us.updateUser(old_phone_number, newUser);
 			response.sendRedirect(request.getContextPath() + "/users");
-		} catch (ValidationException e) {
-
+		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("userDetail", user);
+			request.setAttribute("userPhone", user.getPhoneNumber());
+			request.setAttribute("errorMessage", e.getMessage());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/update_user.jsp");
+			dispatcher.forward(request, response);
 			out.println(e.getMessage());
-		} catch (ServiceException e) {
-			out.println(e.getMessage());
-			e.printStackTrace();
 		}
-
 	}
 }

@@ -78,6 +78,18 @@ form {
 </style>
 
 </head>
+<%
+String message = (String) request.getAttribute("errorMessage");
+%>
+
+<%
+if (message != null) {
+%>
+
+<script> alert("<%=message%>");</script>
+<%
+}
+%>
 <body>
 	<%
 	long phone_number = (Long) request.getAttribute("userPhone");
@@ -94,12 +106,12 @@ form {
 		<div class="content">
 			<label class="forms">Customer Name</label> <input class="lists"
 				type="text" name="customer_name" value="<%=user.getName()%>"
-				placeholder="Enter Customer Name" required>
+				placeholder="Enter Customer Name" maxlength="50" required>
 		</div>
 		<div class="content">
 			<label class="forms">Phone Number</label> <input class="lists"
-				type="tel" name="phone_number" value="<%=user.getPhoneNumber()%>"
-				placeholder="Enter Mobile Number" maxlength="10" required>
+				type="number" name="phone_number" value="<%=user.getPhoneNumber()%>"
+				placeholder="Enter Mobile Number" min="6000000001" max="9999999999" required>
 		</div>
 
 		<div class="content">
@@ -109,12 +121,12 @@ form {
 			if (user.getEmail() == null) {
 			%>
 			<input class="lists" type="text" name="email" value="-"
-				placeholder="Enter Customer E-Mail">
+				placeholder="Enter Customer E-Mail" maxlength="150">
 			<%
 			} else {
 			%>
 			<input class="lists" type="text" name="email"
-				value="<%=user.getEmail()%>" placeholder="Enter Customer E-Mail">
+				value="<%=user.getEmail()%>" maxlength="150" placeholder="Enter Customer E-Mail">
 			<%
 			}
 			%>
@@ -133,12 +145,12 @@ form {
 			if (user.getAddress() == null) {
 			%>
 			<input class="lists" type="text" name="address" value="-"
-				placeholder="Enter Customer Adress">
+				placeholder="Enter Customer Adress" maxlength="250">
 			<%
 			} else {
 			%>
 			<input class="lists" type="text" name="address"
-				value="<%=user.getAddress()%>" placeholder="Enter Customer Adress">
+				value="<%=user.getAddress()%>" placeholder="Enter Customer Adress" maxlength="250">
 			<%
 			}
 			%>

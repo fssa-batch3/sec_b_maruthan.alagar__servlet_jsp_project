@@ -1,10 +1,11 @@
+<%@page import="in.fssa.mambilling.model.Product"%>
+<%@page import="in.fssa.mambilling.dto.ProductDTO"%>
 <%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ include file="header.jsp"%>
 <!DOCTYPE html>
-
-
+<html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Add New Product</title>
@@ -59,6 +60,9 @@ h2 {
 #quantity {
 	width: 42%;
 }
+#tax {
+	width: 42%;
+}
 
 .typeport {
 	width: 51%;
@@ -99,12 +103,19 @@ h2 {
 </head>
 <%
 String message = (String) request.getAttribute("errorMessage");
+
+
 %>
 
-<%if (message != null) {%>
+<%
+if (message != null  ) {
+%>
 
-<script> alert("<%=message%>"); </script>
-<%}%>
+<script> alert("<%=message%>");</script>
+
+<%
+}
+%>
 
 <body>
 	<form id="additem_form" action="create" method="post">
@@ -113,19 +124,19 @@ String message = (String) request.getAttribute("errorMessage");
 			<div class="part1">
 				<div class="content">
 					<label class="forms">Product Name</label> <input class="lists"
-						name="product_name" type="text" placeholder="Product Name"
+						name="product_name" type="text" maxlength="100" placeholder="Product Name"  id="product_name" title="Use Letters to Add Product Name.Don't use Numbers any special Characters"
 						required>
 
 				</div>
 
 				<div class="content">
 					<div class="label">
-						<label class="forms">Quantity:</label> <label class="forms"
+						<label class="forms">Quantity:</label> <label class="forms" 
 							for="type" id="tp">Type:</label>
 					</div>
 					<div class="quan">
 						<input class="lists" id="quantity" name="quantity" type="number"
-							placeholder="Choose Number" required>
+							placeholder="Choose Number" max="25000" min="1" required>
 						<div class="typeport">
 
 							<select class="lists" name="type" id="type" required>
@@ -146,7 +157,7 @@ String message = (String) request.getAttribute("errorMessage");
 
 					</div>
 					<div class="quan">
-						<input class="lists" name="mrp" type="number"
+						<input class="lists" id="mrp" name="mrp" min="0" max="5000" type="number"
 							placeholder="Enter MRP" required>
 
 					</div>
@@ -159,23 +170,23 @@ String message = (String) request.getAttribute("errorMessage");
 			<div class="part1">
 
 				<div class="content">
-					<div class="label">
+					<div class ="label">
 						<label class="forms">Tax:</label> <label class="forms" for="type"
 							id="discount_label">Discount:</label>
 					</div>
 					<div class="quan">
-						<input maxlength="5" class="lists" id="quantity" name="tax"
-							type="number" placeholder="Enter Tax" maxlength="5" required>
+						<input max="99" class="lists" id="tax" name="tax"
+							type="number" placeholder="Enter Tax" min="0" required>
 						<div class="typeport">
 							<input class="lists" id="discount" name="discount" type="number"
-								placeholder="Enter Discount" required>
+								placeholder="Enter Discount" min="0" max="99" required>
 						</div>
 					</div>
 				</div>
 
 				<div class="content">
 					<label class="forms">Special name(optional)</label> <input
-						class="lists" name="special_name" type="text"
+						class="lists" name="special_name" maxlength="100" type="text" id="special_name" title="Use Letters to Add Special Name. Don't use Numbers or any special Characters"
 						placeholder="Enter special name">
 				</div>
 			</div>

@@ -77,29 +77,44 @@ form {
 </style>
 
 </head>
+<%
+String message = (String) request.getAttribute("errorMessage");
+
+
+%>
+
+<%
+if (message != null  ) {
+%>
+
+<script> alert("<%=message%>");</script>
+
+<%
+}
+%>
 <body>
 	<form id="add_customer" action="create" method="post">
 		<h2>Add New Customer</h2>
 		<div class="content">
 			<label class="forms">Customer Name</label> <input class="lists"
-				type="text" name="customer_name" placeholder="Enter Customer Name"
+				type="text" name="customer_name" maxlength="50" placeholder="Enter Customer Name"
 				required>
 		</div>
 		<div class="content">
 			<label class="forms">Phone Number</label> <input class="lists"
-				type="tel" name="phone_number" placeholder="Enter Mobile Number"
-				maxlength="10" required>
+				type="number" name="phone_number"min="6000000001" max="9999999999"  placeholder="Enter Mobile Number"
+				 required>
 		</div>
 
 		<div class="content">
 			<label class="forms">E-Mail Address (optional)</label> <input
-				class="lists" type="text" name="email"
+				class="lists" type="text" name="email" maxlength="150"
 				placeholder="Enter Customer E-Mail">
 		</div>
 		<div class="content">
 			<label class="forms">Customer Address(optional)</label> <input
 				class="lists" type="text" name="address"
-				placeholder="Enter Customer Adress">
+				placeholder="Enter Customer Adress" maxlength="250">
 		</div>
 		<div class="content1">
 			<a href="../users"><button class="button" id="submit"

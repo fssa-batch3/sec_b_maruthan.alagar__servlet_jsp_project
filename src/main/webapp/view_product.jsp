@@ -14,7 +14,7 @@
 	border: 1px solid #ccc;
 	padding: 20px;
 	margin: 20px auto;
-	background-color: #f5f5f5;
+	background-color: #fff;
 }
 h1{
 display: flex;

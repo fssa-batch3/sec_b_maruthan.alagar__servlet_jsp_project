@@ -3,6 +3,7 @@ package in.fssa.mambilling.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,13 +53,12 @@ public class CreateUserServlet extends HttpServlet {
 		try {
 			us.createUser(newUser);
 			response.sendRedirect(request.getContextPath()+"/users");
-		} catch (ValidationException e) {
-
+		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("errorMessage", e.getMessage());
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_user.jsp");
+		    dispatcher.forward(request, response);
 			out.println(e.getMessage());
-		} catch (ServiceException e) {
-			out.println(e.getMessage());
-			e.printStackTrace();
 		}
 
 	}
