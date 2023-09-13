@@ -37,7 +37,7 @@ th, td {
 }
 
 #img img{
-width: 35%;
+width: 19%;
     margin-top: 5%;
 }
 #span{

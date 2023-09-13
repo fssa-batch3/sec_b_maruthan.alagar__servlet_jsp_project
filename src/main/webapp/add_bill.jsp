@@ -342,7 +342,7 @@ display: flex;
 	<script>
 
 	
-	async function getUserDetail(){
+	async function getUserDetail(){ 
 		  const phoneNumber = document.getElementById("customer_phone").value;
 		  const requestData = {
 		    phoneNumber: phoneNumber
