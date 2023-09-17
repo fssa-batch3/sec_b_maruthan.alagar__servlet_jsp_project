@@ -4,61 +4,17 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/item/item.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta charset="ISO-8859-1">
 <title>Bill List</title>
-<style>
-/* Style for the table */
-table {
-	width: 97%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-left: 1.5%;
-}
 
-table, th, td {
-	border: 1px solid #ccc;
-}
-
-th, td {
-	padding: 10px;
-	text-align: left;
-}
-
-/* Style for buttons */
-.view, .update, .delete,.top {
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	padding: 5px 10px;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	border-radius: 3px;
-	margin-right: 5px;
-}
-
-.view:hover, .update:hover, .delete:hover {
-	background-color: #0056b3;
-}
-
-
-.top_nav {
-	display: flex;
-	justify-content: space-around;
-}
-
-#add {
-	margin-left: 51em;
-	height: 50px;
-	margin-top: 20px;
-	font-size: 19px;
-}
-</style>
 </head>
 <body>
 	<%
@@ -70,16 +26,27 @@ th, td {
 
 	<div class="top_nav">
 		<h1>Bill List</h1>
-		<button class="top" id="add">
-			<a class="top" href="bills/new"> &#x002B;Add New Bill </a>
-		</button>
+		<div id="right_buttons">
+		<a class="top" href="bills/new"><button class="top" id="additem_button">
+			 &#x002B;Add New Bill 
+		</button></a>
+		<div class="div_search">
+			<input class="searchbox" type="text" id="searchInput"
+				placeholder="Enter Item Name Or ID" autofocus>
+			<button class="srch" id="searchButton">
+				<span> <i id="icon" class="fa fa-search"></i>
+				</span>
+			</button>
+		</div>
+		</div>
 	</div>
 
-	<table border="1">
+	<table id="tableBody">
 		<tr>
 			<th>Bill No</th>
 			<th>Date</th>
 			<th>Time</th>
+			<th>View</th>
 
 		</tr>
 		<%
@@ -101,10 +68,9 @@ th, td {
 			<td><%=formattedDate%></td>
 			<td><%=formattedTime%></td>
 
-			<td><a
+			<td><a class="arrow"
 				href="bill/detail?BillId=<%=bill.getBillId()%>&UserId=<%=bill.getUserId()%>&time=<%=bill.getTimeStamp()%>">
-					<button class="view" type="submit">View</button>
-			</a></td>
+					&#8594; </a></td>
 			<%-- 	<td><a href="u/edit?UserId=<%=bill.getBillId()%>">
 					<button class="update" type="submit">Update</button>
 			</a></td> --%>
@@ -114,6 +80,11 @@ th, td {
 		}
 		%>
 	</table>
+	<div id="results">
+<img src="https://iili.io/JHkViml.png" alt="JHkViml.png" id="not_found_img" />
+<h1 id="h3_tag">Bill Detail Not Found</h1>
+</div>
+	<script src="<%=request.getContextPath()%>/assets/js/item/item.js"></script>
 </body>
 
 </html>

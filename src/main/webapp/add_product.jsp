@@ -8,98 +8,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/item/additem.css">
 <title>Add New Product</title>
-<style>
-#additem_form {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 20px;
-	background-color: #fff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-h2 {
-	color: #333;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.content {
-	margin-bottom: 15px;
-}
-
-.label {
-	display: flex;
-	justify-content: space-between;
-}
-
-.forms {
-	font-weight: bold;
-}
-
-.label label {
-	width: 50%;
-}
-
-.lists {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	margin-top: 8px;
-}
-
-.quan {
-	display: flex;
-	justify-content: space-between;
-	flex-direction: row;
-	flex-wrap: nowrap;
-}
-
-#quantity {
-	width: 42%;
-}
-#tax {
-	width: 42%;
-}
-
-.typeport {
-	width: 51%;
-}
-
-#type {
-	width: 100%;
-}
-
-.button {
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.content1 {
-	display: flex;
-	justify-content: space-between;
-}
-
-#span_save {
-	font-size: 18px;
-	margin-left: 10px;
-}
-
-#span_back {
-	font-size: 18px;
-	margin-right: 10px;
-}
-
-#discount {
-	width: 100%;
-}
-</style>
 </head>
 <%
 String message = (String) request.getAttribute("errorMessage");
@@ -119,24 +30,24 @@ if (message != null  ) {
 
 <body>
 	<form id="additem_form" action="create" method="post">
-		<h2>Add New Item</h2>
+		<h2>Add New Product</h2>
 		<div class="parts">
 			<div class="part1">
 				<div class="content">
-					<label class="forms">Product Name</label> <input class="lists"
-						name="product_name" type="text" maxlength="100" placeholder="Product Name"  id="product_name" title="Use Letters to Add Product Name.Don't use Numbers any special Characters"
-						required>
+					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
+						name="product_name" type="text"  pattern="^[a-zA-Z ]+$" maxlength="100" placeholder="Product Name"  id="product_name" title="Use Letters to Add Product Name.Don't use Numbers any special Characters"
+						required autofocus>
 
 				</div>
 
 				<div class="content">
 					<div class="label">
-						<label class="forms">Quantity:</label> <label class="forms" 
-							for="type" id="tp">Type:</label>
+						<label class="forms">Quantity<span id="imp"> *</span></label> <label class="forms" 
+							for="type" id="tp">Type<span id="imp"> *</span></label>
 					</div>
 					<div class="quan">
 						<input class="lists" id="quantity" name="quantity" type="number"
-							placeholder="Choose Number" max="25000" min="1" required>
+							placeholder="Choose Number" max="26000" min="1" required>
 						<div class="typeport">
 
 							<select class="lists" name="type" id="type" required>
@@ -153,11 +64,11 @@ if (message != null  ) {
 
 				<div class="content">
 					<div class="label">
-						<label class="forms" id="mrp_label">MRP:</label>
+						<label class="forms" id="mrp_label">MRP<span id="imp"> *</span></label>
 
 					</div>
 					<div class="quan">
-						<input class="lists" id="mrp" name="mrp" min="0" max="5000" type="number"
+						<input class="lists" id="mrp" name="mrp" min="0" max="50000" type="number"
 							placeholder="Enter MRP" required>
 
 					</div>
@@ -171,8 +82,8 @@ if (message != null  ) {
 
 				<div class="content">
 					<div class ="label">
-						<label class="forms">Tax:</label> <label class="forms" for="type"
-							id="discount_label">Discount:</label>
+						<label class="forms">Tax (%)<span id="imp"> *</span></label> <label class="forms" for="type"
+							id="discount_label">Discount (%)<span id="imp"> *</span></label>
 					</div>
 					<div class="quan">
 						<input max="99" class="lists" id="tax" name="tax"
@@ -186,10 +97,14 @@ if (message != null  ) {
 
 				<div class="content">
 					<label class="forms">Special name(optional)</label> <input
-						class="lists" name="special_name" maxlength="100" type="text" id="special_name" title="Use Letters to Add Special Name. Don't use Numbers or any special Characters"
+						class="lists" name="special_name" pattern="^[a-zA-Z -]+$" maxlength="100" type="text" id="special_name" title="Use Letters to Add Special Name. Don't use Numbers or any special Characters. Use - if there is no Special name"
 						placeholder="Enter special name">
 				</div>
 			</div>
+		</div>
+		<div id="requirements">
+		<p id="req">Requirements :</p>
+		<p id="inner_text">Please enter Valid Details.</p>
 		</div>
 		<div class="content1">
 			<a href="../products"><button class="button" id="submit"
@@ -203,5 +118,6 @@ if (message != null  ) {
 		</div>
 
 	</form>
+		<script src="<%=request.getContextPath()%>/assets/js/item/additem.js"></script>
 </body>
 </html>

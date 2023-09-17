@@ -1,0 +1,103 @@
+@import url("../header.css");
+
+main .forms {
+    font-size: 25px;
+    align-items: center;
+
+}
+
+form h2 {
+    font-size: 35px;
+    text-align: center;
+    display: block;
+
+}
+
+.one {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: center;
+}
+
+.lists {
+    font-size: 25px;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: lightblue;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-around;
+    padding-top: 30px;
+
+}
+
+.one form .parts {
+    font-size: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    width: 45em;
+    height: auto;
+    margin-left: 7em;
+
+}
+
+.content1 {
+    margin: 35px;
+    margin-left: 40em;
+}
+
+.button {
+    font-size: 30px;
+    background-color: lightblue;
+    border: 2px solid lightblue;
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    margin: 3px;
+    color: black !important;
+
+}
+
+.content1 .button span {
+    margin-top: 5px;
+}
+
+#label_gst{
+    font-size: 23px;
+}
+.typeport{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+
+}
+.quan{
+    display: flex;
+    
+}
+.quan input,select{
+    width: 156px;
+    height: 53px;
+    border: 2px solid;
+    
+}
+.quan input{
+    margin-right: 20px;
+}
+.label{
+    display: flex;
+    
+   
+}
+#tp{
+    margin-left: 86px;
+}

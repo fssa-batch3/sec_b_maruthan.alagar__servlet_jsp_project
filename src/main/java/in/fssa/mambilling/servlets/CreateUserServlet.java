@@ -10,13 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import in.fssa.mambilling.exception.ServiceException;
-import in.fssa.mambilling.exception.ValidationException;
-import in.fssa.mambilling.model.Price;
-import in.fssa.mambilling.model.Product;
-import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.model.User;
-import in.fssa.mambilling.service.ProductService;
 import in.fssa.mambilling.service.UserService;
 
 /**
@@ -25,7 +19,7 @@ import in.fssa.mambilling.service.UserService;
 @WebServlet("/users/create")
 public class CreateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
@@ -35,29 +29,38 @@ public class CreateUserServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String address = request.getParameter("address");
 		
-		if(email.trim().equals("-")||email.trim().equals("")) {
-			email=null;
-		}
-		
-		if(address.trim().equals("-")||address.trim().equals("")) {
-			address=null;
+
+		if (email.trim().equals("-") || email.trim().equals("")) {
+			email = null;
 		}
 
+		if (address.trim().equals("-") || address.trim().equals("")) {
+			address = null;
+		}
 
 		long phone = Long.parseLong(phone_number);
 
-		User newUser = new User(customer_name,email,phone,address);
-
+		User newUser = new User(customer_name, email, phone, address);
 
 		UserService us = new UserService();
+		String fromWhere = request.getParameter("where");
 		try {
 			us.createUser(newUser);
-			response.sendRedirect(request.getContextPath()+"/users");
+			
+			/* System.out.println(fromWhere+" - create user servlet"); */
+			if (fromWhere.equals("bill")) {
+				response.sendRedirect(request.getContextPath() + "/bills/new");
+
+			} else {
+				response.sendRedirect(request.getContextPath() + "/users");
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", e.getMessage());
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_user.jsp");
-		    dispatcher.forward(request, response);
+			request.setAttribute("where", fromWhere);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/add_user.jsp");
+			dispatcher.forward(request, response);
 			out.println(e.getMessage());
 		}
 

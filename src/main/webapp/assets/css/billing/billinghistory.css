@@ -1,0 +1,75 @@
+@import url("../header.css");
+
+.namebar {
+    padding-bottom: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.namebar label {
+    font-size: 25px;
+    padding: 4px;
+    margin-top: 20px;
+
+}
+
+.namebar h1 {
+    margin: 1em;
+}
+
+.namebar .date {
+    margin-right: 30px;
+    margin-top: 20px;
+
+}
+
+.namebar input {
+    font-size: 25px;
+    background-color: lightblue;
+    width: fit-content;
+
+}
+
+
+
+.tb1 {
+    background-color: darkblue;
+    color: white;
+}
+
+td {
+    text-align: center;
+    background-color: white;
+    color: black;
+    height: 2.5em;
+
+}
+
+th{
+    height: 3.5em;
+    width: 0%;
+}
+
+
+table {
+    width: 72em;
+    height: 100%;
+    font-size: 20px;
+    align-items: center;
+    /* background-color: wheat; */
+    margin-left: 18px;
+    margin-top: 18px;
+
+}
+
+.arrow {
+    color: black !important;
+    align-items: center !important;
+    font-size: 30px;
+}
+
+.arrow:hover {
+    color: red !important;
+}

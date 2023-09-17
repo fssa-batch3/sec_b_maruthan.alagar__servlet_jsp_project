@@ -10,113 +10,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/billing/bill_design.css">
 <meta charset="ISO-8859-1">
 <title>View Bill</title>
 <style type="text/css">
 
-
-h2, h3, h4 {
-	margin: 10px;
-}
-
-.bill-container {
-	max-width: 342px;
-	margin: 0 auto;
-	padding: 20px;
-	border: 1px solid #ccc;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-	background-color: white;
-}
-
-.shop-details {
-	margin-bottom: 20px;
-	display: flex;
-	font-size: 13px;
-	justify-content: space-between;
-}
-
-#bill_table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-#bill_table th, #bill_table td {
-	padding: 8px;
-	text-align: center;
-	border-bottom: 1px solid #ddd;
-}
-
-#bill_table th {
-	background-color: #f2f2f2;
-	text-align: left;
-}
-
-#shop {
-	text-align: center;
-}
-
-#total {
-	display: flex;
-	justify-content: space-between;
-}
-
-#total h2, #total h3, #total h4, #total h5, #total h6 {
-	margin: 5px;
-}
-
-#total_tax, #total_amount, #sub_total, #total_discount {
-	text-align: right;
-}
-
-#shop-details p {
-	display: flex;
-}
-
-#bottom_label {
-	display: flex;
-	justify-content: space-between;
-	font-size: 14px;
-}
-
-#b_lab {
-	text-align: left;
-}
-
-#b_con {
-	text-align: right;
-}
-
-.main {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 32vh;
-}
-
-.btn {
-	width: 270px;
-	height: 60px;
-	font-size: 18px;
-	border: none;
-	display: block;
-	border-radius: 50px;
-	outline: none;
-	font-weight: bolder;
-	cursor: pointer;
-	background: #007bff;
-	color: #ffffff;
-}
-
-#a_tag {
-	text-decoration: none;
-}
-
-#thank {
-	text-align: center;
-	font-size: 17px;
-	font-weight: bold;
-	font-family: unset;
-}
 </style>
 </head>
 <body>

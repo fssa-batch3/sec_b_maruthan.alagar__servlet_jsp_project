@@ -11,186 +11,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/billing/newbill.css">
 <meta charset="ISO-8859-1">
 <title>Add New Bill</title>
-<style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f0f0f0;
-	margin: 0;
-	padding: 0;
-}
-
-#cus_form, #payment {
-	background-color: #fff;
-	padding: 20px;
-	margin: 20px;
-	border-radius: 5px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.lists {
-	margin: 5px 0;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	width: 102%;
-}
-
-label {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 5px;
-}
-
-#top {
-	display: flex;
-	justify-content: space-between;
-}
-
-h2, h1 {
-	margin: 0;
-}
-
-#btn {
-	    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 30%;
-    width: 57%;
-    font-size: 26px;
-    height: 28%;;
-}
-
-#btn:hover {
-	background-color: #218838;
-}
-
-#customer {
-	display: flex;
-	justify-content: space-around;
-	align-items: center;
-	margin-left: -12%;
-	margin-right: 1%;
-}
-
-#customer input {
-	width: 181%;
-}
-
-#payment {
-	display: flex;
-	justify-content: space-around;
-}
-
-#payment input {
-	margin: 5px 0;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	width: 88%;
-}
-
-#left {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-}
-
-#big {
-	margin-top: 20px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-}
-
-#buttonDiv {
-	width: 20%;
-}
-
-#mainTable {
-	    width: 97%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    margin-left: 1.5%;
-}
-
-#mainTable th, #mainTable td {
-	border: 1px solid #ccc;
-	padding: 10px;
-	text-align: center;
-	background-color: #f8f8f8; /* Light gray background color for cells */
-}
-
-#mainTable th {
-	background-color: #e0e0e0;
-	/* Lighter gray background color for headers */
-	font-weight: bold;
-}
-
-#mainTable tr:nth-child(even) {
-	background-color: #f0f0f0; /* Even row background color */
-}
-
-#mainTable td input {
-	border: none;
-	text-align: center;
-	width: 100%;
-	padding: 0;
-	background-color: transparent;
-	outline: none;
-	font-size: 14px;
-}
-
-#h1 {
-	display:flex;
-	justify-content:center;
-
-}
-
-#add_button {
-	width: 45px;
-	height: 36px;
-	margin-top: 29px;
-	font-size: 30px;
-	font-weight: bold;
-	background-color: #28a745;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-#mark_back, h3 {
-	margin-left: 45%;
-	text-decoration: none;
-	color: black;
-}
-
-#product_name {
-	width: 116%;
-	margin-right: 38px;
-}
-.btn_back {
-	width: 230px;
-	height: 50px;
-	font-size: 18px;
-	border: none;
-	border-radius: 50px;
-	outline: none;
-	font-weight: bolder;
-	cursor: pointer;
-	background:  #007bff;
-	color: #ffffff;
-}
-.main{
-display: flex;
-	justify-content: center;
-}
-</style>
 
 </head>
 <body>
@@ -209,10 +32,15 @@ display: flex;
 					<label>ID Number:</label> <input class="lists" type="number"
 						id="customer_id" placeholder="Enter ID Number" required>
 				</div>
+				<div id="button_div">
 				<div>
 					<label>Phone Number:</label> <input class="lists" type="tel"
-						id="customer_phone" placeholder="Enter Mobile Number">
+						id="customer_phone" placeholder="Enter Mobile Number"></div>
+						<a href="<%=request.getContextPath() %>/users/new?redirectedTo=bill"><button type="button" id="user_add_button">+</button></a>
 				</div>
+				
+					
+				
 			</div>
 
 			<div id="top">
@@ -344,6 +172,20 @@ display: flex;
 	
 	async function getUserDetail(){ 
 		  const phoneNumber = document.getElementById("customer_phone").value;
+		  
+		  
+		  
+		  
+		  if(phoneNumber!="-"){
+		  if(phoneNumber.length>10 | phoneNumber.length<10){
+			  alert("Please Enter Valid Phone number");
+			  document.getElementById("customer_phone").value = "";
+			  return;
+		  }
+		  }
+		  
+		  
+		  
 		  const requestData = {
 		    phoneNumber: phoneNumber
 		  };
@@ -362,8 +204,15 @@ display: flex;
 		  // console.log(userDetails);
 		  const userDetail = ( await response.json() ).data;
 		  
+		  console.log(userDetail);
+		  
+		  if(userDetail!=undefined){
+		  
 	      document.getElementById("customer_name").value = userDetail.name;
 	      document.getElementById("customer_id").value = userDetail.id;
+		  }else{
+			  alert("Customer Details not found. Try with Different Mobile Number");
+		  }
 	}
 	
 	

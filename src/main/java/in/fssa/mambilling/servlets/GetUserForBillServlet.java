@@ -50,6 +50,10 @@ public class GetUserForBillServlet extends HttpServlet {
         
         // Extract the phone number from the JSON data
         String phoneNumber = requestData.get("phoneNumber").getAsString();
+        
+        if("-".equals(phoneNumber.trim())) {
+        	phoneNumber="9000000000";
+        }
 
 		long phone = Long.parseLong(phoneNumber);
 

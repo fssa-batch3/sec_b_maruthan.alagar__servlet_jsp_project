@@ -5,99 +5,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/item/additem.css">
 <meta charset="ISO-8859-1">
 <title>Update Product</title>
-<style>
-h2 {
-	color: #333;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
 
-#updateitem_form {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 20px;
-	background-color: #fff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.content {
-	margin-bottom: 15px;
-}
-
-.label {
-	display: flex;
-	justify-content: space-between;
-}
-
-.label label {
-	width: 50%;
-}
-
-.forms {
-	font-weight: bold;
-}
-
-.lists {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	margin-top: 8px;
-}
-
-.quan {
-	display: flex;
-	justify-content: space-between;
-	flex-direction: row;
-	flex-wrap: nowrap;
-}
-
-#quantity {
-	width: 42%;
-}
-#tax {
-	width: 42%;
-}
-
-.typeport {
-	width: 51%;
-}
-
-#type {
-	width: 100%;
-}
-
-#discount {
-	width: 100%;
-}
-
-.button {
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.content1 {
-	display: flex;
-	justify-content: space-between;
-}
-
-#span_save {
-	font-size: 18px;
-	margin-left: 10px;
-}
-
-#span_back {
-	font-size: 18px;
-	margin-right: 10px;
-}
-</style>
 </head>
 
 <%
@@ -123,25 +34,25 @@ if (message != null) {
 	<%
 	int productId = Integer.parseInt((String) request.getAttribute("id"));
 	%>
-	<form id="updateitem_form" action="update" method="post">
-		<h2>Update Item</h2>
+	<form id="additem_form" action="update" method="post">
+		<h2>Update Product Details</h2>
 		<div class="parts">
 			<div class="part1">
 				<div class="content">
-					<label class="forms">Product Name</label> <input class="lists"
-						name="product_name" type="text" placeholder="Product Name" maxlength="100"
+					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
+						name="product_name" id="product_name" type="text" pattern="^[a-zA-Z ]+$" placeholder="Product Name" maxlength="100"
 						value="<%=product.getProductName()%>" required>
 
 				</div>
 
 				<div class="content">
 					<div class="label">
-						<label class="forms">Quantity:</label> <label class="forms"
-							for="type" id="tp">Type:</label>
+						<label class="forms">Quantity<span id="imp"> *</span></label> <label class="forms"
+							for="type" id="tp">Type<span id="imp"> *</span></label>
 					</div>
 					<div class="quan">
 						<input class="lists" name="quantity" id="quantity"
-							value="<%=product.getQuantity()%>" max="25000" min="1"
+							value="<%=product.getQuantity()%>" max="26000" min="1"
 							type="number" placeholder="Choose Number" required>
 						<div class="typeport">
 
@@ -164,12 +75,12 @@ if (message != null) {
 
 				<div class="content">
 					<div class="label">
-						<label class="forms" id="mrp_label">MRP:</label>
+						<label class="forms" id="mrp_label">MRP<span id="imp"> *</span></label>
 
 					</div>
 					<div class="quan">
-						<input class="lists" value="<%=product.getMrp()%>" min="0"
-							max="5000" name="mrp" type="number" placeholder="Enter MRP"
+						<input class="lists" value="<%=(int)product.getMrp()%>" min="0"
+							max="50000" id="mrp" name="mrp" type="number" placeholder="Enter MRP"
 							required>
 
 					</div>
@@ -183,16 +94,16 @@ if (message != null) {
 
 				<div class="content">
 					<div class="label">
-						<label class="forms">Tax:</label> <label class="forms" for="type"
-							id="discount_label">Discount:</label>
+						<label class="forms">Tax (%)<span id="imp"> *</span></label> <label class="forms" for="type"
+							id="discount_label">Discount (%)<span id="imp"> *</span></label>
 					</div>
 					<div class="quan">
-						<input class="lists" id="tax" value="<%=product.getTax()%>"
+						<input class="lists" id="tax" value="<%=(int)product.getTax()%>"
 							name="tax" type="number" placeholder="Enter Tax" min="0" max="99"
 							required>
 						<div class="typeport">
 							<input class="lists" id="discount"
-								value="<%=product.getDiscount()%>" name="discount" type="number"
+								value="<%=(int)product.getDiscount()%>" name="discount" type="number"
 								min="0" max="99" placeholder="Enter Discount" required>
 						</div>
 					</div>
@@ -208,13 +119,13 @@ if (message != null) {
 					if (product.getSpecialName() == null) {
 					%>
 					<input class="lists" name="special_name" value="-" maxlength="100"
-						type="text" placeholder="Enter special name">
+						type="text" id="special_name" pattern="^[a-zA-Z -]+$" placeholder="Enter special name">
 
 					<%
 					} else {
 					%>
 					<input class="lists" name="special_name"
-						value="<%=product.getSpecialName()%>" maxlength="100" type="text"
+						value="<%=product.getSpecialName()%>" pattern="^[a-zA-Z -]+$" maxlength="100" type="text"
 						placeholder="Enter special name">
 
 
@@ -224,6 +135,10 @@ if (message != null) {
 
 				</div>
 			</div>
+		</div>
+		<div id="requirements">
+		<p id="req">Requirements :</p>
+		<p id="inner_text">Please enter Valid Name</p>
 		</div>
 		<div class="content1">
 			<a href="../products"><button class="button" id="submit"
@@ -237,5 +152,6 @@ if (message != null) {
 		</div>
 
 	</form>
+	<script src="<%=request.getContextPath()%>/assets/js/item/viewitem.js"></script>
 </body>
 </html>

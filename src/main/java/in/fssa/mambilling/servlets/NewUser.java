@@ -17,6 +17,11 @@ public class NewUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String where = request.getParameter("redirectedTo");
+		// System.out.println(where+" - new User Servlet"); 
+		request.setAttribute("where", where);
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/add_user.jsp");
 		dispatcher.forward(request, response);
 	}

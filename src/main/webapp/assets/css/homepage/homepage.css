@@ -1,0 +1,78 @@
+body {
+	overflow-x: hidden;
+}
+td {
+    text-align: center;
+    width: fit-content;
+    background-color: white;
+    color: black;
+    height: 2.5em;
+}
+th{
+    height: 3em;
+    background-color: darkblue;
+    color:white;
+}
+
+table {
+    height: 3em;
+    font-size: 18px;
+    align-items: center;
+    background-color: wheat;
+    width: 95%;
+    margin-top: 20px;
+    margin-left: 2.5%;
+
+}
+
+.top_nav {
+	margin-left: 2em;
+}
+#img{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+#img img{
+width: 96%;
+    margin-top: 5%;
+}
+#span{
+font-size:30px;
+}
+span {
+	font-size: 30px; /* Change font and  see the magic! */
+	color: black;
+	font-weight:bold; /* Change color and see the magic! */
+}
+
+.arr-right {
+	
+	margin-top: 21%;
+	position: absolute;
+	margin-left: 98%;
+	position:fixed;
+}
+
+.arr-left {
+
+	position: absolute;
+	margin-left: 1%;
+	margin-top: 19%;
+	position:fixed;
+}
+body {
+    color: black;
+    font-family: sans-serif;
+    background-color: rgba(235, 231, 228, 255);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+}
+
+
+
+

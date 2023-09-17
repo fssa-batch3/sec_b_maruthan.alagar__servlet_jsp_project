@@ -2,28 +2,23 @@ package in.fssa.mambilling.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.google.gson.Gson;
 
 import in.fssa.mambilling.dto.ProductDTO;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.model.BillModal;
-import in.fssa.mambilling.model.Price;
-import in.fssa.mambilling.model.Product;
-import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.service.BillService;
 import in.fssa.mambilling.service.PriceService;
 import in.fssa.mambilling.service.ProductService;
