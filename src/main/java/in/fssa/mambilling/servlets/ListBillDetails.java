@@ -18,10 +18,12 @@ import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Bill;
 import in.fssa.mambilling.model.BillItems;
+import in.fssa.mambilling.model.Shop;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.BillItemsService;
 import in.fssa.mambilling.service.BillService;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.service.ShopService;
 import in.fssa.mambilling.service.UserService;
 
 /**
@@ -37,6 +39,7 @@ public class ListBillDetails extends HttpServlet {
 		BillItemsService billItemsService = new BillItemsService();
 		BillService billService = new BillService();
 		UserService us = new UserService();
+		ShopService ss = new ShopService();
 		ProductService ps = new ProductService();
 		PrintWriter out = response.getWriter();
 
@@ -56,10 +59,11 @@ public class ListBillDetails extends HttpServlet {
 			LocalDateTime localDateTime = LocalDateTime.parse(time);
 
 			Bill newBill = new Bill(localDateTime, billId, billuserId);
-
+			
 			List<ProductDTO> products =  new ArrayList<ProductDTO>();
 
 			try {
+				Shop newShop = ss.getByShopId(1);
 				List<BillItems> billItems = billItemsService.findByBillId(billId);
 
 				for (BillItems item : billItems) {
@@ -75,17 +79,14 @@ public class ListBillDetails extends HttpServlet {
 				request.setAttribute("products", products);
 				request.setAttribute("bill", newBill);
 				request.setAttribute("user", newUser);
+				request.setAttribute("shop", newShop);
 
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/view_bill.jsp");
 				dispatcher.forward(request, response);
-			} catch (ValidationException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-				out.print(e.getMessage());
-
-			} catch (ServiceException e) {
-				e.printStackTrace();
-				out.print(e.getMessage());
-			}
+				response.sendRedirect(request.getContextPath() + "/Error.jsp");
+			} 
 		}
 	}
 

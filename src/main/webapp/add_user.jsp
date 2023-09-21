@@ -34,30 +34,36 @@ if (message != null) {
 		<div class="content">
 			<label class="forms">Customer Name<span id="imp"> *</span></label> <input class="lists"
 				type="text" name="customer_name" maxlength="50"  pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]"
-                 id="customer_name"       title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"
+                 id="customer_name" title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"
 				placeholder="Enter Customer Name" required autofocus>
+				<div id="errorContainer">
+						</div>
+						<p id="req"></p>
 		</div>
 		<div class="content">
 			<label class="forms">Phone Number<span id="imp"> *</span></label> <input class="lists"
-				type="number"  id="customer_phone"name="phone_number" min="6000000001" max="9999999999"
-				placeholder="Enter Mobile Number"  title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters" required>
+				type="number"  id="customer_phone"name="phone_number" 
+				placeholder="Enter Mobile Number" pattern="^[6789]\d{9,9}$" min="6000000001" max="9999999999" maxLength="10" title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters" required>
+				<div id="errorContainer_1">
+						</div>
+						<p id="req_1"></p>
 		</div>
 
 		<div class="content">
 			<label class="forms">E-Mail Address (optional)</label> <input
-				class="lists" type="text" id="customer_email" name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  title="Please enter correct Email" maxlength="150"
+				class="lists" type="text" id="customer_email"   name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  title="Please enter correct Email" maxlength="150"
 				placeholder="Enter Customer E-Mail">
+				<div id="errorContainer_2">
+						</div>
+						<p id="req_2"></p>
 		</div>
 		<div class="content">
 			<label class="forms">Customer Address(optional)</label> <input
 				class="lists" type="text" id="customer_address" name="address"
-				placeholder="Enter Customer Adress" maxlength="250">
+				placeholder="Enter Customer Address" maxlength="250">
+				
 		</div>
 		<input type="hidden" name="where" value="<%=where%>" />
-		<div id="requirements">
-		<p id="req">Requirements :</p>
-		<p id="inner_text">Please enter Valid Details.</p>
-		</div>
 		<div class="content1">
 
 			<%

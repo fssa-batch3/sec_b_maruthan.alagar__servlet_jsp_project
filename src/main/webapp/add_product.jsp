@@ -35,10 +35,12 @@ if (message != null  ) {
 			<div class="part1">
 				<div class="content">
 					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
-						name="product_name" type="text"  pattern="^[a-zA-Z ]+$" maxlength="100" placeholder="Product Name"  id="product_name" title="Use Letters to Add Product Name.Don't use Numbers any special Characters"
+						name="product_name" type="text"  pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]" maxlength="100" placeholder="Product Name"  id="product_name" title="Use Letters to Add Product Name.Don't use Numbers any special Characters"
 						required autofocus>
-
-				</div>
+						<div id="errorContainer">
+						</div>
+						<p id="req"></p>
+						</div>
 
 				<div class="content">
 					<div class="label">
@@ -47,7 +49,7 @@ if (message != null  ) {
 					</div>
 					<div class="quan">
 						<input class="lists" id="quantity" name="quantity" type="number"
-							placeholder="Choose Number" max="26000" min="1" required>
+							placeholder="Enter Quantity" max="26000" min="1" required>
 						<div class="typeport">
 
 							<select class="lists" name="type" id="type" required>
@@ -99,12 +101,11 @@ if (message != null  ) {
 					<label class="forms">Special name(optional)</label> <input
 						class="lists" name="special_name" pattern="^[a-zA-Z -]+$" maxlength="100" type="text" id="special_name" title="Use Letters to Add Special Name. Don't use Numbers or any special Characters. Use - if there is no Special name"
 						placeholder="Enter special name">
+						<div id="errorContainer_1">
+						</div>
+						<p id="req_1"></p>
 				</div>
 			</div>
-		</div>
-		<div id="requirements">
-		<p id="req">Requirements :</p>
-		<p id="inner_text">Please enter Valid Details.</p>
 		</div>
 		<div class="content1">
 			<a href="../products"><button class="button" id="submit"

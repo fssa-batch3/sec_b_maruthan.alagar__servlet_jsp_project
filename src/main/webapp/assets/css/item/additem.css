@@ -97,19 +97,35 @@ h2 {
 	width: 100%;
 }
 
-#inner_text{
-	text-align:center;
-	display:none;
-	font-size:20px;
-	color:blue;
-	font-weight:bold;
+#inner_text {
+	text-align: center;
+	display: none;
+	font-size: 20px;
+	color: blue;
+	font-weight: bold;
 }
-#req{
- display:none;
- font-size:20px;
-	color:blue;
-	font-weight:bold;
+
+#req,#req_1,#req_2 {
+	font-size: 15px;
+	color: blue;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+	margin-top: 5px;
 }
-#imp{
-	color:red;
+
+#imp {
+	color: red;
+}
+
+#errorContainer,#errorContainer_1,#errorContainer_2 {
+	color: red;
+	font-size: 16px;
+	text-align: center;
+	margin-top: -2%;
+}
+
+.error {
+	text-align: center;
+	border: 1px solid red;
 }

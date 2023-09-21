@@ -81,10 +81,10 @@ public class CreateBillServlet extends HttpServlet {
 
 		try {
 			bs.createBill(user_id, billItems);
-		} catch (ValidationException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (ServiceException e) {
-			e.printStackTrace();
+			response.sendRedirect(request.getContextPath() + "/Error.jsp");
+			
 		}
 		response.sendRedirect(request.getContextPath() + "/bills");
 

@@ -37,13 +37,13 @@ public class UpdateUserServlet extends HttpServlet {
 
 		long old_phone_number = Long.parseLong(request.getParameter("userPhone"));
 		long phone = Long.parseLong(phone_number);
-		
-		if(email.trim().equals("-")||email.trim().equals("")) {
-			email=null;
+
+		if (email.trim().equals("-") || email.trim().equals("")) {
+			email = null;
 		}
-		
-		if(address.trim().equals("-")||address.trim().equals("")) {
-			address=null;
+
+		if (address.trim().equals("-") || address.trim().equals("")) {
+			address = null;
 		}
 
 		User newUser = new User(customer_name, email, phone, address);

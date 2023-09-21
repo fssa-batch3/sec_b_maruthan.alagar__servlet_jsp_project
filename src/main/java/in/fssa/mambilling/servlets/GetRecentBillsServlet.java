@@ -61,10 +61,9 @@ public class GetRecentBillsServlet extends HttpServlet {
 
 			}
 
-		} catch (ServiceException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (ValidationException e) {
-			e.printStackTrace();
+			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		}
 		request.setAttribute("bills", bills);
 

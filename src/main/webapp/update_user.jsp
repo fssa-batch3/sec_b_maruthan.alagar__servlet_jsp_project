@@ -1,11 +1,12 @@
 <%@page import="in.fssa.mambilling.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ include file="header.jsp" %>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/item/additem.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/item/additem.css">
 <meta charset="ISO-8859-1">
 <title>Update User</title>
 
@@ -19,7 +20,9 @@ String message = (String) request.getAttribute("errorMessage");
 if (message != null) {
 %>
 
-<script> alert("<%=message%>");</script>
+<script> alert("<%=message%>
+	");
+</script>
 <%
 }
 %>
@@ -37,14 +40,23 @@ if (message != null) {
 	<form id="additem_form" action="update" method="post">
 		<h2>Update Customer Details</h2>
 		<div class="content">
-			<label class="forms">Customer Name<span id="imp"> *</span></label> <input class="lists"
-				type="text" id="customer_name" name="customer_name" value="<%=user.getName()%>" pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]"
-			 title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"	placeholder="Enter Customer Name" maxlength="50" required>
+			<label class="forms">Customer Name<span id="imp"> *</span></label> <input
+				class="lists" type="text" id="customer_name" name="customer_name"
+				value="<%=user.getName()%>"
+				pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]"
+				title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"
+				placeholder="Enter Customer Name" maxlength="50" required>
+			<div id="errorContainer"></div>
+			<p id="req"></p>
 		</div>
 		<div class="content">
-			<label class="forms">Phone Number<span id="imp"> *</span></label> <input class="lists"
-				type="number" name="phone_number" value="<%=user.getPhoneNumber()%>"
-				placeholder="Enter Mobile Number" id="customer_phone"  title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters" min="6000000001" max="9999999999" required>
+			<label class="forms">Phone Number<span id="imp"> *</span></label> <input
+				class="lists" type="number" name="phone_number"
+				value="<%=user.getPhoneNumber()%>" placeholder="Enter Mobile Number"
+				id="customer_phone"
+				title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters"
+				min="6000000001" max="9999999999" required>
+			<p id="req_1"></p>
 		</div>
 
 		<div class="content">
@@ -54,12 +66,21 @@ if (message != null) {
 			if (user.getEmail() == null) {
 			%>
 			<input class="lists" type="text" name="email" value="-"
-				placeholder="Enter Customer E-Mail" id="customer_email"  title="Please enter correct Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="150">
+				placeholder="Enter Customer E-Mail" id="customer_email"
+				title="Please enter correct Email"
+				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="150">
+			<div id="errorContainer_2"></div>
+			<p id="req_2"></p>
 			<%
 			} else {
 			%>
 			<input class="lists" type="text" name="email"
-				value="<%=user.getEmail()%>" id="customer_email"  maxlength="150" title="Please enter correct Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Enter Customer E-Mail">
+				value="<%=user.getEmail()%>" id="customer_email" maxlength="150"
+				title="Please enter correct Email"
+				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+				placeholder="Enter Customer E-Mail">
+			<div id="errorContainer_2"></div>
+			<p id="req_2"></p>
 			<%
 			}
 			%>
@@ -78,12 +99,14 @@ if (message != null) {
 			if (user.getAddress() == null) {
 			%>
 			<input class="lists" type="text" name="address" value="-"
-				placeholder="Enter Customer Adress" id="customer_address"  maxlength="250">
+				placeholder="Enter Customer Adress" id="customer_address"
+				maxlength="250">
 			<%
 			} else {
 			%>
 			<input class="lists" type="text" name="address"
-				value="<%=user.getAddress()%>" placeholder="Enter Customer Adress" id="customer_address"  maxlength="250">
+				value="<%=user.getAddress()%>" placeholder="Enter Customer Adress"
+				id="customer_address" maxlength="250">
 			<%
 			}
 			%>
@@ -91,10 +114,6 @@ if (message != null) {
 
 		</div>
 		<input type="hidden" name="userPhone" value="<%=phone_number%>">
-		<div id="requirements">
-		<p id="req">Requirements :</p>
-		<p id="inner_text">Please enter Valid Details.</p>
-		</div>
 		<div class="content1">
 			<a href="../users"><button class="button" id="submit"
 					type="button">
@@ -106,6 +125,7 @@ if (message != null) {
 
 		</div>
 	</form>
-	<script src="<%=request.getContextPath()%>/assets/js/customer/addcustomer.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/customer/viewcustomer.js"></script>
 </body>
 </html>

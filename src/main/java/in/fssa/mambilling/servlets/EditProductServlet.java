@@ -22,12 +22,13 @@ import in.fssa.mambilling.service.ProductService;
 @WebServlet("/product/edit")
 public class EditProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		ProductService productService = new ProductService();
 		PrintWriter out = response.getWriter();
 
@@ -45,21 +46,17 @@ public class EditProductServlet extends HttpServlet {
 			try {
 				ProductDTO product = productService.getProductDetail(proId);
 				request.setAttribute("productDetail", product);
-				request.setAttribute("id",id);
+				request.setAttribute("id", id);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/update_product.jsp");
 				dispatcher.forward(request, response);
 
 			} catch (Exception e) {
+				response.sendRedirect(request.getContextPath() + "/Error.jsp");
 				e.printStackTrace();
-				out.print(e.getMessage());
 
 			}
-			
-			
-			
-			
+
 		}
 	}
-
 
 }

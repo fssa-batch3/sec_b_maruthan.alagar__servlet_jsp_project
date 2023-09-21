@@ -73,7 +73,7 @@ h2, h1 {
 #payment input {
 	margin: 5px 0;
 	padding: 10px;
-	border: 1px solid #ccc;
+	/* border: 1px solid #ccc; */
 	border-radius: 5px;
 	width: 88%;
 }
@@ -202,7 +202,7 @@ table {
 }
 
 #product_name {
-	width: 116%;
+	width: 102%;
 	margin-right: 38px;
 }
 .btn_back {
@@ -220,5 +220,8 @@ table {
 .main{
 display: flex;
 	justify-content: center;
+}
+body input:disabled{
+	border:0px solid;
 }
 

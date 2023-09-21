@@ -34,9 +34,9 @@ public class GetAllBills extends HttpServlet {
 			request.setAttribute("billList", bills);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bill_list.jsp");
 			dispatcher.forward(request, response);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		}
 
 	}

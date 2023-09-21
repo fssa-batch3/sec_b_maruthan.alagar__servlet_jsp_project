@@ -40,8 +40,11 @@ if (message != null) {
 			<div class="part1">
 				<div class="content">
 					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
-						name="product_name" id="product_name" type="text" pattern="^[a-zA-Z ]+$" placeholder="Product Name" maxlength="100"
+						name="product_name" id="product_name" type="text" pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]"  placeholder="Product Name" maxlength="100"
 						value="<%=product.getProductName()%>" required>
+						<div id="errorContainer">
+						</div>
+						<p id="req"></p>
 
 				</div>
 
@@ -120,13 +123,19 @@ if (message != null) {
 					%>
 					<input class="lists" name="special_name" value="-" maxlength="100"
 						type="text" id="special_name" pattern="^[a-zA-Z -]+$" placeholder="Enter special name">
+						<div id="errorContainer_1">
+						</div>
+						<p id="req_1"></p>
 
 					<%
 					} else {
 					%>
 					<input class="lists" name="special_name"
-						value="<%=product.getSpecialName()%>" pattern="^[a-zA-Z -]+$" maxlength="100" type="text"
+						value="<%=product.getSpecialName()%>" maxlength="100" type="text"
 						placeholder="Enter special name">
+						<div id="errorContainer_1">
+						</div>
+						<p id="req_1"></p>
 
 
 					<%
@@ -136,10 +145,7 @@ if (message != null) {
 				</div>
 			</div>
 		</div>
-		<div id="requirements">
-		<p id="req">Requirements :</p>
-		<p id="inner_text">Please enter Valid Name</p>
-		</div>
+	
 		<div class="content1">
 			<a href="../products"><button class="button" id="submit"
 					type="button">

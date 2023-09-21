@@ -56,11 +56,7 @@ public class GetProductForBillServlet extends HttpServlet {
 
 			product = ps.getProductDetail(id);
 
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ValidationException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 

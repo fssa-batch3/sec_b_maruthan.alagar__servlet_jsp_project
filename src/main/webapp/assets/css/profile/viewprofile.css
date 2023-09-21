@@ -102,7 +102,7 @@ main .forms {
 
  .button,.button_1 ,.button_2,.button_2_1{
 
-    font-size: 30px;
+    font-size: 28px;
     background-color: lightblue;
     border-radius: 4px;
     border-color: lightblue;
@@ -110,6 +110,8 @@ main .forms {
     color: rgb(0, 0, 0);
     margin: 8px;
     margin-left: 16px;
+    cursor:pointer;
+
 }
 
 .continue {

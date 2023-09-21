@@ -10,26 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import in.fssa.mambilling.dto.ProductDTO;
-import in.fssa.mambilling.exception.ServiceException;
-import in.fssa.mambilling.exception.ValidationException;
-import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.model.Shop;
+import in.fssa.mambilling.service.ShopService;
 
 /**
- * Servlet implementation class ListProductDetailsServlet
+ * Servlet implementation class EditShopServlet
  */
-@WebServlet("/products/details")
-public class ListProductDetailsServlet extends HttpServlet {
+@WebServlet("/shop/edit")
+public class EditShopServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		ProductService productService = new ProductService();
 		PrintWriter out = response.getWriter();
 
-		String id = request.getParameter("productId");
+		String id = request.getParameter("shopId");
 
 		if (id == null) {
 			out.print("Id is mandatory");
@@ -38,24 +37,24 @@ public class ListProductDetailsServlet extends HttpServlet {
 			out.print("Id cannot be empty");
 			return;
 		} else {
-			int proId = Integer.parseInt(id);
+			int shopId = Integer.parseInt(id);
+			System.out.print(shopId);
 
 			try {
-				ProductDTO product = productService.getProductDetail(proId);
-				request.setAttribute("product", product);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/view_product.jsp");
+
+				ShopService ss = new ShopService();
+				Shop newShop = ss.getByShopId(shopId);
+				request.setAttribute("shopDetail", newShop);
+
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/viewprofile.jsp");
 				dispatcher.forward(request, response);
-			} catch (ValidationException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 				out.print(e.getMessage());
 
-			} catch (ServiceException e) {
-				e.printStackTrace();
-				out.print(e.getMessage());
 			}
+
 		}
 	}
-
-
 
 }

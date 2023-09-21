@@ -61,13 +61,9 @@ public class GetUserForBillServlet extends HttpServlet {
 
 			user = userService.getByPhoneNumber(phone);
 
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (ValidationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 
 		ResponseEntity responseEntity = new ResponseEntity(200, user, "User Retrieved Successfully :)");
 

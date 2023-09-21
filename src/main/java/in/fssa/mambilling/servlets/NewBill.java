@@ -38,13 +38,10 @@ public class NewBill extends HttpServlet {
 
 			}
 
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (ValidationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			response.sendRedirect(request.getContextPath() + "/Error.jsp");
+		} 
 
 		request.setAttribute("products", final_products);
 

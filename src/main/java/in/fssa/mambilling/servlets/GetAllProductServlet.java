@@ -31,9 +31,10 @@ public class GetAllProductServlet extends HttpServlet {
 			request.setAttribute("productList", products);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/product_list.jsp");
 			dispatcher.forward(request, response);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect(request.getContextPath() + "/Error.jsp");
+			
 		}
 
 	}

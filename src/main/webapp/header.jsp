@@ -12,6 +12,7 @@
             <a href="<%=request.getContextPath() %>/products">Product</a>
             <a class="users" href="<%=request.getContextPath() %>/users">Customer</a>
             <a href="<%=request.getContextPath() %>/bills">Bill</a>
+            <a href="<%=request.getContextPath() %>/shop/edit?shopId=1">Profile</a>
             
                 
          

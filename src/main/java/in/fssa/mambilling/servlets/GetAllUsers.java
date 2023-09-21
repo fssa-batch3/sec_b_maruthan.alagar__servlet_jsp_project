@@ -37,9 +37,10 @@ public class GetAllUsers extends HttpServlet {
 			request.setAttribute("userList", users);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/user_list.jsp");
 			dispatcher.forward(request, response);
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
+			
 			e.printStackTrace();
+			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		}
 
 	}

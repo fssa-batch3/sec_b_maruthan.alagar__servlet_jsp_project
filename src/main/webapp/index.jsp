@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@page import="java.util.Collections"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="in.fssa.mambilling.model.RecentBillModal"%>
 <%@page import="java.util.List"%>
@@ -14,6 +15,7 @@
 
 <%
 List<RecentBillModal> bill_list = (List<RecentBillModal>) request.getAttribute("bills");
+Collections.reverse(bill_list);
 
 int count = 0;
 for (RecentBillModal forCount : bill_list) {

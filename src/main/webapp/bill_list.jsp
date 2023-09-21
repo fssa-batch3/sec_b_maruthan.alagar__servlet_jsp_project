@@ -1,3 +1,4 @@
+<%@page import="java.util.Collections"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.util.List"%>
 <%@page import="in.fssa.mambilling.model.Bill"%>
@@ -22,6 +23,7 @@
 	%>
 	<%
 	bill_list = (List<Bill>) request.getAttribute("billList");
+	Collections.reverse(bill_list);
 	%>
 
 	<div class="top_nav">

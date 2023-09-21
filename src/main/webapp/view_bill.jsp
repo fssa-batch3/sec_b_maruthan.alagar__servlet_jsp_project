@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="in.fssa.mambilling.model.Shop"%>
 <%@page import="in.fssa.mambilling.dto.ProductDTO"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="in.fssa.mambilling.model.User"%>
@@ -24,6 +26,7 @@
 	List<ProductDTO> products = (List<ProductDTO>) request.getAttribute("products");
 	Bill newBill = (Bill) request.getAttribute("bill");
 	User newUser = (User) request.getAttribute("user");
+	Shop newShop = (Shop) request.getAttribute("shop");
 	
 	String pattern = "yyyy-MM-dd HH:mm:ss";
 	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
@@ -31,10 +34,12 @@
 	String[] dateTimeParts = formattedDateTime.split(" ");
 	String formattedDate = dateTimeParts[0];
 	String formattedTime = dateTimeParts[1];
-	
+	DecimalFormat decimalFormat = new DecimalFormat("0.00");
 	double totalTax=0;
 	double totalDiscount=0;
 	double billTotal = 0;
+	double totalTaxAmount = 0.0;
+	double totalDiscountAmount =0.0;
 	%>
 
 
@@ -42,9 +47,10 @@
 	<div class="bill-container" id="bill_div">
 		<div id="heading">
 			<div id="shop">
-				<h2 id="shop_name">Supermarket Bill</h2>
-				<h3 id="phone_number">Evergreen Supermarket</h3>
-				<h3 id="Adress">Trichy</h3>
+				<h2 id="shop_name"><%=newShop.getShopName() %></h2>
+				<h3 id="Adress"><%=newShop.getAddress() %></h3>
+				<h4 id="phone_number">Contact : <%=newShop.getPhoneNumber() %></h4>
+				<%-- <p>fssai license no : <%=newShop.getLicenseNumber() %></p> --%>
 			</div>
 		</div>
 
@@ -57,7 +63,7 @@
 
 			</div>
 			<div id="b_con">
-				<p id="gstn_no">-</p>
+				<p id="gstn_no"><%=newShop.getGSTNNumber() %></p>
 				<p id="bill_no"><%=newBill.getBillId()%></p>
 				<p id="date"><%=formattedDate +" "+formattedTime%></p>
 
@@ -82,12 +88,18 @@
 						totalTax += item.getTax();
 						totalDiscount += item.getDiscount();
 						
-						double taxAmount = (item.getTax() / 100) * item.getMrp();
-
-						// Calculate the discount amount
+					double	taxAmount = (item.getTax() / 100) * item.getMrp();
+					
+					
+					
+					totalTaxAmount+=taxAmount*item.getTotalQuantity();
+					
+					
+	
 						double discountAmount = (item.getDiscount() / 100) * item.getMrp();
+						
+						totalDiscountAmount+=discountAmount*item.getTotalQuantity();
 
-						// Calculate the final price after applying tax and discount
 						double finalPrice = item.getMrp() + taxAmount - discountAmount;
 						
 						billTotal += finalPrice * item.getTotalQuantity();
@@ -111,15 +123,19 @@
 
 				<h5>Total discount :</h5>
 				<hr />
+				<h3>Sub Total :</h3>
+				<hr />
 				<h2>Total Amount :</h2>
 				<hr />
 
 			</div>
 			<div id="bottom">
 
-				<h5 id="total_tax"><%=(int)totalTax %> %</h5>
+				<h5 id="total_tax"><%=decimalFormat.format(totalTaxAmount) %> /-</h5>
 
-				<h5 id="total_discount"><%=(int)totalDiscount %> %</h5>
+				<h5 id="total_discount"><%=decimalFormat.format(totalDiscountAmount) %> /-</h5>
+				<hr />
+				<h3 id="total_amount"><%=decimalFormat.format(billTotal) %> /-</h3>
 				<hr />
 				<h2 id="total_amount"><%=(int)billTotal %> /-</h2>
 				<hr />

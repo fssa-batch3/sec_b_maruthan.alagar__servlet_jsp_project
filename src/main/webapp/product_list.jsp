@@ -1,3 +1,4 @@
+<%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
 <%@page import="in.fssa.mambilling.model.Product"%>
 <%@page import="java.util.ArrayList"%>
@@ -16,9 +17,11 @@
 <body>
 	<%
 	List<Product> product_list = new ArrayList<Product>();
+	
 	%>
 	<%
 	product_list = (List<Product>) request.getAttribute("productList");
+	Collections.reverse(product_list);
 	%>
 
 	<div class="top_nav">

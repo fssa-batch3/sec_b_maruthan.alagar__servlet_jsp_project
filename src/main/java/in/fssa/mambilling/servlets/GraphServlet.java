@@ -2,7 +2,13 @@ package in.fssa.mambilling.servlets;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -34,7 +40,6 @@ public class GraphServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		BillService bs = new BillService();
 
 
 Map<String, Double> details = null;
@@ -44,12 +49,14 @@ Map<String, Double> details = null;
 
 
 		try {
-			details = bs.getGraphDetails();
+			details = BillService.getGraphDetails();
 
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		 String jsonData = new Gson().toJson(details);
 		ResponseEntity responseEntity = new ResponseEntity(200, jsonData, "Details Retrieved Successfully :)");
 

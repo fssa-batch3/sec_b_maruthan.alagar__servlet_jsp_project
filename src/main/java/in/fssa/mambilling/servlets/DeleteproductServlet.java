@@ -45,13 +45,11 @@ public class DeleteproductServlet extends HttpServlet {
 				out.print("Product Succesfully Deleted :)");
 				response.sendRedirect(request.getContextPath()+"/products");
 				
-			} catch (ValidationException e) {
+			} catch (Exception e) {
+				response.sendRedirect(request.getContextPath() + "/Error.jsp");
 				e.printStackTrace();
-				out.print(e.getMessage());
+				
 
-			} catch (ServiceException e) {
-				e.printStackTrace();
-				out.print(e.getMessage());
 			}
 			
 			

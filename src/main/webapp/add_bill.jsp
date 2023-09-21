@@ -1,3 +1,4 @@
+<%@page import="java.util.Collections"%>
 <%@page import="in.fssa.mambilling.dto.ProductDTO"%>
 <%@page import="in.fssa.mambilling.model.Product"%>
 <%@page import="in.fssa.mambilling.model.BillItems"%>
@@ -26,11 +27,11 @@
 			<div id="customer">
 				<div>
 					<label>Customer Name:</label> <input class="lists" type="text"
-						id="customer_name" placeholder="Enter Customer Name">
+						id="customer_name" placeholder="Enter Customer Name" readonly>
 				</div>
 				<div>
-					<label>ID Number:</label> <input class="lists" type="number"
-						id="customer_id" placeholder="Enter ID Number" required>
+					<label>Customer ID Number:</label> <input class="lists" type="number"
+						id="customer_id" placeholder="Enter Customer ID " required readonly>
 				</div>
 				<div id="button_div">
 				<div>
@@ -51,11 +52,12 @@
 						<%
 						// Sample list of product names
 						List<ProductDTO> productList = (List<ProductDTO>) request.getAttribute("products");
+						Collections.reverse(productList);
 
 						// Loop through the productList and create an option for each product
 						for (ProductDTO product : productList) {
 						%>
-						<option value="<%=product.getId()%>"><%=product.getProductName()%></option>
+						<option value="<%=product.getId()%>"><%=product.getProductName()%> ( <%=product.getQuantity()%>  <%=product.getQuantityType()%> )</option>
 						<%
 						}
 						%>
@@ -69,21 +71,21 @@
 
 				<div>
 					<label>Quantity:</label> <input class="lists" id="quantity"
-						type="number" placeholder="Choose Number" required>
+						type="number" placeholder="Enter Quantity" required>
 				</div>
 
 				<div>
 					<label>MRP:</label> <input class="lists" id="mrp" type="number"
-						placeholder="Choose Number">
+						placeholder="Enter MRP" disabled>
 				</div>
 
 				<div>
 					<label>Tax(%):</label> <input class="lists" id="tax" type="number"
-						placeholder="Enter Tax">
+						placeholder="Enter Tax" disabled>
 				</div>
 				<div>
 					<label>Discount(%):</label> <input class="lists" id="discount"
-						type="number" placeholder="Enter Discount">
+						type="number" placeholder="Enter Discount" disabled>
 				</div>
 
 				<div>
@@ -101,9 +103,10 @@
 					<th>Product ID</th>
 					<th>Quantity</th>
 					<th>MRP</th>
-					<th>Tax (%)</th>
-					<th>Discount (%)</th>
-					<th>Total Price</th>
+					<th>Tax (Rs)</th>
+					<th>Discount (Rs)</th>
+					<th>Total MRP</th>
+					<th>Total Price</th> 
 				</tr>
 			</thead>
 			<tbody>
@@ -115,36 +118,36 @@
 		<form id="payment" action="create" method="post">
 			<div id="left">
 				<div id="pay">
-					<label>Amount :</label> <input type="text" id="total_amount">
+					<label>Amount :</label> <input type="text" id="total_amount" disabled>
 				</div>
 				<div id="pay">
 					<label>Total Quantity:</label> <input type="number"
-						id="total_quantity">
+						id="total_quantity" disabled>
 				</div>
 				<div id="pay">
 					<label>Total Price :</label> <input type="text" id="total_price"
-						readonly>
+						readonly disabled>
 				</div>
 			</div>
 			<div>
 				<div id="pay">
 					<label>Total MRP :</label> <input type="text" id="total_mrp"
-						readonly>
+						readonly disabled>
 				</div>
 				<div id="pay">
 					<label>Total Tax :</label> <input type="text" id="total_tax"
-						readonly>
+						disabled >
 				</div>
 				<div id="pay">
 					<label>Total Discount :</label> <input type="text"
-						id="total_discount" readonly>
+						id="total_discount" disabled>
 				</div>
 			</div>
 			<div id="big">
 				<h2>Sub Total :</h2>
-				<input type="text" id="sub_total" readonly>
+				<input type="text" id="sub_total" disabled>
 				<h1>Total :</h1>
-				<input type="text" id="total" readonly>
+				<input type="text" id="total" disabled>
 			</div>
 			<input type="hidden" name="customer_id" id="customer_id_input">
 			<input type="hidden" name="product_ids_and_quantities"
@@ -168,6 +171,15 @@
 
 
 	<script>
+	
+	document.getElementById("btn").addEventListener("click", function (event) {
+		  const mainTable = document.querySelector("#mainTable tbody");
+		  const rows = mainTable.rows;
+		  if (rows.length < 1) {
+		    event.preventDefault(); 
+		    alert("Please Add At Least One Product to Bill");
+		  }
+		});
 
 	
 	async function getUserDetail(){ 
@@ -296,8 +308,11 @@
 							const cus_id = idInput.value||0;
 
 				
-							const totalPrice = (mrp + (mrp * (tax / 100))) * quantity; 
-							const price = parseInt(totalPrice - (totalPrice * (discount / 100)));
+							const totalPrice = (mrp + (mrp * (tax / 100))) * quantity;
+							const price = totalPrice - (totalPrice * (discount / 100)).toFixed(2);
+							const total_mrp = mrp * quantity;
+							const tax_rs = (total_mrp * (tax / 100)).toFixed(2); // Round to 2 decimal places
+							const discount_rs = (total_mrp * (discount / 100)).toFixed(2);
 							
 							const tableRows = mainTable.rows;
 							let exist = -1;
@@ -344,14 +359,16 @@
 								const cell5 = newRow.insertCell(4);
 								const cell6 = newRow.insertCell(5);
 								const cell7 = newRow.insertCell(6);
+								const cell8 = newRow.insertCell(7);
 
 								cell1.innerHTML = productName;
 								cell2.innerHTML = productID;
 								cell3.innerHTML = quantity;
 								cell4.innerHTML = mrp;
-								cell5.innerHTML = tax;
-								cell6.innerHTML = discount;
-								cell7.innerHTML = price;
+								cell5.innerHTML = tax_rs +" /-";
+								cell6.innerHTML = discount_rs+" /-";
+								cell7.innerHTML = total_mrp+" /-";
+								cell8.innerHTML = price.toFixed(2)+" /-";
 
 								// Clear input fields after adding to the table
 								productNameInput.value = "";
@@ -396,7 +413,7 @@
 			const rows = mainTable.rows;
 			let totalQuantity = 0;
 			let totalMRP = 0;
-			let totalPrice = 0;
+			let totalPrice = 0.0;
 			let totalTax = 0;
 			let totalDiscount = 0;
 
@@ -404,31 +421,38 @@
 				const row = rows[i];
 				const quantity = parseInt(row.cells[2].innerHTML);
 				const mrp = parseFloat(row.cells[3].innerHTML);
-				const discount = parseFloat(row.cells[4].innerHTML);
-				const tax = parseFloat(row.cells[5].innerHTML);
-				const price = parseFloat(row.cells[6].innerHTML);
+				const tax= parseFloat(row.cells[4].innerHTML);
+				const discount = parseFloat(row.cells[5].innerHTML);
+				const total_mrp = parseFloat(row.cells[6].innerHTML);
+				//const price = parseFloat(row.cells[7].innerHTML);
 
 				totalQuantity += quantity;
 				totalMRP += quantity * mrp;
-				totalPrice += price;
 				totalTax += tax;
 				totalDiscount += discount;
+				totalPrice = (totalMRP-totalDiscount)+totalTax;
 			}
 
 			// Update the total fields
 			document.getElementById("total_quantity").value = totalQuantity;
-			document.getElementById("total_mrp").value = totalMRP.toFixed(2);
+			document.getElementById("total_mrp").value = totalMRP.toFixed(2)+" /-";
 			document.getElementById("total_price").value = totalPrice
-					.toFixed(2);
-			document.getElementById("total_tax").value = totalTax.toFixed(2);
+					.toFixed(2)+" /-";
+			document.getElementById("total_tax").value = totalTax.toFixed(2)+" /-";
 			document.getElementById("total_discount").value = totalDiscount
-					.toFixed(2);
+					.toFixed(2)+" /-";
 
 			const subTotal = totalPrice;
-			document.getElementById("sub_total").value = subTotal.toFixed(2);
-			document.getElementById("total").value = subTotal.toFixed(2);
-			document.getElementById("total_amount").value = subTotal.toFixed(2);
+			document.getElementById("sub_total").value = subTotal.toFixed(2)+" /-";
+			document.getElementById("total").value = subTotal.toFixed(2)+" /-";
+			document.getElementById("total_amount").value = subTotal.toFixed(2)+" /-";
 		}
+		
+		
+		
+		
+		
+		
 	</script>
 			<div class="main">
 		<a href="../bills" id="a_tag"><button id="btn_back" class="btn_back">&#x2190; Back to Bills</button></a>
