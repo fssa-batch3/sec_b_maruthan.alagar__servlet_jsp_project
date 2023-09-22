@@ -337,9 +337,12 @@
 								
 							}else if (productID <= 0 ) {
 								alert("Product ID Cannot be Empty");
-							}else if(quantity<=0){
+							}else if(quantity==0){
 								
 								alert("Product Quantity Cannot be Empty");
+							}else if(quantity<1){
+								
+								alert("Product Quantity Cannot be Negative");
 							}else if(exist==0){
 								alert("Product Already exists in the Bill");
 								

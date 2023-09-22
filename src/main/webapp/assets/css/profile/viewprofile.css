@@ -113,8 +113,19 @@ main .forms {
     cursor:pointer;
 
 }
+.button_2_1{
+	font-size: 28px;
+    width: 111%;
+}
 
 .continue {
     text-decoration: none !important;
     color: black !important;
+}
+
+#nav_div{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
 }

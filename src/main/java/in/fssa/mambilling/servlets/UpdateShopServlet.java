@@ -26,7 +26,6 @@ public class UpdateShopServlet extends HttpServlet {
 		String licenseNumber = request.getParameter("license_number");
 		String phoneNumber = request.getParameter("phone_number");
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
 		String gstnNumber = request.getParameter("gstn_number");
 		String address = request.getParameter("address");
 		String ownerName = request.getParameter("owner_name");
@@ -41,21 +40,22 @@ public class UpdateShopServlet extends HttpServlet {
 		newShop.setGSTNNumber(gstnNumber);
 		newShop.setLicenseNumber(licenseNumber);
 		newShop.setOwnerName(ownerName);
-		newShop.setPassword(password);
 		newShop.setPhoneNumber(phone);
 		newShop.setPrintName(printName);
 		newShop.setShopName(shopName);
 
 		ShopService shopService = new ShopService();
 		try {
-			shopService.updateShop(newShop);
-			response.sendRedirect(request.getContextPath() + "/getrecentbills");
 			shop = shopService.getByShopId(1);
+			shopService.updateShop(newShop);
+			
+			response.sendRedirect(request.getContextPath() + "/getrecentbills");
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("errorMessage", e.getMessage());
 			request.setAttribute("shopDetail", shop);
+			request.setAttribute("errorMessage", e.getMessage());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewprofile.jsp");
 			dispatcher.forward(request, response);
 

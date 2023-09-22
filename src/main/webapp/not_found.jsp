@@ -7,7 +7,9 @@
 <head>
 <meta charset="utf-8">
 
-<title>500 Internal Server Error :(</title>
+<title>404 Page Not Found :(</title>
+<link rel="stylesheet"
+	href="<%request.getContextPath();%>/css/error.css">
 <style>
 @import
 	url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap')
@@ -118,13 +120,15 @@ display:flex;
 <body>
 	<div id="error-page">
 		<div class="content">
-			<h2 class="header" data-text="500">500</h2>
+		
+			<h2 class="header" data-text="404">404</h2>
 			<div id="logo_div">
 			<img class="logo" src="https://iili.io/J9AdFF1.png" alt="logo" width="110px">
-			<h4 data-text="Opps! Page not found">Oops! Internal Server Error</h4>
+			<h4 data-text="Opps! Page not found">Oops! Page not found</h4>
 			<img class="logo" src="https://iili.io/J9AdFF1.png" alt="logo" width="110px">
 			</div>
-			<p>Sorry, we're experiencing technical difficulties. Please try again later.</p>
+			<p>Sorry, The page you're looking for couldn't be found.</p>
+				
 			<div class="btns">
 				<a href="<%=request.getContextPath()%>/getrecentbills">return
 					home</a>

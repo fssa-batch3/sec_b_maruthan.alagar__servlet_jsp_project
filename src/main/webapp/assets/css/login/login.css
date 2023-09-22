@@ -1,110 +1,65 @@
-header .logo img {
-    width: 100px;
-    border-radius: 10px;
-    height: fit-content;
-    margin: 1em;
+* {
+	box-sizing: border-box;
+}
+
+form {
+	margin: 100px auto;
+	font-family: sans-serif;
+	padding: 40px;
+	width: 40%;
+	min-width: 300px;
+	margin-top: 5px;
+}
+
+h1 {
+	text-align: center;
+}
+
+input {
+	width: 100%;
+	font-size: 20px;
+	margin: 15px;
+	border: solid 2px;
+	padding: 15px;
+	border-radius: 3px;
+	background-color: lightblue;
+}
+
+button {
+	font-size: 20px;
+	background-color: rgb(59, 139, 237);
+	border-radius: 4px;
+	border-color: rgb(59, 139, 237);
+	float: right;
+	color: white;
+	cursor: pointer;
+	width: 115px;
+	height: 49px;
+	font-weight: bold;
+	margin-left: 3%;
 }
 
 body {
-    color: black;
-    font-family: sans-serif;
-    background-image: url(../../Imges/background.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    width: auto;
+	font-family: sans-serif;
+	width: auto;
 }
 
-body .list .link .navelist {
-    text-decoration: none;
-    color: black;
-
+.content {
+	margin-top: 20px;
 }
 
-header div .nav {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
+body a {
+	color: blue;
 }
 
-header div .list .link {
-    display: flex;
-    justify-content: space-between;
-
+label {
+	font-size: 20px;
+	padding: 5px;
+	margin: 8px;
 }
 
-header div .list .link .navlist {
-    list-style: none;
-    padding-right: 20px;
-    margin-top: 40px;
-    font-size: 20px;
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-
-}
-
-.lists {
-    display: flex;
-    font-size: 20px;
-    margin: 15px;
-    border: solid 2px;
-    padding: 15px;
-    border-radius: 3px;
-}
-
-main .forms {
-    font-size: 20px;
-    padding: 5px;
-}
-
-.one {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-content: center;
-    flex-wrap: wrap;
-    margin: auto;
-    font-size: 30px;
-
-}
-.log{
-    text-align: center;
-}
-
-.one form {
-    border: solid 2px;
-    padding: 25px;
-    border-radius: 10px;
-    background-color: lightblue;
-
-
-}
-
-.content .button1 {
-    font-size: 20px;
-    background-color: rgb(59, 139, 237);
-    border-radius: 4px;
-    border-color: rgb(59, 139, 237);
-    float: right;
-    color: white;
-    cursor:pointer;
-}
-
-.content .button1 span {
-    padding-left: 5px;
-    margin-top: 5px;
-}
-
-.forgot , ins {
-    font-size: 16px !important;
-    color: blue !important;
-    cursor:pointer;
-
-
-}
-
-.login {
-    text-decoration: none;
-    color: white;
+#forgot_div {
+	font-size: 18px;
+	margin-left: 12px;
+	margin-top: 3px
 }

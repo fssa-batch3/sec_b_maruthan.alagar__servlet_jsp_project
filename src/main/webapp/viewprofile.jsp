@@ -6,47 +6,27 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet"
-	href="<%=request.getContextPath() %>/assets/css/profile/viewprofile.css">
+	href="<%=request.getContextPath()%>/assets/css/profile/viewprofile.css">
 <meta charset="ISO-8859-1">
 <title>Shop Profile</title>
-<%@ include file="header.jsp" %>
 </head>
 <body>
 
 	<%
-String message = (String) request.getAttribute("errorMessage");
-%>
-
-	<%
-if (message != null) {
-%>
-
-	<script> alert("<%=message%>");
-	</script>
-	<%
-}
-%>
-	<%
 	Shop shop = (Shop) request.getAttribute("shopDetail");
-	
-%>
+	%>
 
-	<!-- <header>
+	<header>
+		<div id="nav_div">
+			<a href="<%=request.getContextPath()%>/getrecentbills"> <img
+				class="logo" src="https://iili.io/J9AdFF1.png" alt="logo"
+				width="110px">
+			</a> <a href="<%=request.getContextPath()%>/login.jsp"><button
+					class="button_2_1" type="button">Log Out</button></a>
 
-		<div>
-			<div class="nav">
-				<div class="list">
-					<ul class="link">
-
-						<button class="button_2" type="button">Delete My Account</button>
-
-						<button class="button_2_1" type="button">Log Out</button>
-
-					</ul>
-				</div>
-			</div>
 		</div>
-	</header> -->
+
+	</header>
 	<main>
 
 
@@ -59,14 +39,14 @@ if (message != null) {
 
 					<div class="content">
 						<label class="forms">Shop Name</label> <input class="lists"
-							id="shop_name" name="shop_name" value="<%=shop.getShopName() %>"
-							type="text" pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]" required>
+							id="shop_name" name="shop_name" value="<%=shop.getShopName()%>"
+							type="text" pattern="^[a-zA-Z\s]+$" required >
 
 					</div>
 
 					<div class="content">
 						<label class="forms">License Number</label> <input class="lists"
-							id="license_number" value="<%=shop.getLicenseNumber() %>"
+							id="license_number" value="<%=shop.getLicenseNumber()%>"
 							name="license_number" type="text" pattern="[A-Z0-9]+"
 							maxlength="14"
 							title="Don't Use space and any Special Characters.Use A_Z and 1-9 and Must Be 14 Characters"
@@ -74,7 +54,7 @@ if (message != null) {
 					</div>
 					<div class="content">
 						<label class="forms">Phone Number</label> <input class="lists"
-							id="phone_number" value="<%=shop.getPhoneNumber() %>" type="tel"
+							id="phone_number" value="<%=shop.getPhoneNumber()%>" type="tel"
 							name="phone_number" pattern="^[6789]\d{9,9}$" maxlength="10"
 							title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters"
 							required>
@@ -82,7 +62,7 @@ if (message != null) {
 
 					<div class="content">
 						<label class="forms">E-Mail Address</label> <input class="lists"
-							id="user_email" value="<%=shop.getEmail() %>" type="email"
+							id="user_email" value="<%=shop.getEmail()%>" type="email"
 							name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 							title="Please enter correct Email" readonly>
 					</div>
@@ -95,33 +75,32 @@ if (message != null) {
 							name="gstn_number" placeholder="Enter GSTN Number" maxlength="15"
 							pattern="\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}"
 							title="Don't Use space and any Special Characters.Use A-Z and 1-9 and Must Be 15 Characters"
-							required>
+							required readonly>
 
 					</div>
 					<div class="content">
 						<label class="forms">Address</label> <input class="lists"
-							id="address" value="<%=shop.getAddress() %>" type="text"
+							id="address" value="<%=shop.getAddress()%>" type="text"
 							name="address" placeholder="Enter Shop Address" maxlength="250"
 							required>
 
 					</div>
 					<div class="content">
 						<label class="forms">Owner name</label> <input class="lists"
-							id="owner_name" value="<%=shop.getOwnerName() %>" type="text"
+							id="owner_name" value="<%=shop.getOwnerName()%>" type="text"
 							name="owner_name" placeholder="Enter Owner name" required>
 
 					</div>
 					<div class="content">
 						<label class="forms">Print Name</label> <input class="lists"
-							id="nameforprint" value="<%=shop.getPrintName() %>" type="text"
-							name="print_name" placeholder="Enter Print Name" readonly>
+							id="nameforprint" value="<%=shop.getPrintName()%>" type="text"
+							name="print_name" placeholder="Enter Print Name" required>
 
 					</div>
-					<input type="hidden" value="<%=shop.getPassword() %>" name="password"/>
 
 				</div>
 				<div class="content1">
-					<a href="<%=request.getContextPath() %>/getrecentbills"><button
+					<a href="<%=request.getContextPath()%>/getrecentbills"><button
 							class="button_1" type="button">
 							<span>&#x1F870;</span> Back
 						</button></a>
@@ -136,6 +115,20 @@ if (message != null) {
 		</div>
 
 	</main>
-	<script src="./../../assets/js/profile/viewprofile.js"></script>
+	<script src="<%=request.getContextPath()%>/assets/js/profile/viewprofile.js"></script>
 </body>
+
+	<%
+	String message = (String) request.getAttribute("errorMessage");
+	%>
+
+	<%
+	if (message != null) {
+	%>
+
+	<script> alert("<%=message%>");
+	</script>
+	<%
+	}
+	%>
 </html>

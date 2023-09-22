@@ -9,22 +9,38 @@
 	href="<%=request.getContextPath()%>/assets/css/login/style.css">
 <title>Register Shop</title>
 </head>
+<header>
+
+	<div class="header">
+
+		<img class="logo" src="https://iili.io/J9AdFF1.png" alt="logo"
+			width="110px">
+
+		<div class="list1">
+			<a href="<%=request.getContextPath()%>/login.jsp">
+				<button class="button1" id="head_button" type="submit">
+					Login Here</button>
+			</a>
+
+
+		</div>
+
+	</div>
+</header>
 <body>
-<%
-String message = (String) request.getAttribute("errorMessage");
+	<%
+	String message = (String) request.getAttribute("errorMessage");
+	%>
 
+	<%
+	if (message != null) {
+	%>
 
-%>
+	<script> alert("<%=message%>");</script>
 
-<%
-if (message != null  ) {
-%>
-
-<script> alert("<%=message%>");</script>
-
-<%
-}
-%>
+	<%
+	}
+	%>
 
 	<form id="regForm" action="create" method="POST">
 		<h1 id="1">Register Shop:</h1>
@@ -32,22 +48,24 @@ if (message != null  ) {
 		<div class="tab">
 			<div class="content">
 				<label class="forms">Shop Name</label> <input class="lists"
-					id="shop_name" name="shop_name"  value="Evergreen Supermarket" type="text" placeholder="Enter Shop Name"
+					id="shop_name" name="shop_name" value="Evergreen Supermarket"
+					type="text" placeholder="Enter Shop Name"
 					pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]"
 					title="Use a-z and A-Z Create Shop Name" required>
 			</div>
 
 			<div class="content">
 				<label class="forms">License Number</label> <input class="lists"
-					id="licence_number" name="license_number" type="text" placeholder="Enter License Number"
-					pattern="[A-Z0-9]+" maxlength="14" value="237848940989878"
+					id="licence_number" name="license_number" type="text"
+					placeholder="Enter License Number" pattern="[0-9]+"
+					maxlength="14" value="237848940989878"
 					title="Don't Use space and any Characters.Use 0-9 and Must Be 14 Characters"
 					required>
 			</div>
 			<div class="content">
 				<label class="forms">Phone Number</label> <input class="lists"
-					id="phone_number" name="phone_number" type="tel" pattern="^[6789]\d{9,9}$"
-					maxlength="10" value="6108419159"
+					id="phone_number" name="phone_number" type="tel"
+					pattern="^[6789]\d{9,9}$" maxlength="10" value="6108419159"
 					title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters"
 					placeholder="Enter Mobile Number" required>
 			</div>
@@ -56,8 +74,9 @@ if (message != null  ) {
 				<label class="forms">E-Mail Address </label> <input class="lists"
 					id="email" name="email" type="email"
 					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-					placeholder="Enter your E-Mail" value="evergreensupermarket@gmail.com" title="Please enter correct Email"
-					required>
+					placeholder="Enter your E-Mail"
+					value="evergreensupermarket@gmail.com"
+					title="Please enter correct Email" required>
 			</div>
 
 		</div>
@@ -65,9 +84,10 @@ if (message != null  ) {
 			<h1 id="2">User Name Creation:</h1>
 			<div class="content">
 				<label class="forms"> Enter Your Email Address</label> <input
-					class="lists" id="user_email" type="email"
+					class="lists" id="email" type="email"
 					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-					placeholder=" Enter Your Email" value="evergreensupermarket@gmail.com" required>
+					placeholder=" Enter Your Email"
+					value="evergreensupermarket@gmail.com" required>
 
 			</div>
 
@@ -80,7 +100,8 @@ if (message != null  ) {
 			</div>
 			<div class="content">
 				<label class="forms">Re-Enter Password</label> <input class="lists"
-					id="password" type="password" value="Ever@1234" placeholder="Abcd@123" required>
+					id="password" type="password" value="Ever@1234"
+					placeholder="Abcd@123" required>
 
 			</div>
 			<div id="rulez" style="display: none;" class="rules">
@@ -94,8 +115,9 @@ if (message != null  ) {
 			<h1 id="3">Shop Details :</h1>
 			<div class="content">
 				<label class="forms">GSTIN Number</label> <input class="lists"
-					id="gstn_number" type="text" name="gstn_number" placeholder="Enter GSTN Number"
-					maxlength="15" value="33CCCEV7409R1Z8"
+					id="gstn_number" type="text" name="gstn_number"
+					placeholder="Enter GSTN Number" maxlength="15"
+					value="33CCCEV7409R1Z8"
 					pattern="\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}"
 					title="Don't Use space and any Special Characters.Use A-Z and 1-9 and Must Be 15 Characters"
 					required>
@@ -103,19 +125,21 @@ if (message != null  ) {
 			</div>
 			<div class="content">
 				<label class="forms">Address</label> <input class="lists"
-					id="address" type="text" value="789 Nheru St, Pudukkottai" name="address" placeholder="Enter Shop Address"
-					maxlength="250" required>
+					id="address" type="text" value="789 Nheru St, Pudukkottai"
+					name="address" placeholder="Enter Shop Address" maxlength="250"
+					required>
 
 			</div>
 			<div class="content">
 				<label class="forms">Owner name</label> <input class="lists"
-					id="file" type="text" value="Rahu Raman"name="owner_name" placeholder="Enter Owner name" required>
+					id="file" type="text" value="Rahu Raman" name="owner_name"
+					placeholder="Enter Owner name" required>
 
 			</div>
 			<div class="content">
 				<label class="forms">Print Name</label> <input class="lists"
-					id="nameforprint" type="text" value="Evergreen" name="print_name" placeholder="Enter Print Name"
-					required>
+					id="nameforprint" type="text" value="Evergreen" name="print_name"
+					placeholder="Enter Print Name" required>
 
 			</div>
 		</div>
