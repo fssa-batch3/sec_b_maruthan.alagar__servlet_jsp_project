@@ -142,7 +142,7 @@
 			<div class="content">
 				<label class="forms">Print Name(For Bill)<span id="imp">
 						*</span></label> <input class="lists" id="nameforprint" type="text"
-					pattern="^[a-zA-Z\s]+$" value="Evergreen" name="print_name"
+					pattern="^[a-zA-Z-\s]+$" value="Evergreen" name="print_name"
 					placeholder="Enter Print Name" required>
 
 			</div>

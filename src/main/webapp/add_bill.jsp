@@ -338,11 +338,18 @@
 							}else if (productID <= 0 ) {
 								alert("Product ID Cannot be Empty");
 							}else if(quantity==0){
-								
 								alert("Product Quantity Cannot be Empty");
+								document.querySelector("#quantity").value="";
+								return;
 							}else if(quantity<1){
 								
 								alert("Product Quantity Cannot be Negative");
+								document.querySelector("#quantity").value="";
+								return;
+							}else if(quantity>50){
+								alert("Product Quantity Cannot be More than 50");
+								document.querySelector("#quantity").value="";
+								return;
 							}else if(exist==0){
 								alert("Product Already exists in the Bill");
 								

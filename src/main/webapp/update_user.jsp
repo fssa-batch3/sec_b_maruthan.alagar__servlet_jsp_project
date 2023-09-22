@@ -41,7 +41,7 @@ if (message != null) {
 			<label class="forms">Customer Name<span id="imp"> *</span></label> <input
 				class="lists" type="text" id="customer_name" name="customer_name"
 				value="<%=user.getName()%>"
-				pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]"
+				pattern="^[a-zA-Z-\s]+$"
 				title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"
 				placeholder="Enter Customer Name" maxlength="50" required>
 			<div id="errorContainer"></div>
@@ -97,13 +97,13 @@ if (message != null) {
 			if (user.getAddress() == null) {
 			%>
 			<input class="lists" type="text" name="address" value="-"
-				placeholder="Enter Customer Adress" id="customer_address"
+				placeholder="Enter Customer Adress" pattern="^[A-Za-z0-9\\s.,-]+$" id="customer_address"
 				maxlength="250">
 			<%
 			} else {
 			%>
 			<input class="lists" type="text" name="address"
-				value="<%=user.getAddress()%>" placeholder="Enter Customer Adress"
+				value="<%=user.getAddress()%>" pattern="^[A-Za-z0-9\\s.,-]+$" placeholder="Enter Customer Adress"
 				id="customer_address" maxlength="250">
 			<%
 			}

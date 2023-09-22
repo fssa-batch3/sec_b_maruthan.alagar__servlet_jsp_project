@@ -58,7 +58,7 @@
 					<div class="content">
 						<label class="forms">License Number</label> <input class="lists"
 							id="license_number" value="<%=shop.getLicenseNumber()%>"
-							name="license_number" type="text" pattern="[A-Z0-9]+"
+							name="license_number" type="number" pattern="[A-Z0-9]+"
 							maxlength="14"
 							title="Don't Use space and any Special Characters.Use A_Z and 1-9 and Must Be 14 Characters"
 							required readonly>

@@ -33,7 +33,7 @@ if (message != null) {
 		<h2>Add New Customer</h2>
 		<div class="content">
 			<label class="forms">Customer Name<span id="imp"> *</span></label> <input class="lists"
-				type="text" name="customer_name" maxlength="50"  pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]"
+				type="text" name="customer_name" maxlength="50"  pattern="^[a-zA-Z-\s]+$"
                  id="customer_name" title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"
 				placeholder="Enter Customer Name" required autofocus>
 				<div id="errorContainer">
@@ -60,7 +60,7 @@ if (message != null) {
 		<div class="content">
 			<label class="forms">Customer Address(optional)</label> <input
 				class="lists" type="text" id="customer_address" name="address"
-				placeholder="Enter Customer Address" maxlength="250">
+				placeholder="Enter Customer Address" pattern="^[A-Za-z0-9\\s.,-]+$" maxlength="250">
 				
 		</div>
 		<input type="hidden" name="where" value="<%=where%>" />

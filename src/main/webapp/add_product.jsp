@@ -35,7 +35,7 @@ if (message != null  ) {
 			<div class="part1">
 				<div class="content">
 					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
-						name="product_name" type="text"  pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]" maxlength="100" placeholder="Product Name"  id="product_name" title="Use Letters to Add Product Name.Don't use Numbers any special Characters"
+						name="product_name" type="text"  pattern="^[a-zA-Z\s]+$" maxlength="100" placeholder="Product Name"  id="product_name" title="Use Letters to Add Product Name.Don't use Numbers any special Characters"
 						required autofocus>
 						<div id="errorContainer">
 						</div>
@@ -99,7 +99,7 @@ if (message != null  ) {
 
 				<div class="content">
 					<label class="forms">Special name(optional)</label> <input
-						class="lists" name="special_name" pattern="^[a-zA-Z -]+$" maxlength="100" type="text" id="special_name" title="Use Letters to Add Special Name. Don't use Numbers or any special Characters. Use - if there is no Special name"
+						class="lists" name="special_name" pattern="^[a-zA-Z-\s]+$" maxlength="100" type="text" id="special_name" title="Use Letters to Add Special Name. Don't use Numbers or any special Characters. Use - if there is no Special name"
 						placeholder="Enter special name">
 						<div id="errorContainer_1">
 						</div>

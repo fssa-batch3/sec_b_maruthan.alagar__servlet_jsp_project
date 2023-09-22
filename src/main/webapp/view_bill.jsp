@@ -28,12 +28,12 @@
 	User newUser = (User) request.getAttribute("user");
 	Shop newShop = (Shop) request.getAttribute("shop");
 	
-	String pattern = "yyyy-MM-dd HH:mm:ss";
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-	String formattedDateTime = newBill.getTimeStamp().format(formatter);
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss a");
+	String formattedDateTime =  newBill.getTimeStamp().format(formatter);
 	String[] dateTimeParts = formattedDateTime.split(" ");
 	String formattedDate = dateTimeParts[0];
 	String formattedTime = dateTimeParts[1];
+	String zone = dateTimeParts[2];
 	DecimalFormat decimalFormat = new DecimalFormat("0.00");
 	double totalTax=0;
 	double totalDiscount=0;
@@ -65,7 +65,7 @@
 			<div id="b_con">
 				<p id="gstn_no"><%=newShop.getGSTNNumber() %></p>
 				<p id="bill_no"><%=newBill.getBillId()%></p>
-				<p id="date"><%=formattedDate +" "+formattedTime%></p>
+				<p id="date"><%=formattedDate +" "+formattedTime+" "+zone%></p>
 
 			</div>
 		</div>

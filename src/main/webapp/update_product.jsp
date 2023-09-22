@@ -40,7 +40,7 @@ if (message != null) {
 			<div class="part1">
 				<div class="content">
 					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
-						name="product_name" id="product_name" type="text" pattern="[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]"  placeholder="Product Name" maxlength="100"
+						name="product_name" id="product_name" type="text" pattern="^[a-zA-Z\s]+$"  placeholder="Product Name" maxlength="100"
 						value="<%=product.getProductName()%>" required>
 						<div id="errorContainer">
 						</div>
@@ -122,7 +122,7 @@ if (message != null) {
 					if (product.getSpecialName() == null) {
 					%>
 					<input class="lists" name="special_name" value="-" maxlength="100"
-						type="text" id="special_name" pattern="^[a-zA-Z -]+$" placeholder="Enter special name">
+						type="text" id="special_name" pattern="^[a-zA-Z-\s]+$" placeholder="Enter special name">
 						<div id="errorContainer_1">
 						</div>
 						<p id="req_1"></p>
