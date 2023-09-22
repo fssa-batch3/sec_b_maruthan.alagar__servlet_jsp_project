@@ -63,3 +63,13 @@ label {
 	margin-left: 12px;
 	margin-top: 3px
 }
+#imp {
+	color: red;
+}
+#con{
+	color:blue;
+	font-size:20px;
+	font-weight:bold;
+	text-align:left;
+	
+}

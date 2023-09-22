@@ -51,9 +51,10 @@ Map<String, Double> details = null;
 		try {
 			details = BillService.getGraphDetails();
 
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+		} catch (Exception e) {
+			
 			e.printStackTrace();
+			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		}
 		
 		

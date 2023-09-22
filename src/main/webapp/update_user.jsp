@@ -20,9 +20,7 @@ String message = (String) request.getAttribute("errorMessage");
 if (message != null) {
 %>
 
-<script> alert("<%=message%>
-	");
-</script>
+<script> alert("<%=message%>");</script>
 <%
 }
 %>

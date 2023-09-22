@@ -11,7 +11,18 @@
 <title>Shop Profile</title>
 </head>
 <body>
+<%
+	String message = (String) request.getAttribute("errorMessage");
+	%>
 
+	<%
+	if (message != null) {
+	%>
+
+	<script> alert("<%=message%>");</script>
+	<%
+	}
+	%>
 	<%
 	Shop shop = (Shop) request.getAttribute("shopDetail");
 	%>
@@ -118,17 +129,5 @@
 	<script src="<%=request.getContextPath()%>/assets/js/profile/viewprofile.js"></script>
 </body>
 
-	<%
-	String message = (String) request.getAttribute("errorMessage");
-	%>
-
-	<%
-	if (message != null) {
-	%>
-
-	<script> alert("<%=message%>");
-	</script>
-	<%
-	}
-	%>
+	
 </html>

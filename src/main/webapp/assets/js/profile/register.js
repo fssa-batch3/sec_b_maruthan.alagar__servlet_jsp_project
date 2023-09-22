@@ -1,12 +1,12 @@
 
-var currentTab = 0; // Current tab is set to be the first tab (0)
-showTab(currentTab); // Display the current tab
+var currentTab = 0;
+showTab(currentTab);
 
 function showTab(n) {
 	// This function will display the specified tab of the form...
+
 	var x = document.getElementsByClassName("tab");
 	x[n].style.display = "block";
-	//... and fix the Previous/Next buttons:
 	if (n == 0) {
 		document.getElementById("prevBtn").style.display = "none";
 	} else {
@@ -26,21 +26,22 @@ function showTab(n) {
 
 function nextPrev(n) {
 	// This function will figure out which tab to display
+
 	var x = document.getElementsByClassName("tab");
-	// Exit the function if any field in the current tab is invalid:
+
 	if (n == 1 && !validateForm())
 		return false;
-	// Hide the current tab:
+
 	x[currentTab].style.display = "none";
-	// Increase or decrease the current tab by 1:
+
 	currentTab = currentTab + n;
-	// if you have reached the end of the form...
+
 	if (currentTab >= x.length) {
-		// ... the form gets submitted:
+
 		document.getElementById("regForm").submit();
 		return false;
 	}
-	// Otherwise, display the correct tab:
+
 	showTab(currentTab);
 }
 
@@ -49,13 +50,12 @@ function validateForm() {
 	var x, y, i, valid = true;
 	x = document.getElementsByClassName("tab");
 	y = x[currentTab].getElementsByTagName("input");
-	// A loop that checks every input field in the current tab:
+
 	for (i = 0; i < y.length; i++) {
-		// If a field is empty...
+
 		if (y[i].value == "") {
-			// add an "invalid" class to the field:
+			alert("Please Fill All The Required Fields.")
 			y[i].className += " invalid";
-			// and set the current valid status to false
 			valid = false;
 		}
 	}
@@ -63,7 +63,7 @@ function validateForm() {
 	if (valid) {
 		document.getElementsByClassName("step")[currentTab].className += " finish";
 	}
-	return valid; // return the valid status
+	return valid;
 }
 
 function fixStepIndicator(n) {
@@ -81,101 +81,147 @@ function showRulez() {
 }
 
 
+
+// Shop Name
 document.getElementById("shop_name").addEventListener("change", function() {
 
-	const shopNameInput = document.getElementById("shop_name");
-	const pattern = /^[^\s][a-zA-Z]+(\s[a-zA-Z]+)?[^\s]$/;
-	const enteredValue = shopNameInput.value;
+	const nameInput = document.getElementById("shop_name");
+	const pattern = /^[a-zA-Z\s]+$/;
+	const enteredValue = nameInput.value;
 
-	if (!pattern.test(enteredValue)) {
-		alert("Value doesn't match the pattern. Please use a valid shop name format.");
-		shopNameInput.value = "";
+
+	if (enteredValue.trim() == "" || enteredValue == null) {
+		alert("Shop Name cannot be Empty.");
+		document.getElementById("shop_name").value = "";
+		return;
 	}
 
-
-
-
+	if (!pattern.test(enteredValue)) {
+		alert("Shop Name doesn't match the pattern. Please use a valid shop name.");
+		nameInput.value = "";
+	}
 
 });
 
-document.getElementById("gstn_number").addEventListener("change", function() {
-
-	const shopNameInput = document.getElementById("gstn_number");
-	const pattern = /\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/;
-	const enteredValue = shopNameInput.value;
-
-	if (!pattern.test(enteredValue)) {
-		alert("GSTIN Number doesn't match the pattern. Please use a valid GSTIN Number.");
-		shopNameInput.value = "";
-	}
-
-
-
-
-
-});
-
-
-document.getElementById("phone_number").addEventListener("change", function() {
-
-	const shopNameInput = document.getElementById("phone_number");
-	const pattern = /^[6789]\d{9,9}$/;
-	const enteredValue = shopNameInput.value;
-
-	if (!pattern.test(enteredValue)) {
-		alert("Phone Number doesn't match the pattern. Please use a valid Phone Number.");
-		shopNameInput.value = "";
-	}
-
-
-
-
-
-});
-
-
-document.getElementById("email").addEventListener("change", function() {
-
-	const shopNameInput = document.getElementById("email");
-	const pattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-	const enteredValue = shopNameInput.value;
-
-	if (!pattern.test(enteredValue)) {
-		alert("Email doesn't match the pattern. Please use a valid Email.");
-		shopNameInput.value = "";
-	}
-
-
-
-
-
-});
-
-
-document.getElementById("licence_number").addEventListener("change", function() {
-	const shopNameInput = document.getElementById("licence_number");
-	if (shopNameInput.value.length < 14 || shopNameInput.value.length > 14) {
+// License Number
+document.getElementById("license_number").addEventListener("change", function() {
+	const nameInput = document.getElementById("license_number");
+	if (nameInput.value.length < 14 || nameInput.value.length > 14) {
 		alert("License Number should be 14 Characters Long");
+		nameInput.value = "";
+		return;
 	}
 
 	const pattern = /[0-9]+/;
-	const enteredValue = shopNameInput.value;
+	const enteredValue = nameInput.value;
 
 	if (!pattern.test(enteredValue)) {
-		alert("Value doesn't match the pattern. Please use a valid License Number format.");
-		shopNameInput.value = "";
+		alert("License Number doesn't match the pattern. Please use a valid License Number format.");
+		nameInput.value = "";
 	}
 
 });
 
+// Email
+document.getElementById("email").addEventListener("change", function() {
+
+	const nameInput = document.getElementById("email");
+	const pattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+	const enteredValue = nameInput.value;
+	if (enteredValue.trim() == "" || enteredValue == null) {
+		alert("Email cannot be Empty.");
+		document.getElementById("email").value = "";
+		return;
+	}
+	if (!pattern.test(enteredValue)) {
+		alert("Email doesn't match the pattern. Please use a valid Email.");
+		nameInput.value = "";
+	}
+
+});
+// Phone Number
+document.getElementById("phone_number").addEventListener("change", function() {
+
+	const nameInput = document.getElementById("phone_number");
+	const pattern = /^[6789]\d{9,9}$/;
+	const enteredValue = nameInput.value;
+	if (enteredValue.trim() == "" || enteredValue == null) {
+		alert("Phone Number cannot be Empty.");
+		document.getElementById("phone_number").value = "";
+		return;
+	}
+	if (!pattern.test(enteredValue)) {
+		alert("Phone Number doesn't match the pattern. Please use a valid Phone Number.");
+		nameInput.value = "";
+	}
+
+});
+// Owner Name
+document.getElementById("owner_name").addEventListener("change", function() {
+
+	const NameInput = document.getElementById("owner_name");
+	const pattern = /^[a-zA-Z\s]+$/;
+	const enteredValue = NameInput.value;
+	if (enteredValue.trim() == "" || enteredValue == null) {
+		alert("Owner Name cannot be Empty.");
+		document.getElementById("owner_name").value = "";
+		return;
+	}
+	if (!pattern.test(enteredValue)) {
+		alert("Owner Name doesn't match the pattern. Please use a valid owner name.");
+		NameInput.value = "";
+	}
+
+});
+// GSTIN Number
+document.getElementById("gstn_number").addEventListener("change", function() {
+
+	const nameInput = document.getElementById("gstn_number");
+	const pattern = /\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}/;
+	const enteredValue = nameInput.value;
+
+	if (!pattern.test(enteredValue)) {
+		alert("GSTIN Number doesn't match the pattern. Please use a valid GSTIN Number.");
+		nameInput.value = "";
+	}
+
+});
+//Print Name
+document.getElementById("nameforprint").addEventListener("change", function() {
+
+	const NameInput = document.getElementById("nameforprint");
+	const pattern = /^[a-zA-Z\s]+$/;
+	const enteredValue = NameInput.value;
+	if (enteredValue.trim() == "" || enteredValue == null) {
+		alert("Print Name cannot be Empty.");
+		document.getElementById("nameforprint").value = "";
+		return;
+	}
+
+	if (!pattern.test(enteredValue)) {
+		alert("Print Name doesn't match the pattern. Please use a valid nameforprint.");
+		NameInput.value = "";
+	}
+
+});
+//Address
+document.getElementById("address").addEventListener("change", function() {
+
+	const nameInput = document.getElementById("address");
+	const pattern = /^[A-Za-z0-9\\s.,-]+$/;
+	const enteredValue = nameInput.value;
+	if (enteredValue.trim() == "" || enteredValue == null) {
+		alert("Address cannot be Empty.");
+		document.getElementById("address").value = "";
+		return;
+	}
+	if (!pattern.test(enteredValue)) {
+		alert("Address doesn't match the pattern. Please use a valid Address.");
+		nameInput.value = "";
+	}
 
 
-
-
-
-
-
-
+});
 
 const user_email = document.getElementById("user_email");
 const new_pw = document.getElementById("first_password");
@@ -205,15 +251,15 @@ document.getElementById("password").addEventListener("change", function() {
 		return;
 	}
 	if (!pw.value.match(/\d/)) {
-		alert("Please add 1 number");
+		alert("Please add 1 Number");
 		return;
 	}
 	if (!pw.value.match(/[A-Z]/)) {
-		alert("Please add 1 uppercase letter");
+		alert("Please add 1 Uppercase letter");
 		return;
 	}
 	if (!pw.value.match(/[a-z]/)) {
-		alert("Please add 1 lowercase letter");
+		alert("Please add 1 Lowercase letter");
 		return;
 	}
 });

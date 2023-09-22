@@ -3,7 +3,11 @@ document.getElementById("email").addEventListener("change", function() {
 	const shopNameInput = document.getElementById("email");
 	const pattern = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
 	const enteredValue = shopNameInput.value;
-
+if (enteredValue.trim() == "" || enteredValue == null) {
+		alert("Email cannot be Empty.");
+		document.getElementById("email").value = "";
+		return;
+	}
 	if (!pattern.test(enteredValue)) {
 		alert("Email doesn't match the pattern. Please use a valid Email.");
 		shopNameInput.value = "";
@@ -31,15 +35,15 @@ document.getElementById("password").addEventListener("change", function() {
 		return;
 	}
 	if (!pw.value.match(/\d/)) {
-		alert("Please add 1 number");
+		alert("Please add 1 Number");
 		return;
 	}
 	if (!pw.value.match(/[A-Z]/)) {
-		alert("Please add 1 uppercase letter");
+		alert("Please add 1 Uppercase letter");
 		return;
 	}
 	if (!pw.value.match(/[a-z]/)) {
-		alert("Please add 1 lowercase letter");
+		alert("Please add 1 Lowercase letter");
 		return;
 	}
 });
