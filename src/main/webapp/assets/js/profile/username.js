@@ -20,10 +20,33 @@ const new_pw = document.getElementById("first_password");
 const pw = document.getElementById("password");
 
 
+document.getElementById("first_password").addEventListener("change", function() {
+
+	if (pw.value.length == 0) {
+		alert("Please enter password");
+		return;
+	}
+	if (pw.value.length < 8) {
+		alert("Password Length Max of 8 Characters");
+		return;
+	}
+	if (!pw.value.match(/\d/)) {
+		alert("Please add 1 number in the Password");
+		return;
+	}
+	if (!pw.value.match(/[A-Z]/)) {
+		alert("Please add 1 uppercase letter in the Password");
+		return;
+	}
+	if (!pw.value.match(/[a-z]/)) {
+		alert("Please add 1 lowercase letter in the Password");
+		return;
+	}
+});
 document.getElementById("password").addEventListener("change", function() {
 
 	if (pw.value !== new_pw.value) {
-		alert("Passwords do not match");
+		alert("Password and Confirm Password do not match.");
 		document.getElementById("password").value = "";
 		document.getElementById("first_password").value = "";
 		return;
@@ -38,15 +61,15 @@ document.getElementById("password").addEventListener("change", function() {
 		return;
 	}
 	if (!pw.value.match(/\d/)) {
-		alert("Please add 1 number");
+		alert("Please add 1 number in the Password");
 		return;
 	}
 	if (!pw.value.match(/[A-Z]/)) {
-		alert("Please add 1 uppercase letter");
+		alert("Please add 1 uppercase letter in the Password");
 		return;
 	}
 	if (!pw.value.match(/[a-z]/)) {
-		alert("Please add 1 lowercase letter");
+		alert("Please add 1 lowercase letter in the Password");
 		return;
 	}
 });

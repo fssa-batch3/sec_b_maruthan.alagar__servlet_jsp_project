@@ -66,7 +66,7 @@ if (message != null  ) {
 
 				<div class="content">
 					<div class="label">
-						<label class="forms" id="mrp_label">MRP<span id="imp"> *</span></label>
+						<label class="forms" id="mrp_label">MRP(Rs)<span id="imp"> *</span></label>
 
 					</div>
 					<div class="quan">

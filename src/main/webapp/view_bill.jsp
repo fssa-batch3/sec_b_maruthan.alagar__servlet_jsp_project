@@ -76,9 +76,9 @@
 				<thead>
 					<tr>
 						<th>Product Name</th>
-						<th>Price</th>
+						<th>Price(Rs)</th>
 						<th>Quantity</th>
-						<th>Total</th>
+						<th>Total(Rs)</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -119,13 +119,13 @@
 		<div id="total">
 			<div id="bottom">
 
-				<h5>Total Tax :</h5>
+				<h5>Total Tax (Rs) :</h5>
 
-				<h5>Total discount :</h5>
+				<h5>Total discount (Rs):</h5>
 				<hr />
-				<h3>Sub Total :</h3>
+				<h3>Sub Total (Rs):</h3>
 				<hr />
-				<h2>Total Amount :</h2>
+				<h2>Total Amount (Rs):</h2>
 				<hr />
 
 			</div>

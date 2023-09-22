@@ -7,6 +7,8 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/profile/viewprofile.css">
+	<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/header.css">
 <meta charset="ISO-8859-1">
 <title>Shop Profile</title>
 </head>

@@ -40,7 +40,7 @@ if (message != null) {
 			<div class="part1">
 				<div class="content">
 					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
-						name="product_name" id="product_name" type="text" pattern="^[a-zA-Z\s]+$"  placeholder="Product Name" maxlength="100"
+						name="product_name" id="product_name" type="text" minLength="5" pattern="^[a-zA-Z\s]+$"  placeholder="Product Name" maxlength="100"
 						value="<%=product.getProductName()%>" required>
 						<div id="errorContainer">
 						</div>
@@ -78,7 +78,7 @@ if (message != null) {
 
 				<div class="content">
 					<div class="label">
-						<label class="forms" id="mrp_label">MRP<span id="imp"> *</span></label>
+						<label class="forms" id="mrp_label">MRP(Rs)<span id="imp"> *</span></label>
 
 					</div>
 					<div class="quan">
