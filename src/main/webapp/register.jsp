@@ -58,7 +58,7 @@
 				<label class="forms">License Number<span id="imp"> *</span></label>
 				<input class="lists" id="license_number" name="license_number"
 					type="number" placeholder="Enter License Number" pattern="[0-9]+"
-					maxlength="14" value="237848940989878"
+					maxlength="14" value="23784894098987"
 					title="Don't Use space and any Characters.Use 0-9 and Must Be 14 Characters"
 					required>
 			</div>
