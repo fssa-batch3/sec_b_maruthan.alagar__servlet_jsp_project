@@ -18,7 +18,7 @@
 			width="110px">
 
 		<div class="list1">
-			<a href="<%=request.getContextPath()%>/register.jsp">
+			<a href="<%=request.getContextPath()%>/shops/register">
 				<button class="button1" id="head_button" type="submit">
 					Register Here</button>
 			</a>

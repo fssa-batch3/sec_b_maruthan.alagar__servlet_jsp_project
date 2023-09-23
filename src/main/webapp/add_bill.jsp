@@ -75,7 +75,7 @@
 				</div>
 
 				<div>
-					<label>MRP:</label> <input class="lists" id="mrp" type="number"
+					<label>MRP(Rs):</label> <input class="lists" id="mrp" type="number"
 						placeholder="Enter MRP" disabled>
 				</div>
 
@@ -105,8 +105,8 @@
 					<th>MRP</th>
 					<th>Tax (Rs)</th>
 					<th>Discount (Rs)</th>
-					<th>Total MRP</th>
-					<th>Total Price</th> 
+					<th>Total MRP (Rs)</th>
+					<th>Total Price (Rs)</th> 
 				</tr>
 			</thead>
 			<tbody>
@@ -125,28 +125,28 @@
 						id="total_quantity" disabled>
 				</div>
 				<div id="pay">
-					<label>Total Price :</label> <input type="text" id="total_price"
+					<label>Total Price (Rs):</label> <input type="text" id="total_price"
 						readonly disabled>
 				</div>
 			</div>
 			<div>
 				<div id="pay">
-					<label>Total MRP :</label> <input type="text" id="total_mrp"
+					<label>Total MRP (Rs):</label> <input type="text" id="total_mrp"
 						readonly disabled>
 				</div>
 				<div id="pay">
-					<label>Total Tax :</label> <input type="text" id="total_tax"
+					<label>Total Tax (Rs):</label> <input type="text" id="total_tax"
 						disabled >
 				</div>
 				<div id="pay">
-					<label>Total Discount :</label> <input type="text"
+					<label>Total Discount (Rs):</label> <input type="text"
 						id="total_discount" disabled>
 				</div>
 			</div>
 			<div id="big">
-				<h2>Sub Total :</h2>
+				<h2>Sub Total (Rs):</h2>
 				<input type="text" id="sub_total" disabled>
-				<h1>Total :</h1>
+				<h1>Total (Rs):</h1>
 				<input type="text" id="total" disabled>
 			</div>
 			<input type="hidden" name="customer_id" id="customer_id_input">
@@ -454,8 +454,8 @@
 
 			const subTotal = totalPrice;
 			document.getElementById("sub_total").value = subTotal.toFixed(2)+" /-";
-			document.getElementById("total").value = subTotal.toFixed(2)+" /-";
-			document.getElementById("total_amount").value = subTotal.toFixed(2)+" /-";
+			document.getElementById("total").value = parseInt(subTotal)+" /-";
+			document.getElementById("total_amount").value = parseInt(subTotal)+" /-";
 		}
 		
 		

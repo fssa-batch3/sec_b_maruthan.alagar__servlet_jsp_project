@@ -31,7 +31,7 @@
 		</div>
 		<div id="right_buttons">
 		<a class="top" href="product/new"><button class="top" id="additem_button">
-			 &#x002B;Add New Item 
+			 &#x002B;Add New Product 
 		</button></a>
 		<div class="div_search">
 			<input class="searchbox" type="text" id="searchInput" focus="true"

@@ -1,6 +1,6 @@
 
 document.querySelector(".button_2_1").addEventListener("click", function () {
- alert("Are you sure Logout?");
+ confirm("Are you sure to Logout?");
 });
 
 
