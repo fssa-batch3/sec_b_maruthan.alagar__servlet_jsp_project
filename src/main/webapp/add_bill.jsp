@@ -102,7 +102,7 @@
 					<th>Product Name</th>
 					<th>Product ID</th>
 					<th>Quantity</th>
-					<th>MRP</th>
+					<th>MRP (Rs)</th>
 					<th>Tax (Rs)</th>
 					<th>Discount (Rs)</th>
 					<th>Total MRP (Rs)</th>
@@ -118,7 +118,7 @@
 		<form id="payment" action="create" method="post">
 			<div id="left">
 				<div id="pay">
-					<label>Amount :</label> <input type="text" id="total_amount" disabled>
+					<label>Amount (Rs):</label> <input type="text" id="total_amount" disabled>
 				</div>
 				<div id="pay">
 					<label>Total Quantity:</label> <input type="number"

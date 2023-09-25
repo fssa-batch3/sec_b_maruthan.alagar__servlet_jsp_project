@@ -46,8 +46,7 @@
 	<table id="tableBody">
 		<tr>
 			<th>Bill No</th>
-			<th>Date</th>
-			<th>Time</th>
+			<th>Date & Time</th>
 			<th>View</th>
 
 		</tr>
@@ -59,18 +58,14 @@
 
 			<%
 			
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss a");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy   hh:mm:ss  a");
 			String formattedDateTime =  bill.getTimeStamp().format(formatter);
-			
-			String[] dateTimeParts = formattedDateTime.split(" ");
-			String formattedDate = dateTimeParts[0];
-			String formattedTime = dateTimeParts[1];
-			String zone = dateTimeParts[2];
+
 			%>
 
 			<!-- Display date and time separately in HTML -->
-			<td><%=formattedDate%></td>
-			<td><%=formattedTime%>  <%=zone%></td>
+			<td style="width:40em;"><%=formattedDateTime%></td>
+
 
 			<td><a class="arrow"
 				href="bill/detail?BillId=<%=bill.getBillId()%>&UserId=<%=bill.getUserId()%>&time=<%=bill.getTimeStamp()%>">
