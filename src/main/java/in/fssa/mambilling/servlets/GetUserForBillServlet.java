@@ -20,6 +20,7 @@ import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.ResponseEntity;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.UserService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class GetBillServlet
@@ -62,7 +63,7 @@ public class GetUserForBillServlet extends HttpServlet {
 			user = userService.getByPhoneNumber(phone);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 		} 
 
 		ResponseEntity responseEntity = new ResponseEntity(200, user, "User Retrieved Successfully :)");

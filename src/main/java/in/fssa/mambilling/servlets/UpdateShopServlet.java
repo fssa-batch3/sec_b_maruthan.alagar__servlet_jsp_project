@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.fssa.mambilling.model.Shop;
 import in.fssa.mambilling.service.ShopService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class UpdateShopServlet
@@ -53,7 +54,7 @@ public class UpdateShopServlet extends HttpServlet {
 			
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			request.setAttribute("shopDetail", shop);
 			request.setAttribute("errorMessage", e.getMessage());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/viewprofile.jsp");

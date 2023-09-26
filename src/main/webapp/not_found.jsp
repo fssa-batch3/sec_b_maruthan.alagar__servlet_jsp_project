@@ -124,14 +124,14 @@ display:flex;
 			<h2 class="header" data-text="404">404</h2>
 			<div id="logo_div">
 			<img class="logo" src="https://iili.io/J9AdFF1.png" alt="logo" width="110px">
-			<h4 data-text="Opps! Page not found">Oops! Page not found</h4>
+			<h4 data-text="Oops! Page not found">Oops! Page not found</h4>
 			<img class="logo" src="https://iili.io/J9AdFF1.png" alt="logo" width="110px">
 			</div>
 			<p>Sorry, The page you're looking for couldn't be found.</p>
 				
 			<div class="btns">
-				<a href="<%=request.getContextPath()%>/getrecentbills">return
-					home</a>
+				<a href="<%=request.getContextPath()%>/login.jsp">Return to
+					Login</a>
 				<%--  <a href="<%=request.getContextPath()%>">report problem</a> --%>
 			</div>
 		</div>

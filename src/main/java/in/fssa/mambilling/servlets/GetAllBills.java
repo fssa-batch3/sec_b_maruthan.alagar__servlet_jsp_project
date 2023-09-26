@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.model.Bill;
 import in.fssa.mambilling.service.BillService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class GetAllBills
@@ -35,7 +36,7 @@ public class GetAllBills extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/bill_list.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		}
 

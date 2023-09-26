@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.fssa.mambilling.service.BillService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class DeleteBillServlet
@@ -32,7 +33,7 @@ public class DeleteBillServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/getrecentbills");
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			response.sendRedirect("Error.jsp");
 		}
 	}

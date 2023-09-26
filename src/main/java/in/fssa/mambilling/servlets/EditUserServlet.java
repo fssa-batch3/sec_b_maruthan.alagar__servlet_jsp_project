@@ -14,6 +14,7 @@ import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.UserService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class EditUserServlet
@@ -50,13 +51,10 @@ public class EditUserServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/update_user.jsp");
 				dispatcher.forward(request, response);
 
-			} catch (ValidationException e) {
-				e.printStackTrace();
+			} catch (Exception e) {
+				Logger.error(e);
 				out.print(e.getMessage());
 
-			} catch (ServiceException e) {
-				e.printStackTrace();
-				out.print(e.getMessage());
 			}
 			
 			

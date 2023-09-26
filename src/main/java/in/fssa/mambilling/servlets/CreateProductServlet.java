@@ -13,6 +13,7 @@ import in.fssa.mambilling.model.Price;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class createProductServlet
@@ -50,7 +51,7 @@ public class CreateProductServlet extends HttpServlet {
 			ps.createProduct(newProduct);
 			response.sendRedirect(request.getContextPath()+"/products");
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			request.setAttribute("errorMessage", e.getMessage());
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_product.jsp");
 		    dispatcher.forward(request, response);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.service.ShopService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class LoginServlet
@@ -39,7 +40,7 @@ public class LoginServlet extends HttpServlet {
 
 			response.sendRedirect(request.getContextPath()+"/getrecentbills");
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			request.setAttribute("errorMessage", e.getMessage());
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
 		    dispatcher.forward(request, response);

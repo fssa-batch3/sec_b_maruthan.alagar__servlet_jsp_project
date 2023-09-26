@@ -19,7 +19,6 @@ public class NewUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String where = request.getParameter("redirectedTo");
-		// System.out.println(where+" - new User Servlet"); 
 		request.setAttribute("where", where);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/add_user.jsp");

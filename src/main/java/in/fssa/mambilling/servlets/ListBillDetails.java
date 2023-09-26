@@ -25,6 +25,7 @@ import in.fssa.mambilling.service.BillService;
 import in.fssa.mambilling.service.ProductService;
 import in.fssa.mambilling.service.ShopService;
 import in.fssa.mambilling.service.UserService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class ListBillDetails
@@ -84,7 +85,7 @@ public class ListBillDetails extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/view_bill.jsp");
 				dispatcher.forward(request, response);
 			} catch (Exception e) {
-				e.printStackTrace();
+				Logger.error(e);
 				response.sendRedirect(request.getContextPath() + "/Error.jsp");
 			} 
 		}

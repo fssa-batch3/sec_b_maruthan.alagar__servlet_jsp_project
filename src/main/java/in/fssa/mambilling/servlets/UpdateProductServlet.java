@@ -17,6 +17,7 @@ import in.fssa.mambilling.model.Price;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.model.Product.QuantityType;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class UpdateProductServlet
@@ -61,7 +62,7 @@ public class UpdateProductServlet extends HttpServlet {
 			ps.updateProduct(newProduct, productId);
 			response.sendRedirect(request.getContextPath() + "/products");
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			request.setAttribute("productDetail", product);
 			request.setAttribute("id",id);
 			request.setAttribute("errorMessage", e.getMessage());

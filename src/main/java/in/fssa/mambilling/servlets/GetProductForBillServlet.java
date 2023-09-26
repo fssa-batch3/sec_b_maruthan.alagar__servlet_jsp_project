@@ -18,6 +18,7 @@ import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.ResponseEntity;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class GetProductForBillServlet
@@ -57,7 +58,7 @@ public class GetProductForBillServlet extends HttpServlet {
 			product = ps.getProductDetail(id);
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 		}
 
 		ResponseEntity responseEntity = new ResponseEntity(200, product, "Product Retrieved Successfully :)");

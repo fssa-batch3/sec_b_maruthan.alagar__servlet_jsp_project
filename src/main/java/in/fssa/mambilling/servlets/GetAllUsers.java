@@ -17,6 +17,7 @@ import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.PriceService;
 import in.fssa.mambilling.service.ProductService;
 import in.fssa.mambilling.service.UserService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class GetAllUsers
@@ -38,8 +39,7 @@ public class GetAllUsers extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/user_list.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-			
-			e.printStackTrace();
+			Logger.error(e);
 			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		}
 

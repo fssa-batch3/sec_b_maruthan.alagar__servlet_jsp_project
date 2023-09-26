@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.UserService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class CreateUserServlet
@@ -46,8 +47,6 @@ public class CreateUserServlet extends HttpServlet {
 		String fromWhere = request.getParameter("where");
 		try {
 			us.createUser(newUser);
-			
-			/* System.out.println(fromWhere+" - create user servlet"); */
 			if (fromWhere.equals("bill")) {
 				response.sendRedirect(request.getContextPath() + "/bills/new");
 
@@ -56,7 +55,7 @@ public class CreateUserServlet extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			request.setAttribute("errorMessage", e.getMessage());
 			request.setAttribute("where", fromWhere);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/add_user.jsp");

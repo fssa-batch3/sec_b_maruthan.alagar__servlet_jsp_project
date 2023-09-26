@@ -16,6 +16,7 @@ import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class NewBill
@@ -39,7 +40,7 @@ public class NewBill extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		} 
 

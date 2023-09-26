@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.service.ShopService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class UpdatePasswordForShopServlet
@@ -32,7 +33,7 @@ public class UpdatePasswordForShopServlet extends HttpServlet {
 			shopService.updateShopPassword(email,password);
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			request.setAttribute("errorMessage", e.getMessage());
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/username.jsp");
 		    dispatcher.forward(request, response);

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.fssa.mambilling.model.Shop;
 import in.fssa.mambilling.service.ShopService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class EditShopServlet
@@ -49,7 +50,7 @@ public class EditShopServlet extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/viewprofile.jsp");
 				dispatcher.forward(request, response);
 			} catch (Exception e) {
-				e.printStackTrace();
+				Logger.error(e);
 				out.print(e.getMessage());
 
 			}

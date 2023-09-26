@@ -126,8 +126,8 @@ display:flex;
 			</div>
 			<p>Sorry, we're experiencing technical difficulties. Please try again later.</p>
 			<div class="btns">
-				<a href="<%=request.getContextPath()%>/getrecentbills">return
-					home</a>
+				<a href="<%=request.getContextPath()%>/login.jsp">Return to
+					Login</a>
 				<%--  <a href="<%=request.getContextPath()%>">report problem</a> --%>
 			</div>
 		</div>

@@ -14,6 +14,7 @@ import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.UserService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class UpdateUserServlet
@@ -55,7 +56,7 @@ public class UpdateUserServlet extends HttpServlet {
 			us.updateUser(old_phone_number, newUser);
 			response.sendRedirect(request.getContextPath() + "/users");
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			request.setAttribute("userDetail", user);
 			request.setAttribute("userPhone", user.getPhoneNumber());
 			request.setAttribute("errorMessage", e.getMessage());

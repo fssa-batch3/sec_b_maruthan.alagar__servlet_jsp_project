@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.model.Product;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class ProductCreationServlet
@@ -32,7 +33,7 @@ public class GetAllProductServlet extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/product_list.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 			
 		}

@@ -26,6 +26,7 @@ import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.ResponseEntity;
 import in.fssa.mambilling.service.BillService;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class GraphServlet
@@ -53,7 +54,7 @@ Map<String, Double> details = null;
 
 		} catch (Exception e) {
 			
-			e.printStackTrace();
+			Logger.error(e);
 			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		}
 		

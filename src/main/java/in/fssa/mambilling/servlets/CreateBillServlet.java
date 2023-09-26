@@ -22,6 +22,7 @@ import in.fssa.mambilling.model.BillModal;
 import in.fssa.mambilling.service.BillService;
 import in.fssa.mambilling.service.PriceService;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class CreateBillServlet
@@ -67,10 +68,10 @@ public class CreateBillServlet extends HttpServlet {
 
 			} catch (ValidationException e) {
 				out.print(e.getMessage());
-				e.printStackTrace();
+				Logger.error(e);
 			} catch (ServiceException e) {
 				out.print(e.getMessage());
-				e.printStackTrace();
+				Logger.error(e);
 			}
 			newItem.setProductId(product.getProductID());
 			newItem.setPriceId(priceid);
@@ -82,7 +83,7 @@ public class CreateBillServlet extends HttpServlet {
 		try {
 			bs.createBill(user_id, billItems);
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 			
 		}

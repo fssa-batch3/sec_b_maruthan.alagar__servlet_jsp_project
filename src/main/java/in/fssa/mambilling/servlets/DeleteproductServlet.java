@@ -14,6 +14,7 @@ import in.fssa.mambilling.dto.ProductDTO;
 import in.fssa.mambilling.exception.ServiceException;
 import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.service.ProductService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class DeleteproductServlet
@@ -47,7 +48,7 @@ public class DeleteproductServlet extends HttpServlet {
 				
 			} catch (Exception e) {
 				response.sendRedirect(request.getContextPath() + "/Error.jsp");
-				e.printStackTrace();
+				Logger.error(e);
 				
 
 			}

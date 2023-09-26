@@ -215,8 +215,7 @@
 		  const response = await fetch(url, options).catch( (err)=> console.log(err));		    
 		  // console.log(userDetails);
 		  const userDetail = ( await response.json() ).data;
-		  
-		  console.log(userDetail);
+
 		  
 		  if(userDetail!=undefined){
 		  

@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import in.fssa.mambilling.exception.ServiceException;
-import in.fssa.mambilling.exception.ValidationException;
 import in.fssa.mambilling.model.Bill;
 import in.fssa.mambilling.model.BillItems;
 import in.fssa.mambilling.model.RecentBillModal;
@@ -20,6 +18,7 @@ import in.fssa.mambilling.model.User;
 import in.fssa.mambilling.service.BillItemsService;
 import in.fssa.mambilling.service.BillService;
 import in.fssa.mambilling.service.UserService;
+import in.fssa.mambilling.util.Logger;
 
 /**
  * Servlet implementation class GetRecentBillsServlet
@@ -62,7 +61,7 @@ public class GetRecentBillsServlet extends HttpServlet {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			Logger.error(e);
 			response.sendRedirect(request.getContextPath() + "/Error.jsp");
 		}
 		request.setAttribute("bills", bills);
