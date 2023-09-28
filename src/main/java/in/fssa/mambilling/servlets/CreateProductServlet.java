@@ -1,6 +1,7 @@
 package in.fssa.mambilling.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,7 +25,7 @@ public class CreateProductServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/* PrintWriter out = response.getWriter(); */
+ PrintWriter out = response.getWriter(); 
 
 		String product_name = request.getParameter("product_name");
 		String quantity = request.getParameter("quantity");
@@ -52,9 +53,8 @@ public class CreateProductServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/products");
 		} catch (Exception e) {
 			Logger.error(e);
-			request.setAttribute("errorMessage", e.getMessage());
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_product.jsp");
-		    dispatcher.forward(request, response);
+			out.println("<script>alert('"+ e.getMessage() +"');</script>");
+			out.println("<script>window.history.back();</script>");
 		//	out.println(e.getMessage());
 			
 		}

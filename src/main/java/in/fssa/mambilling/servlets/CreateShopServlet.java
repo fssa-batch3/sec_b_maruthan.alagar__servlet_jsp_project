@@ -1,6 +1,7 @@
 package in.fssa.mambilling.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +23,7 @@ public class CreateShopServlet extends HttpServlet {
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		 PrintWriter out = response.getWriter();
 		String shopName = request.getParameter("shop_name");
 		String licenseNumber = request.getParameter("license_number");
 		String phoneNumber = request.getParameter("phone_number");
@@ -53,6 +54,7 @@ public class CreateShopServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/getrecentbills");
 		} catch (Exception e) {
 			Logger.error(e);
+			request.setAttribute("oldDetails", newShop);
 			request.setAttribute("errorMessage", e.getMessage());
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/register.jsp");
 		    dispatcher.forward(request, response);

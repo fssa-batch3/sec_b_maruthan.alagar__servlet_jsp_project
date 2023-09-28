@@ -12,21 +12,6 @@
 <title>Add New Product</title>
 
 </head>
-<%
-String message = (String) request.getAttribute("errorMessage");
-
-
-%>
-
-<%
-if (message != null  ) {
-%>
-
-<script> alert("<%=message%>");</script>
-
-<%
-}
-%>
 
 <body>
 	<form id="additem_form" action="create" method="post">

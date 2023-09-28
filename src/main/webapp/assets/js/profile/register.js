@@ -230,12 +230,19 @@ const pw = document.getElementById("password");
 
 document.getElementById("first_password").addEventListener("change", function() {
 
+if(new_pw.value.trim()==""){
+		alert("Please enter the password");
+		document.getElementById("first_password").value = "";
+		return;
+		
+	}
 	if (pw.value.length == 0) {
 		alert("Please enter password");
 		return;
 	}
-	if (pw.value.length < 8) {
+	if (pw.value.length != 8) {
 		alert("Password Length Max of 8 Characters");
+		document.getElementById("first_password").value="";
 		return;
 	}
 	if (!pw.value.match(/\d/)) {
@@ -252,8 +259,11 @@ document.getElementById("first_password").addEventListener("change", function() 
 	}
 });
 
+
+
 document.getElementById("password").addEventListener("change", function() {
 
+	
 
 	if (pw.value !== new_pw.value) {
 		alert("Password and Confirm Password do not match.");
@@ -270,7 +280,7 @@ document.getElementById("password").addEventListener("change", function() {
 		alert("Please re-enter password");
 		return;
 	}
-	if (pw.value.length < 8) {
+	if (pw.value.length != 8) {
 		alert("Password Length Max of 8 Characters");
 		return;
 	}

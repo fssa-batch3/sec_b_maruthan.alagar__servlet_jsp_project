@@ -24,16 +24,7 @@
 	</div>
 </header>
 <body>
-	<%
-	String message = (String) request.getAttribute("errorMessage");
-	if (message != null) {
-	%>
 
-	<script> alert("<%=message%>");</script>
-
-	<%
-	}
-	%>
 	<main>
 		<div class="one">
 			<form id="login_form" action="updatepassword" method="POST">

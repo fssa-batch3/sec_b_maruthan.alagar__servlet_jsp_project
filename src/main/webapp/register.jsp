@@ -1,3 +1,4 @@
+<%@page import="in.fssa.mambilling.model.Shop"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ include file="before_login_header.jsp"%>
@@ -10,7 +11,21 @@
 <title>Register Shop</title>
 </head>
 <header>
+<%
+	String message = (String) request.getAttribute("errorMessage");
+	Shop newShop = (Shop) request.getAttribute("oldDetails");
+			
+	%>
 
+	<%
+	if (message != null) {
+	%>
+
+	<script> alert("<%=message%>");</script>
+
+	<%
+	}
+	%>
 	<div class="header">
 
 		<img class="logo" src="https://iili.io/J9AdFF1.png" alt="logo"
@@ -28,19 +43,6 @@
 	</div>
 </header>
 <body>
-	<%
-	String message = (String) request.getAttribute("errorMessage");
-	%>
-
-	<%
-	if (message != null) {
-	%>
-
-	<script> alert("<%=message%>");</script>
-
-	<%
-	}
-	%>
 
 	<form id="regForm" action="create" method="POST">
 		<h1 id="1">Register Shop:</h1>
@@ -49,7 +51,7 @@
 			<div class="content">
 				<label class="forms">Shop Name<span id="imp"> *</span></label> <input
 					class="lists" id="shop_name" name="shop_name"
-					value="Evergreen Supermarket" type="text"
+					 value="<%=(newShop != null) ? newShop.getShopName() : ""%>" type="text"
 					placeholder="Enter Shop Name" pattern="^[a-zA-Z\s]+$"
 					title="Use a-z and A-Z Create Shop Name" required>
 			</div>
@@ -95,7 +97,7 @@
 			<div class="content">
 				<label class="forms"> Create New Password<span id="imp">
 						*</span></label> <input class="lists" id="first_password" name="password"
-					type="password" placeholder="Abcd@123" value="Ever@1234"
+					type="password" placeholder="Abcd@123"  value="Ever@1234"
 					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*+`~=?\|<>/]).{8,}"
 					required>
 			</div>

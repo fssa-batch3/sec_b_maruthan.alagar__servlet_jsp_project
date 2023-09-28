@@ -24,11 +24,13 @@ document.getElementById("shop_name").addEventListener("change", function() {
 	if (enteredValue.trim() == "" || enteredValue == null) {
 		alert("Shop Name cannot be Empty.");
 		document.getElementById("shop_name").value = "";
+		location.reload();
 		return;
 	}
 
 	if (!pattern.test(enteredValue)) {
 		alert("Shop Name doesn't match the pattern. Please use a valid shop name.");
+		location.reload();
 		nameInput.value = "";
 	}
 

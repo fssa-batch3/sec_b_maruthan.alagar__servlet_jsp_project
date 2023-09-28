@@ -13,21 +13,11 @@
 
 </head>
 <%
-String message = (String) request.getAttribute("errorMessage");
 
 String where = (String) request.getAttribute("where");
-//System.out.println(where+" - add user jsp"); 
 %>
 
-<%
-if (message != null) {
-%>
 
-<script> alert("<%=message%>");</script>
-
-<%
-}
-%>
 <body>
 	<form id="additem_form" action="create" method="post">
 		<h2>Add New Customer</h2>

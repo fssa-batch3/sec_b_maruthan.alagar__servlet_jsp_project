@@ -26,7 +26,7 @@ document.getElementById("first_password").addEventListener("change", function() 
 		alert("Please enter password");
 		return;
 	}
-	if (pw.value.length < 8) {
+	if (pw.value.length != 8) {
 		alert("Password Length Max of 8 Characters");
 		return;
 	}
@@ -56,7 +56,7 @@ document.getElementById("password").addEventListener("change", function() {
 		alert("Please enter password");
 		return;
 	}
-	if (pw.value.length < 8) {
+	if (pw.value.length != 8) {
 		alert("Password Length Max of 8 Characters");
 		return;
 	}

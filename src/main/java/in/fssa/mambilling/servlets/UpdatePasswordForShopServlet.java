@@ -1,6 +1,7 @@
 package in.fssa.mambilling.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +26,7 @@ public class UpdatePasswordForShopServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
@@ -34,9 +36,8 @@ public class UpdatePasswordForShopServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 		} catch (Exception e) {
 			Logger.error(e);
-			request.setAttribute("errorMessage", e.getMessage());
-		    RequestDispatcher dispatcher = request.getRequestDispatcher("/username.jsp");
-		    dispatcher.forward(request, response);
+			out.println("<script>alert('"+ e.getMessage() +"');</script>");
+			out.println("<script>window.history.back();</script>");
 			
 		}
 	}
