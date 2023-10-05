@@ -1,83 +1,28 @@
 <%@page import="in.fssa.mambilling.dto.ProductDTO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/item/additem.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f0f0f0;
-}
+<title>Update Product</title>
 
-h2 {
-	color: #333;
-}
-
-#updateitem_form {
-	max-width: 800px;
-	margin: 0 auto;
-	padding: 20px;
-	background-color: #fff;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.content {
-	margin-bottom: 15px;
-}
-
-.label {
-	display: flex;
-	justify-content: space-between;
-}
-
-.forms {
-	font-weight: bold;
-}
-
-.lists {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
-.quan {
-	display: flex;
-	justify-content: space-between;
-}
-
-.typeport {
-	width: 40%;
-}
-
-.button {
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-
-.content1 {
-	display: flex;
-	justify-content: space-between;
-}
-
-#span_save {
-	font-size: 18px;
-	margin-left: 10px;
-}
-
-#span_back {
-	font-size: 18px;
-	margin-right: 10px;
-}
-</style>
 </head>
+
+<%
+String message = (String) request.getAttribute("errorMessage");
+%>
+
+<%
+if (message != null) {
+%>
+
+<script> alert("<%=message%>");</script>
+<%
+}
+%>
 <body>
 
 	<%
@@ -89,25 +34,29 @@ h2 {
 	<%
 	int productId = Integer.parseInt((String) request.getAttribute("id"));
 	%>
-	<form id="updateitem_form" action="update" method="post">
-		<h2>Update Item</h2>
+	<form id="additem_form" action="update" method="post">
+		<h2>Update Product Details</h2>
 		<div class="parts">
 			<div class="part1">
 				<div class="content">
-					<label class="forms">Product Name</label> <input class="lists"
-						name="product_name" type="text" placeholder="Product Name"
+					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
+						name="product_name" id="product_name" type="text" minLength="5" pattern="^[a-zA-Z\s]+$"  placeholder="Product Name" maxlength="100"
 						value="<%=product.getProductName()%>" required>
+						<div id="errorContainer">
+						</div>
+						<p id="req"></p>
 
 				</div>
 
 				<div class="content">
 					<div class="label">
-						<label class="forms">Quantity:</label> <label for="type" id="tp">Type:</label>
+						<label class="forms">Quantity<span id="imp"> *</span></label> <label class="forms"
+							for="type" id="tp">Type<span id="imp"> *</span></label>
 					</div>
 					<div class="quan">
-						<input class="lists" name="quantity"
-							value="<%=product.getQuantity()%>" type="number"
-							placeholder="Choose Number" required>
+						<input class="lists" name="quantity" id="quantity"
+							value="<%=product.getQuantity()%>" max="26000" min="1"
+							type="number" placeholder="Choose Number" required>
 						<div class="typeport">
 
 
@@ -129,12 +78,13 @@ h2 {
 
 				<div class="content">
 					<div class="label">
-						<label class="forms" id="mrp_label">MRP:</label>
+						<label class="forms" id="mrp_label">MRP(Rs)<span id="imp"> *</span></label>
 
 					</div>
 					<div class="quan">
-						<input class="lists" value="<%=product.getMrp()%>" name="mrp"
-							type="number" placeholder="Enter MRP" required>
+						<input class="lists" value="<%=(int)product.getMrp()%>" min="0"
+							max="50000" id="mrp" name="mrp" type="number" placeholder="Enter MRP"
+							required>
 
 					</div>
 				</div>
@@ -147,23 +97,23 @@ h2 {
 
 				<div class="content">
 					<div class="label">
-						<label class="forms">Tax:</label> <label for="type"
-							id="discount_label">Discount:</label>
+						<label class="forms">Tax (%)<span id="imp"> *</span></label> <label class="forms" for="type"
+							id="discount_label">Discount (%)<span id="imp"> *</span></label>
 					</div>
 					<div class="quan">
-						<input class="lists" value="<%=product.getTax()%>" name="tax"
-							type="number" placeholder="Enter Tax" required>
+						<input class="lists" id="tax" value="<%=(int)product.getTax()%>"
+							name="tax" type="number" placeholder="Enter Tax" min="0" max="99"
+							required>
 						<div class="typeport">
-							<input class="lists" value="<%=product.getDiscount()%>"
-								name="discount" type="number" placeholder="Enter Discount"
-								required>
+							<input class="lists" id="discount"
+								value="<%=(int)product.getDiscount()%>" name="discount" type="number"
+								min="0" max="99" placeholder="Enter Discount" required>
 						</div>
 					</div>
 				</div>
 				<div class="content">
-					<label class="forms">ID Number</label> <input class="lists"
-						name="product_id" type="text" value=<%=productId%>
-						placeholder="Enter ID" readonly>
+					<input class="lists" name="product_id" type="hidden"
+						value=<%=productId%> placeholder="Enter ID" readonly>
 				</div>
 				<div class="content">
 					<label class="forms">Special name(optional)</label>
@@ -171,15 +121,21 @@ h2 {
 					<%
 					if (product.getSpecialName() == null) {
 					%>
-					<input class="lists" name="special_name" value="-" type="text"
-						placeholder="Enter special name">
+					<input class="lists" name="special_name" value="-" maxlength="100"
+						type="text" id="special_name" pattern="^[a-zA-Z-\s]+$" placeholder="Enter special name">
+						<div id="errorContainer_1">
+						</div>
+						<p id="req_1"></p>
 
 					<%
 					} else {
 					%>
 					<input class="lists" name="special_name"
-						value="<%=product.getSpecialName()%>" type="text"
+						value="<%=product.getSpecialName()%>" maxlength="100" type="text"
 						placeholder="Enter special name">
+						<div id="errorContainer_1">
+						</div>
+						<p id="req_1"></p>
 
 
 					<%
@@ -189,6 +145,7 @@ h2 {
 				</div>
 			</div>
 		</div>
+	
 		<div class="content1">
 			<a href="../products"><button class="button" id="submit"
 					type="button">
@@ -201,5 +158,6 @@ h2 {
 		</div>
 
 	</form>
+	<script src="<%=request.getContextPath()%>/assets/js/item/viewitem.js"></script>
 </body>
 </html>

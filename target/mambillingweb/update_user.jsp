@@ -1,83 +1,29 @@
 <%@page import="in.fssa.mambilling.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ include file="header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/assets/css/item/additem.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
-<style>
-body {
-	font-family: Arial, sans-serif;
-	background-color: #f5f5f5;
-	margin: 0;
-	padding: 0;
-}
+<title>Update User</title>
 
-h2 {
-	color: #333;
-}
-
-form {
-	max-width: 500px;
-	margin: 0 auto;
-	background-color: #fff;
-	padding: 20px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.content {
-	margin-bottom: 15px;
-}
-
-.forms {
-	display: block;
-	font-weight: bold;
-	margin-bottom: 5px;
-}
-
-.lists {
-	width: 100%;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-}
-
-.button {
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	cursor: pointer;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	border-radius: 3px;
-}
-
-.content1 {
-	display: flex;
-	justify-content: space-between;
-}
-
-#span_save {
-	font-size: 18px;
-	margin-left: 10px;
-}
-
-#span_back {
-	font-size: 18px;
-	margin-right: 10px;
-}
-
-.button:hover {
-	background-color: #0056b3;
-}
-</style>
 
 </head>
+<%
+String message = (String) request.getAttribute("errorMessage");
+%>
+
+<%
+if (message != null) {
+%>
+
+<script> alert("<%=message%>");</script>
+<%
+}
+%>
 <body>
 	<%
 	long phone_number = (Long) request.getAttribute("userPhone");
@@ -89,17 +35,26 @@ form {
 	user = (User) request.getAttribute("userDetail");
 	%>
 
-	<form id="add_customer" action="update" method="post">
+	<form id="additem_form" action="update" method="post">
 		<h2>Update Customer Details</h2>
 		<div class="content">
-			<label class="forms">Customer Name</label> <input class="lists"
-				type="text" name="customer_name" value="<%=user.getName()%>"
-				placeholder="Enter Customer Name" required>
+			<label class="forms">Customer Name<span id="imp"> *</span></label> <input
+				class="lists" type="text" id="customer_name" name="customer_name"
+				value="<%=user.getName()%>"
+				pattern="^[a-zA-Z-\s]+$"
+				title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"
+				placeholder="Enter Customer Name" maxlength="50" required>
+			<div id="errorContainer"></div>
+			<p id="req"></p>
 		</div>
 		<div class="content">
-			<label class="forms">Phone Number</label> <input class="lists"
-				type="tel" name="phone_number" value="<%=user.getPhoneNumber()%>"
-				placeholder="Enter Mobile Number" maxlength="10" required>
+			<label class="forms">Phone Number<span id="imp"> *</span></label> <input
+				class="lists" type="number" name="phone_number"
+				value="<%=user.getPhoneNumber()%>" placeholder="Enter Mobile Number"
+				id="customer_phone"
+				title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters"
+				min="6000000001" max="9999999999" required>
+			<p id="req_1"></p>
 		</div>
 
 		<div class="content">
@@ -109,12 +64,21 @@ form {
 			if (user.getEmail() == null) {
 			%>
 			<input class="lists" type="text" name="email" value="-"
-				placeholder="Enter Customer E-Mail">
+				placeholder="Enter Customer E-Mail" id="customer_email"
+				title="Please enter correct Email"
+				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" maxlength="150">
+			<div id="errorContainer_2"></div>
+			<p id="req_2"></p>
 			<%
 			} else {
 			%>
 			<input class="lists" type="text" name="email"
-				value="<%=user.getEmail()%>" placeholder="Enter Customer E-Mail">
+				value="<%=user.getEmail()%>" id="customer_email" maxlength="150"
+				title="Please enter correct Email"
+				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+				placeholder="Enter Customer E-Mail">
+			<div id="errorContainer_2"></div>
+			<p id="req_2"></p>
 			<%
 			}
 			%>
@@ -133,12 +97,14 @@ form {
 			if (user.getAddress() == null) {
 			%>
 			<input class="lists" type="text" name="address" value="-"
-				placeholder="Enter Customer Adress">
+				placeholder="Enter Customer Adress" pattern="^[A-Za-z0-9\\s.,-]+$" id="customer_address"
+				maxlength="250">
 			<%
 			} else {
 			%>
 			<input class="lists" type="text" name="address"
-				value="<%=user.getAddress()%>" placeholder="Enter Customer Adress">
+				value="<%=user.getAddress()%>" pattern="^[A-Za-z0-9\\s.,-]+$" placeholder="Enter Customer Adress"
+				id="customer_address" maxlength="250">
 			<%
 			}
 			%>
@@ -157,5 +123,7 @@ form {
 
 		</div>
 	</form>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/customer/viewcustomer.js"></script>
 </body>
 </html>

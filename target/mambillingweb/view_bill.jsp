@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="in.fssa.mambilling.model.Shop"%>
 <%@page import="in.fssa.mambilling.dto.ProductDTO"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="in.fssa.mambilling.model.User"%>
@@ -6,125 +8,15 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/assets/css/billing/bill_design.css">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>View Bill</title>
 <style type="text/css">
-body {
-	font-family: Arial, sans-serif;
-}
 
-h2, h3, h4 {
-	margin: 10px;
-}
-
-.bill-container {
-	max-width: 298px;
-	margin: 0 auto;
-	padding: 20px;
-	border: 1px solid #ccc;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-	background-color: white;
-}
-
-.shop-details {
-	margin-bottom: 20px;
-	display: flex;
-	font-size: 13px;
-	justify-content: space-between;
-}
-
-#bill_table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-#bill_table th, #bill_table td {
-	padding: 8px;
-	text-align: center;
-	border-bottom: 1px solid #ddd;
-}
-
-#bill_table th {
-	background-color: #f2f2f2;
-	text-align: left;
-}
-
-#shop {
-	text-align: center;
-}
-
-#total {
-	display: flex;
-	justify-content: space-between;
-}
-
-#total h2, #total h3, #total h4, #total h5, #total h6 {
-	margin: 5px;
-}
-
-#total_tax, #total_amount, #sub_total, #total_discount {
-	text-align: right;
-}
-
-#shop-details p {
-	display: flex;
-}
-
-#bottom_label {
-	display: flex;
-	justify-content: space-between;
-	font-size: 14px;
-}
-
-#b_lab {
-	text-align: left;
-}
-
-#b_con {
-	text-align: right;
-}
-
-.main {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 35vh;
-}
-
-.btn {
-	width: 270px;
-	height: 60px;
-	font-size: 18px;
-	background: #fff;
-	border: none;
-	display: block;
-	border-radius: 50px;
-	color: #000;
-	outline: none;
-	font-weight: bolder;
-	cursor: pointer;
-	transition: all 0.4s;
-}
-
-#a_tag {
-	text-decoration: none;
-}
-
-.btn:hover {
-	box-shadow: #ffffff;
-	background: #46b8de;
-	color: #ffffff;
-}
-
-#thank {
-	text-align: center;
-	font-size: 17px;
-	font-weight: bold;
-	font-family: unset;
-}
 </style>
 </head>
 <body>
@@ -134,17 +26,20 @@ h2, h3, h4 {
 	List<ProductDTO> products = (List<ProductDTO>) request.getAttribute("products");
 	Bill newBill = (Bill) request.getAttribute("bill");
 	User newUser = (User) request.getAttribute("user");
+	Shop newShop = (Shop) request.getAttribute("shop");
 	
-	String pattern = "yyyy-MM-dd HH:mm:ss";
-	DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-	String formattedDateTime = newBill.getTimeStamp().format(formatter);
+	DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy hh:mm:ss a");
+	String formattedDateTime =  newBill.getTimeStamp().format(formatter);
 	String[] dateTimeParts = formattedDateTime.split(" ");
 	String formattedDate = dateTimeParts[0];
 	String formattedTime = dateTimeParts[1];
-	
+	String zone = dateTimeParts[2];
+	DecimalFormat decimalFormat = new DecimalFormat("0.00");
 	double totalTax=0;
 	double totalDiscount=0;
 	double billTotal = 0;
+	double totalTaxAmount = 0.0;
+	double totalDiscountAmount =0.0;
 	%>
 
 
@@ -152,9 +47,10 @@ h2, h3, h4 {
 	<div class="bill-container" id="bill_div">
 		<div id="heading">
 			<div id="shop">
-				<h2 id="shop_name">Supermarket Bill</h2>
-				<h3 id="phone_number">Evergreen Supermarket</h3>
-				<h3 id="Adress">Trichy</h3>
+				<h2 id="shop_name"><%=newShop.getShopName() %></h2>
+				<h3 id="Adress"><%=newShop.getAddress() %></h3>
+				<h4 id="phone_number">Contact : <%=newShop.getPhoneNumber() %></h4>
+				<%-- <p>fssai license no : <%=newShop.getLicenseNumber() %></p> --%>
 			</div>
 		</div>
 
@@ -167,9 +63,9 @@ h2, h3, h4 {
 
 			</div>
 			<div id="b_con">
-				<p id="gstn_no">-</p>
+				<p id="gstn_no"><%=newShop.getGSTNNumber() %></p>
 				<p id="bill_no"><%=newBill.getBillId()%></p>
-				<p id="date"><%=formattedDate +" "+formattedTime%></p>
+				<p id="date"><%=formattedDate +" "+formattedTime+" "+zone%></p>
 
 			</div>
 		</div>
@@ -180,9 +76,9 @@ h2, h3, h4 {
 				<thead>
 					<tr>
 						<th>Product Name</th>
-						<th>Price</th>
+						<th>Price(Rs)</th>
 						<th>Quantity</th>
-						<th>Total</th>
+						<th>Total(Rs)</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -192,12 +88,18 @@ h2, h3, h4 {
 						totalTax += item.getTax();
 						totalDiscount += item.getDiscount();
 						
-						double taxAmount = (item.getTax() / 100) * item.getMrp();
-
-						// Calculate the discount amount
+					double	taxAmount = (item.getTax() / 100) * item.getMrp();
+					
+					
+					
+					totalTaxAmount+=taxAmount*item.getTotalQuantity();
+					
+					
+	
 						double discountAmount = (item.getDiscount() / 100) * item.getMrp();
+						
+						totalDiscountAmount+=discountAmount*item.getTotalQuantity();
 
-						// Calculate the final price after applying tax and discount
 						double finalPrice = item.getMrp() + taxAmount - discountAmount;
 						
 						billTotal += finalPrice * item.getTotalQuantity();
@@ -217,19 +119,23 @@ h2, h3, h4 {
 		<div id="total">
 			<div id="bottom">
 
-				<h5>Total Tax :</h5>
+				<h5>Total Tax (Rs) :</h5>
 
-				<h5>Total discount :</h5>
+				<h5>Total discount (Rs):</h5>
 				<hr />
-				<h2>Total Amount :</h2>
+				<h3>Sub Total (Rs):</h3>
+				<hr />
+				<h2>Total Amount (Rs):</h2>
 				<hr />
 
 			</div>
 			<div id="bottom">
 
-				<h5 id="total_tax"><%=(int)totalTax %> %</h5>
+				<h5 id="total_tax"><%=decimalFormat.format(totalTaxAmount) %> /-</h5>
 
-				<h5 id="total_discount"><%=(int)totalDiscount %> %</h5>
+				<h5 id="total_discount"><%=decimalFormat.format(totalDiscountAmount) %> /-</h5>
+				<hr />
+				<h3 id="total_amount"><%=decimalFormat.format(billTotal) %> /-</h3>
 				<hr />
 				<h2 id="total_amount"><%=(int)billTotal %> /-</h2>
 				<hr />

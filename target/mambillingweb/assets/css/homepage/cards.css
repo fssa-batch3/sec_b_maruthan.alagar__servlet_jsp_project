@@ -1,0 +1,81 @@
+@import url(../../css/header.css);
+
+body header {
+  height: 70px;
+}
+header div .list .link .navlist:hover{
+  color:rgb(184, 131, 74) !important;
+}
+
+body {
+  color: black;
+  font-family: sans-serif;
+  background-image: url(../../Imges/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  width: auto;
+}
+
+body a {
+  text-decoration: none;
+  color: white;
+
+}
+
+
+.lists {
+  width: 100%;
+  padding: 12px;
+  margin-top: 26px;
+  margin-bottom: 26px;
+  font-size: 20px;
+  background-color: white;
+  border: 2px solid black;
+
+}
+
+.submit {
+  font-size: 30px;
+  background-color: blue;
+  border: 2px solid blue;
+  border-radius: 4px;
+  margin-left: 43%;
+  color: white;
+}
+
+.form {
+  border: 4px solid black;
+  padding: 10% 11% 2% 8%;
+  border-radius: 4px;
+  background-color: lightblue;
+}
+
+.container {
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.top {
+  text-align: center;
+}
+
+.column {
+
+  margin-left: 25%;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+}
+
+
+.forms {
+  margin-top: 15px;
+  font-size: 25px;
+  align-items: center;
+
+}
+
+#txt {
+  height: 100px
+}

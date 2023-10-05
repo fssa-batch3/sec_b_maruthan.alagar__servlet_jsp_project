@@ -1,0 +1,57 @@
+@import url(../header.css);
+.About-us {
+	  width: 100%;
+      height: 100%;
+	  text-align: center;
+	  margin-bottom: 30px;
+	}
+	h1{
+	  color: rgb(9, 180, 242);
+	  font-size: 35px;
+	}
+	img {
+        width: 100px;
+	  border-radius: 30%;
+	}
+	
+	p {
+	  font-size: 20px;
+	} 
+  
+    a {
+      padding: 20px;
+	  text-align: center;
+	  text-decoration: none;
+	  margin: 5px 2px;
+	  background: #3B5998;
+      color: white;
+	  border-radius: 8px;
+	 font-size: 50px;	  
+   } 
+   #fafa1,#fafa2,#fafa3,#fafa4,#fafa5,#fafa6{
+    width: 20px;
+    font-size: 30px;
+    
+   }
+   #fafa1:hover{
+    color:red;
+   }
+   #fafa2:hover{
+    color:#00acee;
+   }
+   #fafa3:hover{
+   color:#561649;
+
+   }
+   #fafa4:hover{
+    color:#0072b1;
+
+   }
+   #fafa5:hover{
+    color:#e61dea;
+
+   }
+   #fafa6:hover{
+    color:#3b5998;
+
+   }

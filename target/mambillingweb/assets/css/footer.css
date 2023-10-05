@@ -1,0 +1,43 @@
+.list .link .navlist {
+    list-style: none;
+    padding-right: 20px;
+    margin-top: 40px;
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.list .link .navlist:hover {
+    color: blue !important;
+}
+
+body footer {
+    background-color: #dbdbd5;
+    text-align: center;
+    padding: 2em;
+    position: sticky;
+    margin-top: 25%;
+
+}
+
+.btn {
+    font-size: 20px;
+    border: 1px solid rgb(47, 173, 173);
+    border-radius: 4px;
+    color: white !important;
+    font-weight: bold;
+    width: 8em;
+    height: 2em;
+
+}
+
+.btn:hover {
+    background-color: rgb(52, 223, 195);
+
+
+}
+@media screen and (max-width: 400px) {
+   body footer{
+     margin-top: 4em;
+}
+}

@@ -1,0 +1,56 @@
+@charset "ISO-8859-1";
+@import url("../header.css");
+html {
+	overflow-x: hidden;
+}
+
+#chart {
+	margin-left: 50px;
+	width: 700px;
+	height: 70%;
+	background-color: whitesmoke;
+}
+
+h2 {
+	display: flex;
+	justify-content: center;
+}
+
+.chart_div {
+	width: 90% !important;
+    height: 50%;
+    position: relative;
+    margin: auto;
+}
+
+body {
+	color: black;
+	font-family: sans-serif;
+	background-color: rgba(235, 231, 228, 255);
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	width: 100%;
+}
+
+span {
+	font-size: 30px; /* Change font and  see the magic! */
+	color: black;
+	font-weight:bold; /* Change color and see the magic! */
+}
+
+.arr-right {
+	
+	margin-top: 16%;
+    position: absolute;
+    margin-left: 98%;
+    position:fixed;
+}
+
+.arr-left {
+
+	position: absolute;
+    margin-left: 1%;
+    margin-top: 15%;
+    position:fixed;
+}
