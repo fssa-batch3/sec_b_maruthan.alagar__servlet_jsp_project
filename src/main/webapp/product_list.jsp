@@ -46,6 +46,7 @@
 
 	<table id="tableBody">
 		<tr>
+		 <th>S.No</th>
 			<th>Product Name</th>
 			<th>Quantity</th>
 			<th>Type</th>
@@ -53,9 +54,11 @@
 			<th>View</th>
 		</tr>
 		<%
+		int sNo = 1;
 		for (Product product : product_list) {
 		%>
 		<tr>
+			<td><%=sNo+"."%></td>
 			<td><%=product.getProductName()%></td>
 			<td><%=product.getQuantity()%></td>
 			<td><%=product.getQuantityType()%></td>
@@ -84,6 +87,7 @@
 			</a></td> --%>
 		</tr>
 		<%
+		sNo++;
 		}
 		%>
 	</table>
