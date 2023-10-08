@@ -35,9 +35,12 @@ public class UpdatePasswordForShopServlet extends HttpServlet {
 			shopService.updateShopPassword(email,password);
 			response.sendRedirect(request.getContextPath()+"/login.jsp");
 		} catch (Exception e) {
+			request.setAttribute("old_email", email);
+			request.setAttribute("old_password", password);
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/username.jsp");
+		    dispatcher.forward(request, response);
 			Logger.error(e);
-			out.println("<script>alert('"+ e.getMessage() +"');</script>");
-			out.println("<script>window.history.back();</script>");
+			
 			
 		}
 	}

@@ -52,10 +52,11 @@ public class CreateProductServlet extends HttpServlet {
 			ps.createProduct(newProduct);
 			response.sendRedirect(request.getContextPath()+"/products");
 		} catch (Exception e) {
+			request.setAttribute("productDetails", newProduct);
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/add_product.jsp");
+		    dispatcher.forward(request, response);
 			Logger.error(e);
-			out.println("<script>alert('"+ e.getMessage() +"');</script>");
-			out.println("<script>window.history.back();</script>");
-		//	out.println(e.getMessage());
+			
 			
 		}
 

@@ -31,6 +31,9 @@
 <body>
 	<%
 	String message = (String) request.getAttribute("errorMessage");
+	String email = (String) request.getAttribute("old_email");
+	String password = (String) request.getAttribute("old_password");
+	
 	%>
 
 	<%
@@ -49,7 +52,7 @@
 				<div class="content">
 					<label class="forms">Email Address<span id="imp"> *</span></label> <input class="lists"
 						id="email" type="email" name="email"
-						value="evergreensupermarket@gmail.com"
+						value="<%=(email != null) ?email : "evergreensupermarket@gmail.com"%>" 
 						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 						placeholder="Enter Your Email" required>
 
@@ -57,7 +60,8 @@
 
 				<div class="content">
 					<label class="forms">Password<span id="imp"> *</span></label> <input class="lists"
-						id="password" name="password" value="Ever@1234" type="password"
+						id="password" name="password" type="password"
+						value="<%=(password != null) ? password : "Ever@1234"%>" 
 						placeholder="Enter Password" required>
 				</div>
 				<div id="forgot_div">

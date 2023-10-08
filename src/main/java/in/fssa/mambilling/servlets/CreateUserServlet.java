@@ -55,9 +55,12 @@ public class CreateUserServlet extends HttpServlet {
 			}
 
 		} catch (Exception e) {
+			request.setAttribute("userDetails", newUser);
+			request.setAttribute("where", fromWhere);
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+		    dispatcher.forward(request, response);
 			Logger.error(e);
-			out.println("<script>alert('"+ e.getMessage() +"');</script>");
-			out.println("<script>window.history.back();</script>");
+			
 		}
 
 	}

@@ -43,10 +43,12 @@
 
 	<table id="tableBody">
 		<tr>
+			<th>S.No</th>
 			<th>Customer Name</th>
 			<th>Phone Number</th>
 			<th>View</th>
 		</tr>
+		<%int sNo = 1; %>
 		<%
 		for (User user : user_list) {
 			
@@ -55,6 +57,7 @@
 			}
 		%>
 		<tr>
+		<td><%=sNo+"."%></td>
 			<td><%=user.getName()%></td>
 			<td><%=user.getPhoneNumber()%></td>
 
@@ -63,6 +66,7 @@
 
 		</tr>
 		<%
+		sNo++;
 		}
 		%>
 	</table>

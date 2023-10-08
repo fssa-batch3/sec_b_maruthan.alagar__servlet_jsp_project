@@ -14,6 +14,21 @@
 </head>
 
 <body>
+<%
+	String message = (String) request.getAttribute("errorMessage");
+	Product newProduct = (Product) request.getAttribute("productDetails");
+	
+	%>
+
+	<%
+	if (message != null) {
+	%>
+
+	<script> alert("<%=message%>");</script>
+
+	<%
+	}
+	%>
 	<form id="additem_form" action="create" method="post">
 		<h2>Add New Product</h2>
 		<div class="parts">
@@ -21,7 +36,7 @@
 				<div class="content">
 					<label class="forms">Product Name<span id="imp"> *</span></label> <input class="lists"
 						name="product_name" type="text"  pattern="^[a-zA-Z\s]+$" maxlength="100" placeholder="Product Name"  id="product_name" title="Use Letters to Add Product Name.Don't use Numbers any special Characters"
-						required autofocus>
+						value="<%=(newProduct != null) ?newProduct.getProductName() : ""%>"  required autofocus>
 						<div id="errorContainer">
 						</div>
 						<p id="req"></p>
@@ -34,11 +49,11 @@
 					</div>
 					<div class="quan">
 						<input class="lists" id="quantity" name="quantity" type="number"
-							placeholder="Enter Quantity" max="26000" min="1" required>
+							placeholder="Enter Quantity" value="<%=(newProduct != null) ?newProduct.getQuantity() : ""%>" max="26000" min="1" required>
 						<div class="typeport">
 
 							<select class="lists" name="type" id="type" required>
-								<option value="">--Select--</option>
+								<option value=""selected disabled hidden>--Select--</option>
 								<option value="g">g</option>
 								<option value="ml">ml</option>
 								<option value="nos">Nos</option>
@@ -55,7 +70,7 @@
 
 					</div>
 					<div class="quan">
-						<input class="lists" id="mrp" name="mrp" min="0" max="50000" type="number"
+						<input class="lists" id="mrp" value="<%=(newProduct != null) ?newProduct.getPrice().getMrp() : ""%>" name="mrp" min="0" max="50000" type="number"
 							placeholder="Enter MRP" required>
 
 					</div>
@@ -73,10 +88,10 @@
 							id="discount_label">Discount (%)<span id="imp"> *</span></label>
 					</div>
 					<div class="quan">
-						<input max="99" class="lists" id="tax" name="tax"
+						<input max="99" class="lists" id="tax"  value="<%=(newProduct != null) ?newProduct.getPrice().getTax() : ""%>" name="tax"
 							type="number" placeholder="Enter Tax" min="0" required>
 						<div class="typeport">
-							<input class="lists" id="discount" name="discount" type="number"
+							<input class="lists" id="discount"  value="<%=(newProduct != null) ?newProduct.getPrice().getDiscount() : ""%>" name="discount" type="number"
 								placeholder="Enter Discount" min="0" max="99" required>
 						</div>
 					</div>
@@ -84,7 +99,7 @@
 
 				<div class="content">
 					<label class="forms">Special name(optional)</label> <input
-						class="lists" name="special_name" pattern="^[a-zA-Z-\s]+$" maxlength="100" type="text" id="special_name" title="Use Letters to Add Special Name. Don't use Numbers or any special Characters. Use - if there is no Special name"
+						class="lists" name="special_name" pattern="^[a-zA-Z-\s]+$" value="<%=(newProduct != null) ?newProduct.getSpecialName(): ""%>" maxlength="100" type="text" id="special_name" title="Use Letters to Add Special Name. Don't use Numbers or any special Characters. Use - if there is no Special name"
 						placeholder="Enter special name">
 						<div id="errorContainer_1">
 						</div>

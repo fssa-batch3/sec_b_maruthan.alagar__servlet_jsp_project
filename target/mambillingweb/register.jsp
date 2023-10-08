@@ -51,7 +51,7 @@
 			<div class="content">
 				<label class="forms">Shop Name<span id="imp"> *</span></label> <input
 					class="lists" id="shop_name" name="shop_name"
-					 value="<%=(newShop != null) ? newShop.getShopName() : "Evergreen Supermarket"%>" type="text"
+					 value="<%=(newShop != null) ? newShop.getShopName() : ""%>" type="text"
 					placeholder="Enter Shop Name" pattern="^[a-zA-Z\s]+$"
 					title="Use a-z and A-Z Create Shop Name" required>
 			</div>
@@ -60,14 +60,14 @@
 				<label class="forms">License Number<span id="imp"> *</span></label>
 				<input class="lists" id="license_number" name="license_number"
 					type="number" placeholder="Enter License Number" pattern="[0-9]+"
-					maxlength="14" value="23784894098987"
+					maxlength="14"   value="<%=(newShop != null) ? newShop.getLicenseNumber() : ""%>"
 					title="Don't Use space and any Characters.Use 0-9 and Must Be 14 Characters"
 					required>
 			</div>
 			<div class="content">
 				<label class="forms">Phone Number<span id="imp"> *</span></label> <input
 					class="lists" id="phone_number" name="phone_number" type="tel"
-					pattern="^[6789]\d{9,9}$" maxlength="10" value="6108419159"
+					pattern="^[6789]\d{9,9}$" maxlength="10"  value="<%=(newShop != null) ? newShop.getPhoneNumber() : ""%>"
 					title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters"
 					placeholder="Enter Mobile Number" required>
 			</div>
@@ -77,19 +77,19 @@
 				</label> <input class="lists" id="email" name="email" type="email"
 					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 					placeholder="Enter your E-Mail"
-					value="evergreensupermarket@gmail.com"
+					value="<%=(newShop != null) ? newShop.getEmail() : ""%>"
 					title="Please enter correct Email" required>
 			</div>
 
 		</div>
 		<div class="tab">
-			<h1 id="2">User Name Creation:</h1>
+			<h1 id="2">Login Details Creation:</h1>
 			<div class="content">
 				<label class="forms">Email Address<span id="imp">
 						*</span></label> <input class="lists" id="email" type="email"
 					pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 					placeholder=" Enter Your Email"
-					value="evergreensupermarket@gmail.com"
+					value="<%=(newShop != null) ? newShop.getEmail() : ""%>"
 					title="Please enter correct Email" required>
 
 			</div>
@@ -97,14 +97,14 @@
 			<div class="content">
 				<label class="forms"> Create New Password<span id="imp">
 						*</span></label> <input class="lists" id="first_password" name="password"
-					type="password" placeholder="Abcd@123"  value="Ever@1234"
+					type="password" placeholder="Abcd@123"  value="<%=(newShop != null) ? newShop.getPassword() : ""%>"
 					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*+`~=?\|<>/]).{8,}"
 					required>
 			</div>
 			<div class="content">
 				<label class="forms">Re-Enter Password<span id="imp">
 						*</span></label> <input class="lists" id="password" type="password"
-					value="Ever@1234" placeholder="Abcd@123" required>
+					value="<%=(newShop != null) ? newShop.getPassword() : ""%>" placeholder="Abcd@123" required>
 
 			</div>
 			<div id="rulez" style="display: none;" class="rules">
@@ -120,7 +120,7 @@
 				<label class="forms">GSTIN Number<span id="imp"> *</span></label> <input
 					class="lists" id="gstn_number" type="text" name="gstn_number"
 					placeholder="Enter GSTN Number" maxlength="15"
-					value="33CCCEV7409R1Z8"
+					value="<%=(newShop != null) ? newShop.getGSTNNumber() : ""%>"
 					pattern="\d{2}[A-Z]{5}\d{4}[A-Z]{1}[A-Z\d]{1}[Z]{1}[A-Z\d]{1}"
 					title="Don't Use space and any Special Characters.Use A-Z and 1-9 and Must Be 15 Characters"
 					required>
@@ -129,14 +129,14 @@
 			<div class="content">
 				<label class="forms">Address<span id="imp"> *</span></label> <input
 					class="lists" id="address" type="text"
-					value="789 Nheru St, Pudukkottai" name="address"
+					value="<%=(newShop != null) ? newShop.getAddress() : ""%>" name="address"
 					pattern="^[A-Za-z0-9\\s.,-]+$" placeholder="Enter Shop Address"
 					maxlength="250" required>
 
 			</div>
 			<div class="content">
 				<label class="forms">Owner name<span id="imp"> *</span></label> <input
-					class="lists" id="owner_name" type="text" value="Rahu Raman"
+					class="lists" id="owner_name" type="text" value="<%=(newShop != null) ? newShop.getOwnerName() : ""%>"
 					pattern="^[a-zA-Z\s]+$" name="owner_name"
 					placeholder="Enter Owner name" required>
 
@@ -144,7 +144,7 @@
 			<div class="content">
 				<label class="forms">Print Name(For Bill)<span id="imp">
 						*</span></label> <input class="lists" id="nameforprint" type="text"
-					pattern="^[a-zA-Z-\s]+$" value="Evergreen" name="print_name"
+					pattern="^[a-zA-Z-\s]+$" value="<%=(newShop != null) ? newShop.getPrintName() : ""%>" name="print_name"
 					placeholder="Enter Print Name" required>
 
 			</div>

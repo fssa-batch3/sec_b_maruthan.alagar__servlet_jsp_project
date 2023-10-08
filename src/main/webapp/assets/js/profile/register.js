@@ -57,6 +57,7 @@ function validateForm() {
 			alert("Please Fill All The Required Fields.")
 			y[i].className += " invalid";
 			valid = false;
+			break;
 		}
 	}
 	// If the valid status is true, mark the step as finished and valid:
@@ -208,7 +209,7 @@ document.getElementById("nameforprint").addEventListener("change", function() {
 document.getElementById("address").addEventListener("change", function() {
 
 	const nameInput = document.getElementById("address");
-	const pattern = /^[A-Za-z0-9\\s.,-]+$/;
+	const pattern = /^[#.0-9a-zA-Z\s,-]+$/;
 	const enteredValue = nameInput.value;
 	if (enteredValue.trim() == "" || enteredValue == null) {
 		alert("Address cannot be Empty.");
@@ -230,31 +231,28 @@ const pw = document.getElementById("password");
 
 document.getElementById("first_password").addEventListener("change", function() {
 
-if(new_pw.value.trim()==""){
+if(new_pw.value.trim()==""||new_pw.value.length == 0){
 		alert("Please enter the password");
 		document.getElementById("first_password").value = "";
 		return;
 		
 	}
-	if (pw.value.length == 0) {
-		alert("Please enter password");
-		return;
-	}
-	if (pw.value.length != 8) {
-		alert("Password Length Max of 8 Characters");
-		document.getElementById("first_password").value="";
-		return;
-	}
-	if (!pw.value.match(/\d/)) {
+	
+	if (!new_pw.value.match(/\d/)) {
 		alert("Please add 1 number in the Password");
 		return;
 	}
-	if (!pw.value.match(/[A-Z]/)) {
+	if (!new_pw.value.match(/[A-Z]/)) {
 		alert("Please add 1 uppercase letter in the Password");
 		return;
 	}
-	if (!pw.value.match(/[a-z]/)) {
+	if (!new_pw.value.match(/[a-z]/)) {
 		alert("Please add 1 lowercase letter in the Password");
+		return;
+	}
+	if (new_pw.value.length != 8) {
+		alert("Password Length Max of 8 Characters");
+		document.getElementById("first_password").value="";
 		return;
 	}
 });
@@ -272,30 +270,6 @@ document.getElementById("password").addEventListener("change", function() {
 		return;
 	}
 
-	if (new_pw.value.length == 0) {
-		alert("Please create new password");
-		return;
-	}
-	if (pw.value.length == 0) {
-		alert("Please re-enter password");
-		return;
-	}
-	if (pw.value.length != 8) {
-		alert("Password Length Max of 8 Characters");
-		return;
-	}
-	if (!pw.value.match(/\d/)) {
-		alert("Please add 1 Number in the Password");
-		return;
-	}
-	if (!pw.value.match(/[A-Z]/)) {
-		alert("Please add 1 Uppercase letter in the Password");
-		return;
-	}
-	if (!pw.value.match(/[a-z]/)) {
-		alert("Please add 1 Lowercase letter in the Password");
-		return;
-	}
 });
 
 

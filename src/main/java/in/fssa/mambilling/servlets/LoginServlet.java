@@ -26,7 +26,6 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter out = response.getWriter();
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
@@ -38,12 +37,15 @@ public class LoginServlet extends HttpServlet {
 			if(!status) {
 				throw new ServiceException("Invalid Credentials");
 			}
-
+			Logger.Sysout("User Successfully logged in :)");
 			response.sendRedirect(request.getContextPath()+"/getrecentbills");
 		} catch (Exception e) {
 			Logger.error(e);
-			out.println("<script>alert('"+ e.getMessage() +"');</script>");
-			out.println("<script>window.history.back();</script>");
+			request.setAttribute("errorMessage", e.getMessage());
+			request.setAttribute("old_email", email);
+			request.setAttribute("old_password", password);
+		    RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+		    dispatcher.forward(request, response);
 			
 		}
 

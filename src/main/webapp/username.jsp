@@ -24,6 +24,22 @@
 	</div>
 </header>
 <body>
+	<%
+	String message = (String) request.getAttribute("errorMessage");
+	String email = (String) request.getAttribute("old_email");
+	String password = (String) request.getAttribute("old_password");
+	
+	%>
+
+	<%
+	if (message != null) {
+	%>
+
+	<script> alert("<%=message%>");</script>
+
+	<%
+	}
+	%>
 
 	<main>
 		<div class="one">
@@ -34,20 +50,20 @@
 						class="lists" name="email" id="email" type="email"
 						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 						placeholder=" Enter Your Email"
-						value="evergreensupermarket@gmail.com" required>
+						value="<%=(email != null) ?email : ""%>" required>
 
 				</div>
 
 				<div class="content">
 					<label class="forms"> Create New Password</label> <input
 						class="lists" id="first_password" name="password" type="password"
-						placeholder="Abcd@123" value="Ever@1234"
+						placeholder="Abcd@123" value="<%=(password != null) ? password : ""%>" 
 						pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*+`~=?\|<>/]).{8,}"
 						required>
 				</div>
 				<div class="content">
 					<label class="forms">Re-Enter Password</label> <input class="lists"
-						id="password" type="password" value="Ever@1234"
+						id="password" type="password" value="<%=(password != null) ? password : ""%>" 
 						placeholder="Abcd@123" required>
 
 				</div>
