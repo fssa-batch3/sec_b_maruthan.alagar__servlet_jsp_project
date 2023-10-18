@@ -31,14 +31,17 @@ if(new_pw.value.trim()==""||new_pw.value.length == 0){
 	}
 	if (!new_pw.value.match(/\d/)) {
 		alert("Please add 1 number in the Password");
+		document.getElementById("first_password").value = "";
 		return;
 	}
 	if (!new_pw.value.match(/[A-Z]/)) {
 		alert("Please add 1 uppercase letter in the Password");
+		document.getElementById("first_password").value = "";
 		return;
 	}
 	if (!new_pw.value.match(/[a-z]/)) {
 		alert("Please add 1 lowercase letter in the Password");
+		document.getElementById("first_password").value = "";
 		return;
 	}
 	if (new_pw.value.length != 8) {
