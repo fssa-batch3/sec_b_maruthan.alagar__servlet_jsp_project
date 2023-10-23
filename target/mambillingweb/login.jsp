@@ -52,7 +52,7 @@
 				<div class="content">
 					<label class="forms">Email Address<span id="imp"> *</span></label> <input class="lists"
 						id="email" type="email" name="email"
-						value="<%=(email != null) ?email : "evergreensupermarket@gmail.com"%>" 
+						value="<%=(email != null) ?email : ""%>" 
 						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 						placeholder="Enter Your Email" required>
 
@@ -61,7 +61,7 @@
 				<div class="content">
 					<label class="forms">Password<span id="imp"> *</span></label> <input class="lists"
 						id="password" name="password" type="password"
-						value="<%=(password != null) ? password : "Ever@1234"%>" 
+						value="<%=(password != null) ? password : ""%>" 
 						placeholder="Enter Password" required>
 				</div>
 				<div id="forgot_div">

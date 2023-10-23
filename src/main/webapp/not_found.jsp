@@ -10,6 +10,7 @@
 <title>404 Page Not Found :(</title>
 <link rel="stylesheet"
 	href="<%request.getContextPath();%>/css/error.css">
+	<link rel="icon" type="image/x-icon" href="https://iili.io/J9AdFF1.png">
 <style>
 @import
 	url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap')

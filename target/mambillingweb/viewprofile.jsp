@@ -7,13 +7,13 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/profile/viewprofile.css">
-	<link rel="stylesheet"
+<link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/header.css">
 <meta charset="ISO-8859-1">
 <title>Shop Profile</title>
 </head>
 <body>
-<%
+	<%
 	String message = (String) request.getAttribute("errorMessage");
 	%>
 
@@ -34,8 +34,18 @@
 			<a href="<%=request.getContextPath()%>/getrecentbills"> <img
 				class="logo" src="https://iili.io/J9AdFF1.png" alt="logo"
 				width="110px">
-			</a> <a href="<%=request.getContextPath()%>/login.jsp"><button
+			</a> <a id="anh" href="<%=request.getContextPath()%>/login.jsp"><button
 					class="button_2_1" type="button">Log Out</button></a>
+			<script>
+    document.querySelector(".button_2_1").addEventListener("click", function () {
+        let text = "Are you sure to Logout?";
+        if (confirm(text)) {
+            let jspGeneratedURL = "<%=request.getContextPath()%>/login.jsp";
+			document.getElementById("anh").setAttribute("href",jspGeneratedURL);
+		} else {document.getElementById("anh").setAttribute("href", "#");
+				}
+		});
+			</script>
 
 		</div>
 
@@ -53,7 +63,7 @@
 					<div class="content">
 						<label class="forms">Shop Name</label> <input class="lists"
 							id="shop_name" name="shop_name" value="<%=shop.getShopName()%>"
-							type="text" pattern="^[a-zA-Z\s]+$" required >
+							type="text" pattern="^[a-zA-Z\s]+$" required>
 
 					</div>
 
@@ -128,8 +138,9 @@
 		</div>
 
 	</main>
-	<script src="<%=request.getContextPath()%>/assets/js/profile/viewprofile.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/profile/viewprofile.js"></script>
 </body>
 
-	
+
 </html>

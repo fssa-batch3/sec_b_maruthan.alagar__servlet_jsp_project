@@ -137,6 +137,12 @@
 				<hr />
 				<h3 id="total_amount"><%=decimalFormat.format(billTotal) %> /-</h3>
 				<hr />
+				<%
+
+				if (billTotal % 1 >= 0.4) {
+				    billTotal = Math.ceil(billTotal);
+				}
+				%>
 				<h2 id="total_amount"><%=(int)billTotal %> /-</h2>
 				<hr />
 			</div>

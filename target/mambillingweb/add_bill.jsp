@@ -373,7 +373,7 @@
 								cell1.innerHTML = productName;
 								cell2.innerHTML = productID;
 								cell3.innerHTML = quantity;
-								cell4.innerHTML = mrp;
+								cell4.innerHTML = mrp+"/-";
 								cell5.innerHTML = tax_rs +" /-";
 								cell6.innerHTML = discount_rs+" /-";
 								cell7.innerHTML = total_mrp+" /-";
@@ -451,9 +451,15 @@
 			document.getElementById("total_discount").value = totalDiscount
 					.toFixed(2)+" /-";
 
+			
 			const subTotal = totalPrice;
 			document.getElementById("sub_total").value = subTotal.toFixed(2)+" /-";
-			document.getElementById("total").value = parseInt(subTotal)+" /-";
+			
+			let total = subTotal;
+			if (total % 1 >= 0.4) {
+				total = Math.ceil(total);
+				}
+			document.getElementById("total").value = parseInt(total)+" /-";
 			document.getElementById("total_amount").value = parseInt(subTotal)+" /-";
 		}
 		

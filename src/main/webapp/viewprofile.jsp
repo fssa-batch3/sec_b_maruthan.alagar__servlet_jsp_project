@@ -9,6 +9,7 @@
 	href="<%=request.getContextPath()%>/assets/css/profile/viewprofile.css">
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/assets/css/header.css">
+	<link rel="icon" type="image/x-icon" href="https://iili.io/J9AdFF1.png">
 <meta charset="ISO-8859-1">
 <title>Shop Profile</title>
 </head>
@@ -32,7 +33,7 @@
 	<header>
 		<div id="nav_div">
 			<a href="<%=request.getContextPath()%>/getrecentbills"> <img
-				class="logo" src="https://iili.io/J9AdFF1.png" alt="logo"
+				class="logo" src="https://iili.io/J9AdFF1.png" style="margin-left: 1em;" alt="logo"
 				width="110px">
 			</a> <a id="anh" href="<%=request.getContextPath()%>/login.jsp"><button
 					class="button_2_1" type="button">Log Out</button></a>

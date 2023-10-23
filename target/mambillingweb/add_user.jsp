@@ -1,3 +1,4 @@
+<%@page import="in.fssa.mambilling.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ include file="header.jsp"%>
@@ -13,8 +14,20 @@
 
 </head>
 <%
-
 String where = (String) request.getAttribute("where");
+String message = (String) request.getAttribute("errorMessage");
+User newUser = (User) request.getAttribute("userDetails");
+%>
+
+
+<%
+if (message != null) {
+%>
+
+<script> alert("<%=message%>");</script>
+
+<%
+}
 %>
 
 
@@ -22,36 +35,40 @@ String where = (String) request.getAttribute("where");
 	<form id="additem_form" action="create" method="post">
 		<h2>Add New Customer</h2>
 		<div class="content">
-			<label class="forms">Customer Name<span id="imp"> *</span></label> <input class="lists"
-				type="text" name="customer_name" maxlength="50"  pattern="^[a-zA-Z-\s]+$"
-                 id="customer_name" title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"
+			<label class="forms">Customer Name<span id="imp"> *</span></label> <input
+				class="lists" type="text" name="customer_name" maxlength="50"
+				pattern="^[a-zA-Z-\s]+$" id="customer_name" value="<%=(newUser != null) ?newUser.getName() : ""%>"
+				title="Use Letters to Add Customer Name.Don't use Numbers or any special Characters"
 				placeholder="Enter Customer Name" required autofocus>
-				<div id="errorContainer">
-						</div>
-						<p id="req"></p>
+			<div id="errorContainer"></div>
+			<p id="req"></p>
 		</div>
 		<div class="content">
-			<label class="forms">Phone Number<span id="imp"> *</span></label> <input class="lists"
-				type="number"  id="customer_phone"name="phone_number" 
-				placeholder="Enter Mobile Number" pattern="^[6789]\d{9,9}$" min="6000000001" max="9999999999" maxLength="10" title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters" required>
-				<div id="errorContainer_1">
-						</div>
-						<p id="req_1"></p>
+			<label class="forms">Phone Number<span id="imp"> *</span></label> <input
+				class="lists" type="number" id="customer_phone" name="phone_number"
+				placeholder="Enter Mobile Number" pattern="^[6789]\d{9,9}$"
+				min="6000000001" max="9999999999" maxLength="10" value="<%=(newUser != null) ?newUser.getPhoneNumber() : ""%>"
+				title="Use Numbers begin with 6,7,8,9 and must Enter 10 Characters"
+				required>
+			<div id="errorContainer_1"></div>
+			<p id="req_1"></p>
 		</div>
 
 		<div class="content">
 			<label class="forms">E-Mail Address (optional)</label> <input
-				class="lists" type="text" id="customer_email"   name="email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"  title="Please enter correct Email" maxlength="150"
+				class="lists" type="text" id="customer_email" name="email"
+				pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+				title="Please enter correct Email" maxlength="150" value="<%=(newUser != null) ?newUser.getEmail() : ""%>"
 				placeholder="Enter Customer E-Mail">
-				<div id="errorContainer_2">
-						</div>
-						<p id="req_2"></p>
+			<div id="errorContainer_2"></div>
+			<p id="req_2"></p>
 		</div>
 		<div class="content">
 			<label class="forms">Customer Address(optional)</label> <input
 				class="lists" type="text" id="customer_address" name="address"
-				placeholder="Enter Customer Address" pattern="^[A-Za-z0-9\\s.,-]+$" maxlength="250">
-				
+				placeholder="Enter Customer Address" pattern="^[A-Za-z0-9\\s.,-]+$" value="<%=(newUser != null) ?newUser.getAddress() : ""%>"
+				maxlength="250">
+
 		</div>
 		<input type="hidden" name="where" value="<%=where%>" />
 		<div class="content1">
@@ -80,6 +97,7 @@ String where = (String) request.getAttribute("where");
 
 		</div>
 	</form>
-	<script src="<%=request.getContextPath()%>/assets/js/customer/addcustomer.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/assets/js/customer/addcustomer.js"></script>
 </body>
 </html>

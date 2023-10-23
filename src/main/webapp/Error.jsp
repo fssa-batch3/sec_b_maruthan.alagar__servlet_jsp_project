@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
+<link rel="icon" type="image/x-icon" href="https://iili.io/J9AdFF1.png">
 <meta charset="utf-8">
 
 <title>500 Internal Server Error :(</title>

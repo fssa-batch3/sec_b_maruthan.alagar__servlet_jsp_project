@@ -37,7 +37,7 @@
 				<div>
 					<label>Phone Number:</label> <input class="lists" type="tel"
 						id="customer_phone" placeholder="Enter Mobile Number"></div>
-						<a href="<%=request.getContextPath() %>/users/new?redirectedTo=bill"><button type="button" id="user_add_button">+</button></a>
+						<a href="<%=request.getContextPath() %>/users/new?redirectedTo=bill"><button type="button" id="user_add_button" title="Click here to Add new Customer">+</button></a>
 				</div>
 				
 					
@@ -89,7 +89,7 @@
 				</div>
 
 				<div>
-					<button id="add_button">+</button>
+					<button id="add_button" title="Click here to Add Product to the Bill">+</button>
 				</div>
 
 			</div>

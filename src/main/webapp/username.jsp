@@ -46,7 +46,7 @@
 			<form id="login_form" action="updatepassword" method="POST">
 				<h1 class="log">Change Password</h1>
 				<div class="content">
-					<label class="forms"> Enter Your Email Address</label> <input
+					<label class="forms"> Enter Your Email Address<span id="imp"> *</span></label> <input
 						class="lists" name="email" id="email" type="email"
 						pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
 						placeholder=" Enter Your Email"
@@ -55,14 +55,14 @@
 				</div>
 
 				<div class="content">
-					<label class="forms"> Create New Password</label> <input
+					<label class="forms"> Create New Password<span id="imp"> *</span></label> <input
 						class="lists" id="first_password" name="password" type="password"
 						placeholder="Abcd@123" value="<%=(password != null) ? password : ""%>" 
 						pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[0-9])(?=.*?[!@#$%^&*+`~=?\|<>/]).{8,}"
 						required>
 				</div>
 				<div class="content">
-					<label class="forms">Re-Enter Password</label> <input class="lists"
+					<label class="forms">Re-Enter Password<span id="imp"> *</span></label> <input class="lists"
 						id="password" type="password" value="<%=(password != null) ? password : ""%>" 
 						placeholder="Abcd@123" required>
 

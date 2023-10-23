@@ -41,7 +41,7 @@ for (RecentBillModal forCount : bill_list) {
 			alt="bill not found image">
 			<h1>Bills yet to be Added</h1></a>
 		<h2>
-			<span id="span">&#x21d1;</span> Click Here to add New bill <span
+			<span id="span">&#x21d1;</span> Click here to add new bill <span
 				id="span">&#x21d1;</span>
 		</h2>
 

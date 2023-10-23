@@ -1,8 +1,4 @@
 
-document.querySelector(".button_2_1").addEventListener("click", function () {
- confirm("Are you sure to Logout?");
-});
-
 
 document.getElementById("license_number").addEventListener("click", giveNo);
 document.getElementById("user_email").addEventListener("click", giveNo);

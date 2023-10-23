@@ -209,7 +209,7 @@ document.getElementById("nameforprint").addEventListener("change", function() {
 document.getElementById("address").addEventListener("change", function() {
 
 	const nameInput = document.getElementById("address");
-	const pattern = /^[A-Za-z0-9\\s.,-]+$/;
+	const pattern = /^[#.0-9a-zA-Z\s,-]+$/;
 	const enteredValue = nameInput.value;
 	if (enteredValue.trim() == "" || enteredValue == null) {
 		alert("Address cannot be Empty.");
@@ -237,21 +237,25 @@ if(new_pw.value.trim()==""||new_pw.value.length == 0){
 		return;
 		
 	}
-	if (new_pw.value.length != 8) {
-		alert("Password Length Max of 8 Characters");
-		document.getElementById("first_password").value="";
-		return;
-	}
+	
 	if (!new_pw.value.match(/\d/)) {
 		alert("Please add 1 number in the Password");
+		document.getElementById("first_password").value = "";
 		return;
 	}
 	if (!new_pw.value.match(/[A-Z]/)) {
 		alert("Please add 1 uppercase letter in the Password");
+		document.getElementById("first_password").value = "";
 		return;
 	}
 	if (!new_pw.value.match(/[a-z]/)) {
 		alert("Please add 1 lowercase letter in the Password");
+		document.getElementById("first_password").value = "";
+		return;
+	}
+	if (new_pw.value.length != 8) {
+		alert("Password Length Max of 8 Characters");
+		document.getElementById("first_password").value="";
 		return;
 	}
 });
