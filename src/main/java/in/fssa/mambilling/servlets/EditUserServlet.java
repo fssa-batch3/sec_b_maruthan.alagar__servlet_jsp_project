@@ -53,7 +53,7 @@ public class EditUserServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				Logger.error(e);
-				out.print(e.getMessage());
+				response.sendRedirect(request.getContextPath() + "/Error.jsp");
 
 			}
 			

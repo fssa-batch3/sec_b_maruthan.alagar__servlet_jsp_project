@@ -39,7 +39,6 @@ public class EditShopServlet extends HttpServlet {
 			return;
 		} else {
 			int shopId = Integer.parseInt(id);
-			System.out.print(shopId);
 
 			try {
 
@@ -51,7 +50,7 @@ public class EditShopServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 			} catch (Exception e) {
 				Logger.error(e);
-				out.print(e.getMessage());
+				response.sendRedirect(request.getContextPath() + "/Error.jsp");
 
 			}
 

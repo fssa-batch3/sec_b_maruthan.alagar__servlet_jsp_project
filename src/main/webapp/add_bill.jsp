@@ -253,7 +253,8 @@
 
 		  // Send the POST request using the fetch API and return the promise
 		  const response = await fetch(url, options).catch( (err)=> console.log(err));		    
-		  // console.log(userDetails);
+		  
+		  
 		  const productDetail = ( await response.json() ).data;
 		  
 		  console.log(productDetail);

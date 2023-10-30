@@ -31,14 +31,12 @@
         document.addEventListener("DOMContentLoaded", function () {
         	
         	 const url = "<%=request.getContextPath()%>/getAmountDetails";
-        	 console.log(url);
             fetch(url)
                 .then(response => response.json())
                 .then(res => {
-                	console.log(res);
+                	
                 	
                 	const data = JSON.parse(res.data);
-                	console.log(data)
                 	
                     const dates = Object.keys(data);
                     const sumOfPrices = Object.values(data);
